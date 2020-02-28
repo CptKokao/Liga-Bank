@@ -1,0 +1,17 @@
+.hamburger .line {
+  width: 25px;
+  height: 2px;
+  background-color: #ecf0f1;
+  display: block;
+  margin: 6px auto;
+}
+
+.hamburger:hover {
+  cursor: pointer;
+}
+
+/* CUSTOM */
+.hamburger .line-new {
+  width: 13px;
+  margin-left: 0;
+}
