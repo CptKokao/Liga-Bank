@@ -51,8 +51,8 @@ ul {
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
   vertical-align: middle;
 }
 
@@ -86,4 +86,39 @@ a {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+.btn {
+  width: 234px;
+  height: 53px;
+  background: $blue;
+  border-radius: 4px;
+
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #F6F7FF;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: $tablet-width) {
+    width: 206px;
+    height: 48px;
+
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 1.3px;
+  }
+
+  @media (max-width: $mobile-width) {
+    width: 188px;
+    height: 43px;
+  }
+}
+
+.btn--white {
+  background-color: #F6F7FF;
+  color: #1F1E25;
 }

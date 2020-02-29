@@ -1,0 +1,107 @@
+.slider {
+  @media (max-width: $mobile-width) {
+    justify-content: flex-end;
+    display: flex;
+  }
+}
+
+.slider--blue {
+  background-color: $blue;
+}
+
+.slider--grey {
+  background-color: #dee2ed;
+}
+
+.slider--lightblue {
+  background-color: #e5f1fd;
+}
+
+.slider-img {
+  @media (max-width: $mobile-width) {
+    width: 320px;
+  }
+}
+
+.slider-desc {
+  position: absolute;
+  top: 26%;
+  left: 19.7%;
+  letter-spacing: -1.3px;
+
+  @media (max-width: $tablet-width) {
+    top: 22%;
+    left: 11.4%;
+  }
+
+  @media (max-width: $mobile-width) {
+    top: 17%;
+    left: 5.4%;
+  }
+
+  p {
+    font-weight: bold;
+    font-size: 54px;
+    line-height: 63px;
+
+    @media (max-width: $tablet-width) {
+      font-size: 46px;
+      line-height: 54px;
+    }
+
+    @media (max-width: $mobile-width) {
+      font-size: 38px;
+      line-height: 45px;
+    }
+  }
+
+  h2 {
+    margin-top: 7px;
+    letter-spacing: 0.2px;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 26px;
+
+    @media (max-width: $tablet-width) {
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    @media (max-width: $mobile-width) {
+      width: 145px;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  a {
+    margin-top: 35px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.5px;
+
+    @media (max-width: $tablet-width) {
+      margin-top: 27px;
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    @media (max-width: $mobile-width) {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}
+
+.slider-desc--white {
+  color: #F6F7FF;
+}
+
+.swiper-pagination-bullet {
+  background: #2028B6;
+}
+
+.swiper-pagination-bullet-active {
+  background: #F6F7FF;
+}
