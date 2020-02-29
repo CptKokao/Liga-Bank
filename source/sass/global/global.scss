@@ -26,7 +26,7 @@ html {
 body {
   font-family: "Roboto", "Arial", sans-serif;
   font-size: 16px;
-  color: #000000;
+  color: $black;
 
   display: flex;
   flex-direction: column;
@@ -34,6 +34,7 @@ body {
 
   max-width: 1440px;
   margin: 0 auto;
+  outline: 1px solid goldenrod;
 }
 
 h1,
@@ -57,18 +58,20 @@ img {
 
 a {
   text-decoration: none;
-  color: #000000;
+  color: $black;
 }
 
 .container {
-
+  max-width: 1366px;
+  padding: 0 100px;
+  outline: 1px solid pink;
 
   @media (max-width: $tablet-width) {
-
+    max-width: 1200px;
   }
 
   @media (max-width: $mobile-width) {
-
+    max-width: 767px;
   }
 }
 
