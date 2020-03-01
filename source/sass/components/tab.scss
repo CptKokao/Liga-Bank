@@ -1,0 +1,83 @@
+.tab {
+  position: relative; /* Относительное позиционирование */
+  display: flex;
+  margin-top: 50px;
+}
+
+.tab__item input[type="radio"] { 
+  display: none;
+}
+
+.tab__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 293px;
+  height: 93px;
+  position: relative;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  cursor: pointer;
+}
+
+.tab__title--vault::before {
+  content: "";
+  position: absolute;
+  background: url("../img/vault.svg") no-repeat;
+  top: 30%;
+  left: 15%;
+  width: 34px;
+  height: 34px;
+}
+
+.tab__title--cards::before {
+  content: "";
+  position: absolute;
+  background: url("../img/cards.svg") no-repeat;
+  top: 30%;
+  left: 15%;
+  width: 34px;
+  height: 34px;
+}
+
+.tab__title--security::before {
+  content: "";
+  position: absolute;
+  background: url("../img/security.svg") no-repeat;
+  top: 30%;
+  left: 15%;
+  width: 34px;
+  height: 34px;
+}
+
+.tab__title--mobile::before {
+  content: "";
+  position: absolute;
+  background: url("../img/mobile.svg") no-repeat;
+  top: 30%;
+  left: 15%;
+  width: 34px;
+  height: 34px;
+}
+
+.tab__content {
+  position: absolute; /* Абсолютное позиционирование */
+  top: 94px;
+  left: 0; /* Размещаем у левого края */
+  display: none; /* Прячем вкладку */
+  width: 100%;
+  height: 410px;
+  background: #F6F7FF;
+}
+
+.tab__item :checked + .tab__title {
+  position: relative; /* Относительное позиционирование */
+  background: #F6F7FF; /* Цвет фона */
+  top: 0; /* Сдвигаем вниз */
+  left: 0;
+}
+
+.tab__item :checked ~ .tab__content {
+  display: block; /* Показываем активную вкладку */
+}
