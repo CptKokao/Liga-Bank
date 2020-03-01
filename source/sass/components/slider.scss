@@ -23,7 +23,7 @@
   }
 }
 
-.slider-desc {
+.slider__desc {
   position: absolute;
   top: 26%;
   left: 19.7%;
@@ -68,7 +68,6 @@
     }
 
     @media (max-width: $mobile-width) {
-      width: 145px;
       font-size: 16px;
       line-height: 19px;
     }
@@ -94,14 +93,14 @@
   }
 }
 
-.slider-desc--white {
+.slider__desc--white {
   color: #F6F7FF;
 }
 
-.swiper-pagination-bullet {
-  background: #2028B6;
-}
-
-.swiper-pagination-bullet-active {
-  background: #F6F7FF;
+.slider__desc--titleshort {
+  @media (max-width: $mobile-width) {
+    h2 {
+      width: 145px;
+    }
+  }
 }
