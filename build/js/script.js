@@ -20,3 +20,13 @@ var mySwiper = new Swiper('.swiper-container', {
   // },
   loop: true,
 });
+
+var mySwiper = new Swiper('.swiper-container-tab', {
+  pagination: {
+    el: '.swiper-pagination-tab',
+  },  
+  // autoplay: {
+  //   delay: 4000,
+  // },
+  loop: true,
+});

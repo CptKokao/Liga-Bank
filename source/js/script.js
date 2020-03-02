@@ -11,9 +11,21 @@ if (!String.prototype.startsWith) {
   });
 }
 
+/* Слайдер для блока tab */
 var mySwiper = new Swiper('.swiper-container', {
   pagination: {
     el: '.swiper-pagination',
+  },  
+  // autoplay: {
+  //   delay: 4000,
+  // },
+  loop: true,
+});
+
+/* Слайдер для блока slider */
+var mySwiper = new Swiper('.swiper-container-tab', {
+  pagination: {
+    el: '.swiper-pagination-tab',
   },  
   // autoplay: {
   //   delay: 4000,

@@ -34,7 +34,7 @@ body {
 
   max-width: 1440px;
   margin: 0 auto;
-  outline: 1px solid goldenrod;
+  // outline: 1px solid goldenrod;
 }
 
 h1,
@@ -48,6 +48,7 @@ p {
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 img {
@@ -67,7 +68,7 @@ a {
   outline: 1px solid rgb(192, 255, 239);
 
   @media (max-width: $tablet-width) {
-    max-width: 1200px;
+    width: 100%;
   }
 
   @media (max-width: $mobile-width) {
