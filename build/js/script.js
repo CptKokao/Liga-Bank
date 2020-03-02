@@ -11,6 +11,7 @@ if (!String.prototype.startsWith) {
   });
 }
 
+/* Слайдер для блока tab */
 var mySwiper = new Swiper('.swiper-container', {
   pagination: {
     el: '.swiper-pagination',
@@ -21,6 +22,7 @@ var mySwiper = new Swiper('.swiper-container', {
   loop: true,
 });
 
+/* Слайдер для блока slider */
 var mySwiper = new Swiper('.swiper-container-tab', {
   pagination: {
     el: '.swiper-pagination-tab',

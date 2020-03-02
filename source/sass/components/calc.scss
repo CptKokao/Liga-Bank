@@ -1,0 +1,106 @@
+.calc {
+  margin-top: 505px;
+  padding-bottom: 100px;
+
+  h2 {
+    font-weight: bold;
+    font-size: 41px;
+    line-height: 57px;
+    letter-spacing: -0.7px;
+  }
+
+  h3 {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 31px;
+    letter-spacing: 0.4px;
+  }
+
+  h4 {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.3px;
+  }
+
+}
+
+select,
+input {
+  width: 600px;
+  height: 60px;
+
+  padding-left: 25px;
+
+
+  border: 1px solid #1F1E25;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.calc__step-target {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+
+  select {
+    margin-top: 22px;
+  }
+}
+
+.calc__step-parametrs {
+  margin-top: 35px;
+
+  h4 {
+    margin-top: 15px;
+  }
+
+  input {
+    margin-top: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    color: #707C87;
+    margin-top: 8px;
+  }
+}
+
+.calc__line {
+  width: 600px;
+  height: 14px;
+  margin-top: 10px;
+}
+
+.clac__line-value {
+  font-size: 14px;
+  line-height: 20px;
+  color: #707C87;
+}
+
+.calc__step-date {
+  margin-top: 20px;
+}
+
+.calc__step-capital {
+  display: flex;
+  margin-top: 20px;
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    background: #2C36F2;
+    border-radius: 2px;
+  }
+
+  label {
+    margin-left: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.3px;
+  }
+}
+

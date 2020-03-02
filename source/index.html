@@ -317,6 +317,50 @@
         <div class="swiper-pagination"></div>
       </div>
     </div>
+
+    <section class="container calc">
+      <h2>Кредитный калькулятор</h2>
+
+      <div class="calc__step-target">
+        <h3>Шаг 1. Цель кредита</h3>
+        <select>
+          <option>Ипотечное кредитование</option>
+          <option>Автомобильное кредитование</option>
+          <option>Потребительский кредит</option>
+        </select>
+      </div>
+
+      <div class="calc__step-parametrs">
+        <h3>Шаг 2. Введите параметры кредита</h3>
+        <div class="">
+          <h4>Стоимость недвижимости</h4>
+          <input type="number" placeholder="2 000 000 рублей">
+          <p>От 1 200 000  до 25 000 000 рублей</p>
+        </div>
+        <div class="">
+          <h4>Первоначальный взнос</h4>
+          <input type="number" placeholder="200 000 рублей">
+          <div class="calc__line">
+            <img src="./img/line.png" alt="">
+          </div>
+          <p class="clac__line-value">10%</p>
+        </div>
+        <div class="calc__step-date">
+          <h4>Срок кредитования</h4>
+          <input type="number" placeholder="5 рублей">
+          <div class="calc__line">
+            <img src="./img/line.png" alt="">
+          </div>
+          <p class="clac__line-value">5 лет</p>
+        </div>
+      </div>
+
+      <div class="calc__step-capital">
+        <input type="checkbox" id="capital"> 
+        <label for="capital">Использовать материнский капитал</label>
+      </div>
+
+    </section>
   </main>
 
   <script src="./js/vendor.js"></script>
