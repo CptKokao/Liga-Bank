@@ -329,44 +329,125 @@
     <section class="container calc">
       <h2>Кредитный калькулятор</h2>
 
-      <div class="calc__step-target">
-        <h3>Шаг 1. Цель кредита</h3>
-        <select>
-          <option>Ипотечное кредитование</option>
-          <option>Автомобильное кредитование</option>
-          <option>Потребительский кредит</option>
-        </select>
+      <div class="calc__flex">
+        <!-- Шаги калькулятора -->
+        <div class="calc__step">
+
+          <div class="calc__step-target">
+            <h3>Шаг 1. Цель кредита</h3>
+            <select>
+              <option>Ипотечное кредитование</option>
+              <option>Автомобильное кредитование</option>
+              <option>Потребительский кредит</option>
+            </select>
+          </div>
+    
+          <div class="calc__step-parametrs">
+            <h3>Шаг 2. Введите параметры кредита</h3>
+
+            <div class="">
+              <p>Стоимость недвижимости</p>
+              <input type="number" placeholder="2 000 000 рублей">
+              <span>От 1 200 000  до 25 000 000 рублей</span>
+            </div>
+
+            <div class="">
+              <p>Первоначальный взнос</p>
+              <input type="number" placeholder="200 000 рублей">
+              <input type="range" value="0">
+              <span class="clac__line-value">10%</span>
+            </div>
+
+            <div class="calc__step-date">
+              <p>Срок кредитования</p>
+              <input type="number" placeholder="5 рублей">
+              <input type="range" value="0">
+              <span class="clac__line-value">5 лет</span>
+            </div>
+          </div>
+    
+          <div class="calc__step-capital">
+            <input type="checkbox" id="capital"> 
+            <label for="capital">Использовать материнский капитал</label>
+          </div>
+        </div>
+
+        <!-- Наше предложение -->
+        <section class="calc__offer">
+          <h3>Наше предложение</h3>
+
+          <div class="calc__offer-wrap">
+
+            <div class="calc__offer-item">
+              <p>1 330 000 рублей </p>
+              <span>Сумма ипотеки</span>
+            </div>
+
+            <div class="calc__offer-item">
+              <p>9,40% </p>
+              <span>Процентная ставка</span>
+            </div>
+
+            <div class="calc__offer-item">
+              <p>27 868 рублей </p>
+              <span>Ежемесячный платеж</span>
+            </div>
+
+            <div class="calc__offer-item">
+              <p>61 929 рублей</p>
+              <span>Необходимый доход</span>
+            </div>
+          </div>
+
+          <button class="btn calc__offer-btn">Оформить заявку</button>
+        </section>
       </div>
 
-      <div class="calc__step-parametrs">
-        <h3>Шаг 2. Введите параметры кредита</h3>
-        <div class="">
-          <h4>Стоимость недвижимости</h4>
-          <input type="number" placeholder="2 000 000 рублей">
-          <p>От 1 200 000  до 25 000 000 рублей</p>
-        </div>
-        <div class="">
-          <h4>Первоначальный взнос</h4>
-          <input type="number" placeholder="200 000 рублей">
-          <div class="calc__line">
-            <img src="./img/line.png" alt="">
-          </div>
-          <p class="clac__line-value">10%</p>
-        </div>
-        <div class="calc__step-date">
-          <h4>Срок кредитования</h4>
-          <input type="number" placeholder="5 рублей">
-          <div class="calc__line">
-            <img src="./img/line.png" alt="">
-          </div>
-          <p class="clac__line-value">5 лет</p>
-        </div>
-      </div>
+      <section class="calc__request">
+        <h3>Шаг 3. Оформление заявки</h3>
 
-      <div class="calc__step-capital">
-        <input type="checkbox" id="capital"> 
-        <label for="capital">Использовать материнский капитал</label>
-      </div>
+        <div class="calc__request-wrap">
+          
+          <div class="calc__request-item">
+            <p>Номер заявки</p>
+            <span>№ 0010</span>
+          </div>
+
+          <div class="calc__request-item">
+            <p>Цель кредита</p>
+            <span>№ 0010</span>
+          </div>
+
+          <div class="calc__request-item">
+            <p>Стоимость недвижимости</p>
+            <span>Ипотека</span>
+          </div>
+
+          <div class="calc__request-item">
+            <p>Первоначальный взнос</p>
+            <span>200 000 рублей</span>
+          </div>
+
+          <div class="calc__request-item">
+            <p>Срок кредитования</p>
+            <span>5 лет</span>
+          </div>
+        </div>
+
+        <div class="calc__request-form">
+          <form action="#">
+              <label for=""></label>
+              <input type="text" placeholder="ФИО">
+
+              <label for=""></label>
+              <input type="tel" placeholder="Телефон">
+
+              <label for=""></label>
+              <input type="email" placeholder="E-mail">
+            <button class="btn calc__reques-btn" type="submit">Отправить</button>
+          </form>
+        </div>
+      </section>
 
     </section>
   </main>
