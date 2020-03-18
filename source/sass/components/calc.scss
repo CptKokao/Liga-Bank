@@ -3,7 +3,11 @@
   padding-bottom: 100px;
 
   @media (max-width: $tablet-width) {
-    margin-top: 80px;
+    margin-top: 70px;
+  }
+
+  @media (max-width: $mobile-width) {
+    margin-top: 53px;
   }
 
   h2 {
@@ -16,6 +20,11 @@
       font-size: 32px;
       line-height: 45px;
     }
+
+    @media (max-width: $mobile-width) {
+      font-size: 22px;
+      line-height: 31px;
+    }
   }
 
   h3 {
@@ -27,6 +36,12 @@
     @media (max-width: $tablet-width) {
       font-size: 18px;
       line-height: 25px;
+    }
+
+    @media (max-width: $mobile-width) {
+      font-size: 16px;
+      line-height: 22px;
+      letter-spacing: 0.3px;
     }
   }
 }
@@ -56,7 +71,7 @@ input {
 }
 
 .calc__step {
-  width: 54%;
+  width: 51%;
 
   @media (max-width: $tablet-width) {
     width: 100%;
@@ -68,11 +83,24 @@ input {
   flex-direction: column;
   margin-top: 50px;
 
+  @media (max-width: $tablet-width) {
+    margin-top: 27px;
+  }
+
+  @media (max-width: $mobile-width) {
+    margin-top: 22px;
+  }
+
   select {
     margin-top: 22px;
 
     @media (max-width: $tablet-width) {
       width: 100%;
+      margin-top: 18px;
+    }
+
+    @media (max-width: $mobile-width) {
+      margin-top: 14px;
     }
   }
 }
@@ -80,10 +108,18 @@ input {
 .calc__step-parametrs {
   margin-top: 35px;
 
+  @media (max-width: $mobile-width) {
+    margin-top: 25px;
+  }
+
   p {
     margin-top: 15px;
     line-height: 22px;
     letter-spacing: 0.3px;
+
+    @media (max-width: $mobile-width) {
+      margin-top: 10px;
+    }
   }
 
   input {
@@ -91,6 +127,7 @@ input {
 
     @media (max-width: $tablet-width) {
       width: 100%;
+      margin-top: 7px;
     }
   }
 
@@ -109,7 +146,7 @@ input {
   margin-top: 10px;
 }
 
-.clac__line-value {
+.calc__line-value {
   font-size: 14px;
   line-height: 20px;
   color: #707C87;
@@ -143,23 +180,32 @@ input {
 .calc__offer {
   width: 500px;
   height: 389px;
-  padding: 60px;
+  padding: 52px 58px;
+  margin-top: 58px;
   background: #F6F7FF;
   border-radius: 4px;
 
   @media (max-width: $tablet-width) {
+    min-height: 389px;
     width: 100%;
+    padding: 50px 58px;
   }
 
   @media (max-width: $mobile-width) {
-    padding: 15px;
+    margin-top: 20px;
+    padding: 35px 15px;
   }
 
   h3 {
     font-weight: 500;
     font-size: 22px;
     line-height: 31px;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
+
+    @media (max-width: $mobile-width) {
+      font-size: 18px;
+      line-height: 25px;
+    }
   }
 }
 
@@ -173,19 +219,44 @@ input {
 }
 
 .calc__offer-item {
-  width: 50%;
+  width: 46%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
+  margin-bottom: 31px;
+
+  &:nth-of-type(2n) {
+    margin-left: 25px;
+    padding-left: 24px;
+  }
+
+  @media (max-width: $tablet-width) {
+    width: 35%;
+
+    &:nth-of-type(2n) {
+      margin-left: 25px;
+      padding-left: 7px;
+    }
+  }
 
   @media (max-width: $mobile-width) {
     width: 100%;
+    margin-bottom: 14px;
+
+    &:nth-of-type(2n) {
+      margin-left: 0;
+      padding-left: 0;
+    }
   }
 
   p {
     font-weight: 500;
     font-size: 22px;
     line-height: 140%;
+
+    @media (max-width: $mobile-width) {
+      font-size: 18px;
+      line-height: 25px;
+    }
   }
 
   span {
@@ -196,6 +267,17 @@ input {
 
 .calc__offer-btn {
   width: 100%;
+  font-size: 16px;
+
+  @media (max-width: $tablet-width) {
+    letter-spacing: 0;
+  }
+
+  @media (max-width: $mobile-width) {
+    height: 50px;
+    margin-top: 15px;
+    font-size: 14px;
+  }
 }
 
 /* Шаг 3. Оформление заявки */
@@ -204,7 +286,7 @@ input {
   min-height: 722px;
   margin: 0 auto;
   margin-top: 70px;
-  padding: 70px;
+  padding: 60px 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -213,32 +295,67 @@ input {
 
   @media (max-width: $tablet-width) {
     width: 100%;
+    margin-top: 55px;
+    padding: 0;
     background: #ffffff;
+  }
+
+  @media (max-width: $mobile-width) {
+    margin-top: 50px;
   }
 
   h3 {
     font-weight: 500;
     font-size: 22px;
     line-height: 31px;
+
+    @media (max-width: $tablet-width) {
+      font-size: 18px;
+      line-height: 25px;
+    }
+
+    @media (max-width: $mobile-width) {
+      font-size: 16px;
+      line-height: 22px;
+    }
   }
 }
 
 .calc__request-wrap {
   width: 100%;
-  margin-top: 40px;
+  margin-top: 10px;
+
+  @media (max-width: $tablet-width) {
+    margin-top: 23px;
+  }
+
+  @media (max-width: $mobile-width) {
+    margin-top: 13px;
+  }
 }
 
 .calc__request-item {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  align-items: baseline;
+  padding: 12px 0;
   border-bottom: 1px solid #C4C4C4;
+
+  @media (max-width: $mobile-width) {
+    flex-direction: column-reverse;
+    padding: 16px 0;
+  }
 
   span {
     display: block;
     font-weight: 500;
     font-size: 22px;
     line-height: 31px;
+
+    @media (max-width: $mobile-width) {
+      font-size: 18px;
+      line-height: 25px;
+    }
   }
 }
 
@@ -260,7 +377,7 @@ input {
         width: 100%;
       }
 
-      width: 49%;
+      width: 48%;
       margin-bottom: 30px;
       height: 60px;
   
@@ -271,14 +388,30 @@ input {
       box-sizing: border-box;
       border-radius: 4px;
       background: #ffffff;
+
+      @media (max-width: $mobile-width) {
+        width: 100%;
+        margin-bottom: 20px;
+      }
     }
   }
 
   .calc__reques-btn {
+    width: 200px;
     margin: 0 auto;
+    margin-top: 7px;
+    font-size: 16px;
 
     @media (max-width: $tablet-width) {
       width: 100%;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: $mobile-width) {
+      height: 50px;
+      margin-top: 9px;
+      font-size: 14px;
+      letter-spacing: 0;
     }
   }
 
