@@ -4,6 +4,7 @@ const inputRealty = document.getElementById("calc-realty");
 const calcPlus = document.getElementById("calc-plus");
 const calcMinus = document.getElementById("calc-minus");
 const calcFirstpay = document.getElementById("calc-firstpay");
+const calcFirstpayRange = document.getElementById("calc-firstpay-range");
 
 
 const valueMin = 1200000;
@@ -52,4 +53,9 @@ calcMinus.onclick = () => {
   checkValue();
   calcFirstpay.value = inputRealty.value * 10 / 100
 }
+
+/*  */
+calcFirstpayRange.onchange = () => {
+  console.log(calcFirstpayRange.value)
+};
 
