@@ -57,18 +57,12 @@ calcMinus.onclick = () => {
 
 const calcFirstpayRange = document.getElementById("calc-firstpay-range");
 let calcFirstpayValue = document.getElementById("calc-firstpay-value");
-let calcDate = document.getElementById("calc-date");
-let calcDateRange = document.getElementById("calc-date-range");
+const calcFirstpayError = document.getElementById("calc-fistpay-error");
+const calcDate = document.getElementById("calc-date");
+const calcDateRange = document.getElementById("calc-date-range");
 let calcDateValue = document.getElementById("calc-date-value");
+let sumFirstpay = 200000;
 console.dir(calcFirstpayRange)
-
-
-/* Отслеживание изменения % первоначального взноса */
-calcFirstpayRange.oninput = (e) => {
-  let procent = e.target.value;
-  calcFirstpayValue.textContent = procent;
-  calcFirstpay.value = inputRealty.value / 100 * procent;
-};
 
 /* Отслеживание изменения срока кредитования */
 calcDateRange.oninput = (e) => {
@@ -77,3 +71,45 @@ calcDateRange.oninput = (e) => {
   calcDate.value = `${date} лет`;
 };
 
+/* Отслеживание изменения % первоначального взноса */
+calcFirstpayRange.oninput = (e) => {
+  const target = e.target;
+  /* получаем % */
+  let procent = target.value;
+  /* выводим % в html */
+  calcFirstpayValue.textContent = procent;
+
+  /* вычисляем какой % от суммы */
+  sumFirstpay = inputRealty.value / 100 * procent;
+  /* выводим значение в html */
+  calcFirstpay.value = sumFirstpay;
+};
+
+/* Отслеживание изменения значение первоначального взноса */
+calcFirstpay.oninput = (e) => {
+  const target = e.target;
+  let min = sumFirstpay / 100 * 10
+  let max = sumFirstpay;
+
+  /* задаем min */
+  target.min = min;
+
+  /* задаем max */
+  target.max = max;
+
+  /* Если валидность false */
+  if (!target.checkValidity()) {
+    console.dir(calcFirstpay.validity);
+    /* Если значение больше */
+    if (target.validity.rangeUnderflow) {
+      calcFirstpayError.textContent = `Взнос должен быть меньше ${max}`
+    } else
+    /* Если значение меньше */
+    if (target.validity.rangeOverflow) {
+      calcFirstpayError.textContent = `Взнос должен быть больше ${min}`
+    }
+  /* Если валидность true */
+  } else {
+    calcFirstpayError.textContent = ``;
+  }
+};

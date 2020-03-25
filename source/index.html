@@ -349,7 +349,8 @@
 
             <div class="">
               <p>Первоначальный взнос</p>
-              <input type="number" id="calc-firstpay" placeholder="200 000 рублей">
+              <input type="number" id="calc-firstpay" placeholder="200 000 рублей" max="400000">
+              <p class="calc_fistpay_error" id="calc-fistpay-error"></p>
               <input type="range" id="calc-firstpay-range" value="10" min="10" max="100" step="5">
               <span id="calc-firstpay-value">10</span>
               <span>%</span>
