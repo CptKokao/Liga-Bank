@@ -1,68 +1,166 @@
 "use strict";
 
 const inputRealty = document.getElementById("calc-realty");
+const inputFirstpay = document.getElementById("calc-firstpay");
+const inputFirstpayRange = document.getElementById("calc-firstpay-range");
+
 const calcPlus = document.getElementById("calc-plus");
 const calcMinus = document.getElementById("calc-minus");
-const calcFirstpay = document.getElementById("calc-firstpay");
+const calcProcentValue = document.getElementById("calc-firstpay-value");
+const calcFirstpayError = document.getElementById("calc-fistpay-error");
 
-
+const calcDate = document.getElementById("calc-date");
+const calcDateRange = document.getElementById("calc-date-range");
+const calcDateValue = document.getElementById("calc-date-value");
+const calcСapital = document.getElementById("calc-capital");
 
 const valueMin = 1200000;
 const valueMax = 25000000;
 const defValue = 2000000;
 const step = 100000;
-let countValue = 0;
+const capital = 470000;
+let generalSum;
+let procentSum;
+let minRange;
+let maxRange;
+let sumCredit = 0;
 
-console.log();
+const getMinMax = () => {
+  minRange = generalSum / 100 * 10
+  maxRange = generalSum;
+} 
 
-// /* Отслеживание изменения значения после фокуса */
-// inputRealty.oninput = (e) => {
-//   console.log(e.validity.rangeUnderflow);
-// };
+// getMinMax();
+
+/* Проверка суммы первоначального взноса */
+const chcekSum = (target, error) => {
+  /* Если валидность false */
+  if (!target.checkValidity()) {
+    /* Если значение больше */
+    if (target.validity.rangeUnderflow) {
+      error.textContent = `Взнос должен быть больше ${minRange}`
+    } else
+    /* Если значение меньше */
+    if (target.validity.rangeOverflow) {
+      error.textContent = `Взнос должен быть меньше ${maxRange}`
+    }
+  /* Если валидность true */
+  } else {
+    error.textContent = ``;
+  }
+}
 
 /* Проверка на min max */
 let checkValue = () => {
+  /* если значение пустое */
   if (inputRealty.value === "") {
+    /* поставить defValue */
     inputRealty.value = defValue;
-    calcFirstpay.value = defValue * 10 / 100;
+    generalSum = defValue;
+    inputFirstpay.value = defValue * 10 / 100;
   } else
+  /* если значение меньше */
   if (inputRealty.value < valueMin) {
+    /* поставить valueMin */
     inputRealty.value = valueMin;
-    calcFirstpay.value = inputRealty.value * 10 / 100
+    generalSum = valueMin;
+    inputFirstpay.value = inputRealty.value * 10 / 100
   } else
+  /* если значение больше */
   if (inputRealty.value > valueMax) {
+    /* поставить valueMax */
     inputRealty.value = valueMax;
-    calcFirstpay.value = inputRealty.value * 10 / 100
+    generalSum = valueMax;
+    inputFirstpay.value = inputRealty.value * 10 / 100
+  } else {
+    generalSum = inputRealty.value;
+  }
+};
+
+/* Получаем сумму процента */
+const getProcentSum = (target) => {
+  /* получаем % */
+  let procent = Number(target.textContent);
+  /* выводим % в html */
+  calcProcentValue.textContent = procent;
+  /* вычисляем какой % от суммы */
+  procentSum = generalSum / 100 * procent;
+  inputFirstpay.value = procentSum;
+}
+
+/* Получить сумму кредита */
+const getSumCredit = () => {
+  sumCredit = generalSum;
+  if (calcСapital.checked) {
+    sumCredit = sumCredit - procentSum - capital;
+  } else {
+    sumCredit = sumCredit - procentSum;
   }
 };
 
 /* Событие на фокус */
 inputRealty.onfocus = () => {
   checkValue();
+  getProcentSum(calcProcentValue);
+
+  
+  console.log(generalSum);
+  console.log(procentSum);
+  console.log(sumCredit);
+};
+
+/* Событие при изменении стоимости недвижимости*/
+inputRealty.onblur = () => {
+  getMinMax();
+  checkValue();
+  getProcentSum(calcProcentValue);
+  getSumCredit();
+
+  
+  console.log(generalSum);
+  console.log(procentSum);
+  console.log(sumCredit);
 };
 
 /* Отслеживание клика plus */
 calcPlus.onclick = () => {
   inputRealty.valueAsNumber += step;
+  generalSum = inputRealty.value * 10 / 100;
+  inputFirstpay.value = generalSum;
+  getMinMax();
   checkValue();
-  calcFirstpay.value = inputRealty.value * 10 / 100
+  getProcentSum(calcProcentValue);
+  getSumCredit();
+
+  console.log(generalSum);
+  console.log(procentSum);
+  console.log(sumCredit);
 }
 
 /* Отслеживание клика minus */
 calcMinus.onclick = () => {
   inputRealty.valueAsNumber -= step;
+  generalSum = inputRealty.value * 10 / 100;
+  inputFirstpay.value = generalSum;
+  getMinMax();
   checkValue();
-  calcFirstpay.value = inputRealty.value * 10 / 100
+  getProcentSum(calcProcentValue);
+  getSumCredit();
+
+  console.log(generalSum);
+  console.log(procentSum);
+  console.log(sumCredit);
 }
 
-const calcFirstpayRange = document.getElementById("calc-firstpay-range");
-let calcFirstpayValue = document.getElementById("calc-firstpay-value");
-const calcFirstpayError = document.getElementById("calc-fistpay-error");
-const calcDate = document.getElementById("calc-date");
-const calcDateRange = document.getElementById("calc-date-range");
-let calcDateValue = document.getElementById("calc-date-value");
-let sumFirstpay = 200000;
-console.dir(calcFirstpayRange)
+/* Отслеживание изменения % первоначального взноса */
+inputFirstpayRange.oninput = (e) => {
+  const target = e.target;
+  getMinMax();
+  getProcentSum(target);
+  getSumCredit();
+
+  // chcekSum(inputFirstpay, calcFirstpayError);
+};
 
 /* Отслеживание изменения срока кредитования */
 calcDateRange.oninput = (e) => {
@@ -71,45 +169,19 @@ calcDateRange.oninput = (e) => {
   calcDate.value = `${date} лет`;
 };
 
-/* Отслеживание изменения % первоначального взноса */
-calcFirstpayRange.oninput = (e) => {
-  const target = e.target;
-  /* получаем % */
-  let procent = target.value;
-  /* выводим % в html */
-  calcFirstpayValue.textContent = procent;
 
-  /* вычисляем какой % от суммы */
-  sumFirstpay = inputRealty.value / 100 * procent;
-  /* выводим значение в html */
-  calcFirstpay.value = sumFirstpay;
-};
+// /* Отслеживание изменения значение первоначального взноса */
+// inputFirstpay.oninput = (e) => {
+//   const target = e.target;
+//   /*  получаем min и max */
+//   getMinMax();
+//   /* задаем min */
+//   target.min = minRange;
+//   /* задаем max */
+//   target.max = maxRange;
 
-/* Отслеживание изменения значение первоначального взноса */
-calcFirstpay.oninput = (e) => {
-  const target = e.target;
-  let min = sumFirstpay / 100 * 10
-  let max = sumFirstpay;
+//   /*  */
+//   chcekSum(target, calcFirstpayError);
+//   getSumCredit();
 
-  /* задаем min */
-  target.min = min;
-
-  /* задаем max */
-  target.max = max;
-
-  /* Если валидность false */
-  if (!target.checkValidity()) {
-    console.dir(calcFirstpay.validity);
-    /* Если значение больше */
-    if (target.validity.rangeUnderflow) {
-      calcFirstpayError.textContent = `Взнос должен быть меньше ${max}`
-    } else
-    /* Если значение меньше */
-    if (target.validity.rangeOverflow) {
-      calcFirstpayError.textContent = `Взнос должен быть больше ${min}`
-    }
-  /* Если валидность true */
-  } else {
-    calcFirstpayError.textContent = ``;
-  }
-};
+// };
