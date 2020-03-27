@@ -4,6 +4,7 @@ const inputRealty = document.getElementById("calc-realty");
 const inputFirstpay = document.getElementById("calc-firstpay");
 const inputFirstpayRange = document.getElementById("calc-firstpay-range");
 
+const calcSelect = document.getElementById("calc__select");
 const calcPlus = document.getElementById("calc-plus");
 const calcMinus = document.getElementById("calc-minus");
 const calcProcentValue = document.getElementById("calc-firstpay-value");
@@ -19,36 +20,43 @@ const valueMax = 25000000;
 const defValue = 2000000;
 const step = 100000;
 const capital = 470000;
+// let minRange;
+// let maxRange;
 let generalSum;
 let procentSum;
-let minRange;
-let maxRange;
+let procRate;
+let procRateMonth;
+let payMonth;
 let sumCredit = 0;
 
-const getMinMax = () => {
-  minRange = generalSum / 100 * 10
-  maxRange = generalSum;
+/* получает ежемесячный платеж */
+const formula = () => {
+  // payMonth = sumCredit * (procRateMonth + procRateMonth/((1+procRateMonth)*12)-1);
+  // payMonth = (sumCredit * procRateMonth) - (1 - 1/(1 + procRateMonth)* 12)
 } 
 
-// getMinMax();
+// const getMinMax = () => {
+//   minRange = generalSum / 100 * 10
+//   maxRange = generalSum;
+// } 
 
 /* Проверка суммы первоначального взноса */
-const chcekSum = (target, error) => {
-  /* Если валидность false */
-  if (!target.checkValidity()) {
-    /* Если значение больше */
-    if (target.validity.rangeUnderflow) {
-      error.textContent = `Взнос должен быть больше ${minRange}`
-    } else
-    /* Если значение меньше */
-    if (target.validity.rangeOverflow) {
-      error.textContent = `Взнос должен быть меньше ${maxRange}`
-    }
-  /* Если валидность true */
-  } else {
-    error.textContent = ``;
-  }
-}
+// const chcekSum = (target, error) => {
+//   /* Если валидность false */
+//   if (!target.checkValidity()) {
+//     /* Если значение больше */
+//     if (target.validity.rangeUnderflow) {
+//       error.textContent = `Взнос должен быть больше ${minRange}`
+//     } else
+//     /* Если значение меньше */
+//     if (target.validity.rangeOverflow) {
+//       error.textContent = `Взнос должен быть меньше ${maxRange}`
+//     }
+//   /* Если валидность true */
+//   } else {
+//     error.textContent = ``;
+//   }
+// }
 
 /* Проверка на min max */
 let checkValue = () => {
@@ -77,16 +85,47 @@ let checkValue = () => {
   }
 };
 
-/* Получаем сумму процента */
-const getProcentSum = (target) => {
-  /* получаем % */
-  let procent = Number(target.textContent);
+/* Получает дефолтное % значение в зависимости от категории */
+const getDefProcent = () => {
+  const hypothecProc = 10;
+  const autoProc = 20;
+
+  if (calcSelect.value === 'Ипотечное кредитование') {
+    /* добавляет value для input */
+    inputFirstpayRange.value = hypothecProc;
+    /* выводим % в html */
+    calcProcentValue.textContent = hypothecProc;
+  } else 
+  if (calcSelect.value === 'Автомобильное кредитование') {
+    /* добавляет value для input */
+    inputFirstpayRange.value = autoProc;
+    /* выводим % в html */
+    calcProcentValue.textContent = autoProc;
+  }
+};
+
+/* Получает дефолтные % и выводим в html */
+getDefProcent();
+
+/* Получает сумму % от общей суммы */
+const getProcentSum = () => {
+  /* Получает % */
+  let procent = Number(inputFirstpayRange.value);
   /* выводим % в html */
   calcProcentValue.textContent = procent;
   /* вычисляем какой % от суммы */
   procentSum = generalSum / 100 * procent;
   inputFirstpay.value = procentSum;
-}
+
+  /* Получаем % ставку */
+  if (procent >= 20) {
+    procRate = '8.50';
+    procRateMonth = 0.00708;
+  } else {
+    procRate = '9.40';
+    procRateMonth = 0.00783;
+  }
+};
 
 /* Получить сумму кредита */
 const getSumCredit = () => {
@@ -96,30 +135,28 @@ const getSumCredit = () => {
   } else {
     sumCredit = sumCredit - procentSum;
   }
+  formula()
+
+  console.log(generalSum);
+  console.log(procentSum);
+  console.log(sumCredit);
+  console.log(procRate);
+  console.log(payMonth);
 };
 
 /* Событие на фокус */
 inputRealty.onfocus = () => {
   checkValue();
-  getProcentSum(calcProcentValue);
-
-  
-  console.log(generalSum);
-  console.log(procentSum);
-  console.log(sumCredit);
+  getProcentSum();
+  getSumCredit();
 };
 
-/* Событие при изменении стоимости недвижимости*/
+/* Событие при изменении стоимости недвижимости */
 inputRealty.onblur = () => {
-  getMinMax();
   checkValue();
-  getProcentSum(calcProcentValue);
+  // getMinMax();
+  getProcentSum();
   getSumCredit();
-
-  
-  console.log(generalSum);
-  console.log(procentSum);
-  console.log(sumCredit);
 };
 
 /* Отслеживание клика plus */
@@ -127,14 +164,10 @@ calcPlus.onclick = () => {
   inputRealty.valueAsNumber += step;
   generalSum = inputRealty.value * 10 / 100;
   inputFirstpay.value = generalSum;
-  getMinMax();
+  // getMinMax();
   checkValue();
-  getProcentSum(calcProcentValue);
+  getProcentSum();
   getSumCredit();
-
-  console.log(generalSum);
-  console.log(procentSum);
-  console.log(sumCredit);
 }
 
 /* Отслеживание клика minus */
@@ -142,24 +175,22 @@ calcMinus.onclick = () => {
   inputRealty.valueAsNumber -= step;
   generalSum = inputRealty.value * 10 / 100;
   inputFirstpay.value = generalSum;
-  getMinMax();
+  // getMinMax();
   checkValue();
-  getProcentSum(calcProcentValue);
+  getProcentSum();
   getSumCredit();
-
-  console.log(generalSum);
-  console.log(procentSum);
-  console.log(sumCredit);
 }
 
 /* Отслеживание изменения % первоначального взноса */
-inputFirstpayRange.oninput = (e) => {
-  const target = e.target;
-  getMinMax();
-  getProcentSum(target);
+inputFirstpayRange.oninput = () => {
+  // getMinMax();
+  getProcentSum();
   getSumCredit();
+};
 
-  // chcekSum(inputFirstpay, calcFirstpayError);
+/* отслеживание выбор материнского капитала */
+calcСapital.oninput = () => {
+  getSumCredit();
 };
 
 /* Отслеживание изменения срока кредитования */
@@ -169,19 +200,3 @@ calcDateRange.oninput = (e) => {
   calcDate.value = `${date} лет`;
 };
 
-
-// /* Отслеживание изменения значение первоначального взноса */
-// inputFirstpay.oninput = (e) => {
-//   const target = e.target;
-//   /*  получаем min и max */
-//   getMinMax();
-//   /* задаем min */
-//   target.min = minRange;
-//   /* задаем max */
-//   target.max = maxRange;
-
-//   /*  */
-//   chcekSum(target, calcFirstpayError);
-//   getSumCredit();
-
-// };

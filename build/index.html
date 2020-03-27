@@ -335,7 +335,7 @@
 
           <div class="calc__step-target">
             <h3>Шаг 1. Цель кредита</h3>
-            <select>
+            <select id="calc__select">
               <option>Ипотечное кредитование</option>
               <option>Автомобильное кредитование</option>
               <option>Потребительский кредит</option>
@@ -359,8 +359,8 @@
               <p>Первоначальный взнос</p>
               <input type="number" id="calc-firstpay" placeholder="200 000 рублей" readonly="">
               <p class="calc_fistpay_error" id="calc-fistpay-error"></p>
-              <input type="range" id="calc-firstpay-range" value="10" min="10" max="100" step="5">
-              <span id="calc-firstpay-value">10</span>
+              <input type="range" id="calc-firstpay-range" value="0" min="10" max="100" step="5">
+              <span id="calc-firstpay-value"></span>
               <span>%</span>
               </div>
             </div>
