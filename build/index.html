@@ -335,7 +335,7 @@
 
           <div class="calc__step-target">
             <h3>Шаг 1. Цель кредита</h3>
-            <select id="calc__select">
+            <select id="calc-select">
               <option>Ипотечное кредитование</option>
               <option>Автомобильное кредитование</option>
               <option>Потребительский кредит</option>
@@ -346,20 +346,20 @@
             <h3>Шаг 2. Введите параметры кредита</h3>
 
             <div class="calc__step-parametrs-wrap">
-              <p>Стоимость недвижимости</p>
+              <p id="calc-title"></p>
               <div class="calc__step-parametrs-input">
                 <button class="calc__step-parametrs-minus" id="calc-minus">&minus;</button>
                 <button class="calc__step-parametrs-plus" id="calc-plus">&plus;</button>
                 <input type="number" id="calc-realty" placeholder="2 000 000 рублей">
               </div>
-              <span>От 1 200 000  до 25 000 000 рублей</span>
+              <span id="calc-cost"></span>
             </div>
 
-            <div class="">
+            <div class="" id="calc-firstpay-wrap">
               <p>Первоначальный взнос</p>
               <input type="number" id="calc-firstpay" placeholder="200 000 рублей" readonly="">
               <p class="calc_fistpay_error" id="calc-fistpay-error"></p>
-              <input type="range" id="calc-firstpay-range" value="0" min="10" max="100" step="5">
+              <input type="range" id="calc-firstpay-range">
               <span id="calc-firstpay-value"></span>
               <span>%</span>
               </div>
@@ -368,9 +368,9 @@
             <div class="calc__step-date">
               <p>Срок кредитования</p>
               <input id="calc-date" type="text" placeholder="5 лет">
-              <input id="calc-date-range" type="range" value="5" min="5" max="30" step="1">
-              <span id="calc-date-value">5</span>
-              <span>лет</span>
+              <input id="calc-date-range" type="range">
+              <span id="calc-date-first">лет</span>
+              <span id="calc-date-last">30лет</span>
             </div>
           </div>
     
