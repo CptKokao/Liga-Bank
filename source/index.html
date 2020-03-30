@@ -339,10 +339,13 @@
 
             <div class="calc__step-parametrs-wrap">
               <p id="calc-title"></p>
-              <div class="calc__step-parametrs-input">
-                <button class="calc__step-parametrs-minus" id="calc-minus">&minus;</button>
-                <button class="calc__step-parametrs-plus" id="calc-plus">&plus;</button>
-                <input type="number" id="calc-realty" placeholder="2 000 000 рублей">
+              <div class="">
+                <div class="calc__step-parametrs-input">
+                  <button class="calc__step-parametrs-minus" id="calc-minus">&minus;</button>
+                  <button class="calc__step-parametrs-plus" id="calc-plus">&plus;</button>
+                  <input type="number" id="calc-realty" placeholder="2 000 000 рублей">
+                </div>
+                <p class="error" id="calc-realty-error"></p>
               </div>
               <span id="calc-cost"></span>
             </div>
@@ -359,16 +362,28 @@
 
             <div class="calc__step-date">
               <p>Срок кредитования</p>
-              <input id="calc-date" type="text" placeholder="5 лет">
+              <input id="calc-date" type="text" placeholder="5 лет" readonly>
               <input id="calc-date-range" type="range" >
               <span id="calc-date-first">лет</span>
               <span id="calc-date-last">30лет</span>
             </div>
-          </div>
-    
-          <div class="calc__step-capital">
-            <input type="checkbox" id="calc-capital"> 
-            <label for="calc-capital">Использовать материнский капитал</label>
+
+            <div class="calc__step-checkbox">
+              <input type="checkbox" id="calc-extra-capital"> 
+              <label for="calc-extra-capital">Использовать материнский капитал</label>
+            </div>
+            <div class="calc__step-checkbox">
+              <input type="checkbox" id="calc-extra-kacko"> 
+              <label id="calc-extra-kacko" for="calc-extra-kacko">Оформить КАСКО в нашем банке</label>
+            </div>
+            <div class="calc__step-checkbox">
+              <input type="checkbox" id="calc-extra-life"> 
+              <label for="calc-extra-life">Оформить Страхование жизни в нашем банке</label>
+            </div>
+            <div class="calc__step-checkbox">
+              <input type="checkbox" id="calc-extra-project"> 
+              <label for="calc-extra-project">Участник зарплатного проекта нашего банка</label>
+            </div>
           </div>
         </div>
 
@@ -379,22 +394,22 @@
           <div class="calc__offer-wrap">
 
             <div class="calc__offer-item">
-              <p>1 330 000 рублей </p>
+              <p id="calc-offer-sum"> </p>
               <span>Сумма ипотеки</span>
             </div>
 
             <div class="calc__offer-item">
-              <p>9,40% </p>
+              <p id="calc-offer-proc"> </p>
               <span>Процентная ставка</span>
             </div>
 
             <div class="calc__offer-item">
-              <p>27 868 рублей </p>
+              <p id="calc-offer-monthpay"></p>
               <span>Ежемесячный платеж</span>
             </div>
 
             <div class="calc__offer-item">
-              <p>61 929 рублей</p>
+              <p id="calc-offer-monthprofit"></p>
               <span>Необходимый доход</span>
             </div>
           </div>
