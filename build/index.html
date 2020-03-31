@@ -365,7 +365,6 @@
               <input type="range" id="calc-firstpay-range">
               <span id="calc-firstpay-value"></span>
               <span>%</span>
-              </div>
             </div>
 
             <div class="calc__step-date">
@@ -396,14 +395,14 @@
         </div>
 
         <!-- Наше предложение -->
-        <section class="calc__offer">
+        <div class="calc__offer" id="offer-success">
           <h3>Наше предложение</h3>
 
           <div class="calc__offer-wrap">
 
             <div class="calc__offer-item">
               <p id="calc-offer-sum"> </p>
-              <span>Сумма ипотеки</span>
+              <span id="offer-success-text"></span>
             </div>
 
             <div class="calc__offer-item">
@@ -421,10 +420,16 @@
               <span>Необходимый доход</span>
             </div>
           </div>
-
           <button class="btn calc__offer-btn">Оформить заявку</button>
-        </section>
-      
+        </div>
+
+        <div class="calc__offer visually-hidden" id="offer-failed">
+          <div class="calc__offer-wrap">
+            <p id="offer-failed-text"></p>
+            <p>Попробуйте использовать другие параметры</p>
+          </div>
+        </div>
+      </div>
 
       <section class="calc__request">
         <h3>Шаг 3. Оформление заявки</h3>
