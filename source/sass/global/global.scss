@@ -129,13 +129,13 @@ a {
 }
 
 /* Стили для ошибок */
-input:invalid {
-  box-shadow: 0 0 5px 1px red;
-}
+// input:invalid {
+//   box-shadow: 0 0 5px 1px red;
+// }
 
-input:focus:invalid {
-  outline: none;
-}
+// input:focus:invalid {
+//   outline: none;
+// }
 
 .error {
   color: red;

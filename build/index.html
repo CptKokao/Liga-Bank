@@ -420,7 +420,7 @@
               <span>Необходимый доход</span>
             </div>
           </div>
-          <button class="btn calc__offer-btn">Оформить заявку</button>
+          <button class="btn calc__offer-btn" id="offer-btn">Оформить заявку</button>
         </div>
 
         <div class="calc__offer visually-hidden" id="offer-failed">
@@ -431,48 +431,25 @@
         </div>
       </div>
 
-      <section class="calc__request">
+      <section class="calc__request visually-hidden" id="request">
         <h3>Шаг 3. Оформление заявки</h3>
 
-        <div class="calc__request-wrap">
+        <div class="calc__request-wrap" id="request-wrap">
           
-          <div class="calc__request-item">
-            <p>Номер заявки</p>
-            <span>№ 0010</span>
-          </div>
-
-          <div class="calc__request-item">
-            <p>Цель кредита</p>
-            <span>Ипотека</span>
-          </div>
-
-          <div class="calc__request-item">
-            <p>Стоимость недвижимости</p>
-            <span>2 000 000 рублей</span>
-          </div>
-
-          <div class="calc__request-item">
-            <p>Первоначальный взнос</p>
-            <span>200 000 рублей</span>
-          </div>
-
-          <div class="calc__request-item">
-            <p>Срок кредитования</p>
-            <span>5 лет</span>
-          </div>
+          
         </div>
 
         <div class="calc__request-form">
-          <form action="#">
+          <form action="#" id="request-form">
               <label for="name"></label>
-              <input id="name" type="text" placeholder="ФИО">
+              <input id="name" type="text" placeholder="ФИО" required="">
 
               <label for="phone"></label>
-              <input id="phone" type="tel" placeholder="Телефон">
+              <input id="phone" type="tel" placeholder="Телефон" required="">
 
               <label for="email"></label>
-              <input id="email" type="email" placeholder="E-mail">
-            <button class="btn calc__reques-btn" type="submit">Отправить</button>
+              <input id="email" type="email" placeholder="E-mail" required="">
+            <button class="btn calc__request-btn" id="request-btn" type="submit">Отправить</button>
           </form>
         </div>
       </section>

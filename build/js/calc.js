@@ -32,6 +32,19 @@ const offerFailed = document.getElementById("offer-failed");
 const offerFailedText = document.getElementById("offer-failed-text");
 const offerSuccessText = document.getElementById("offer-success-text");
 
+const offerBtn = document.getElementById("offer-btn");
+
+const request = document.getElementById("request");
+const requestWrap = document.getElementById("request-wrap");
+const requestBtn = document.getElementById("request-btn");
+const requestForm = document.getElementById("request-form");
+const inputs = document.querySelectorAll(".calc__request-form input");
+const formName = document.getElementById("name");
+const formPhone = document.getElementById("phone");
+const formEmail = document.getElementById("email");
+let requestNumber = 0;
+let requestTarget;
+
 const defValue = 2000000;
 const capital = 470000;
 
@@ -211,6 +224,7 @@ const getDefValue = () => {
 
     /* выводим defVal в html */
     calcTitle.textContent = realtyTitle;
+    requestTarget = realtyTitle;
     calcCost.textContent = realtyCost;
     calcProcentValue.textContent = realtyProc;
     calcDateFirst.textContent = realtyYearFirst + ' лет';
@@ -270,6 +284,7 @@ const getDefValue = () => {
 
     /* выводим defVal в html */
     calcTitle.textContent = autoTitle;
+    requestTarget = autoTitle;
     calcCost.textContent = autoCost;
     calcProcentValue.textContent = autoProc;
     calcDateFirst.textContent = autoYearFirst + ' лет';
@@ -320,6 +335,7 @@ const getDefValue = () => {
 
     /* выводим defVal в html */
     calcTitle.textContent = creditTitle;
+    requestTarget = creditTitle;
     calcCost.textContent = creditCost;
     calcDateFirst.textContent = creditYearFirst + ' лет';
     calcDateLast.textContent = creditYearLast + ' лет';
@@ -446,6 +462,93 @@ const getStep = (e) => {
   }
 };
 
+const getRequest = () => {
+  requestWrap.insertAdjacentHTML('afterbegin', 
+    `<div class="calc__request-item">
+      <p>Номер заявки</p>
+      <span>№ ${requestNumber}</span>
+      </div>
+
+      <div class="calc__request-item">
+      <p>Цель кредита</p>
+      <span>${requestTarget}</span>
+      </div>
+
+      <div class="calc__request-item">
+      <p>Стоимость недвижимости</p>
+      <span>${generalSum} рублей</span>
+      </div>
+
+      <div class="calc__request-item">
+      <p>Первоначальный взнос</p>
+      <span>${procentSum} рублей</span>
+      </div>
+
+      <div class="calc__request-item">
+      <p>Срок кредитования</p>
+      <span>${dateSum} лет</span>
+    </div>`
+  );
+}
+/* добавляет нули к номеру заказа */
+function addZero(num, size) {
+  num++;
+  var s = num+"";
+  while (s.length < size) s = "0" + s;
+  return s;
+}
+
+/* отслеживает клик по кнопки Оформить заявку*/
+offerBtn.onclick = (e) => {
+  e.preventDefault();
+  /* проверка на ввод значений */
+  if (procentSum !== undefined) {
+    formName.focus();
+    offerBtn.disabled = true;
+    /* прибавляет ++ к номеру заказа */
+    requestNumber = addZero(requestNumber, 4);
+    getRequest();
+    request.classList.remove('visually-hidden');
+    // сбросить значения
+    for (var i = 0; i < inputs.length; i++) {
+      var input = inputs[i];
+      input.value = '';
+    }
+  } else {
+    return;
+  }
+}
+
+
+/* отслеживает клик по кнопки Отправить*/
+requestBtn.onclick = (e) => {
+  let error = 0;
+  // Пройдёмся по всем полям
+  for (var i = 0; i < inputs.length; i++) {
+    var input = inputs[i];
+    // Проверим валидность поля, используя встроенную в JavaScript функцию checkValidity()
+    if (input.checkValidity() === false) {
+      error++
+    } 
+  }
+
+  if (error === 0 ) {
+    /* хранение данных в localStorage */
+    localStorage.setItem('name', formName.value);
+    localStorage.setItem('phone', formPhone.value);
+    localStorage.setItem('email', formEmail.value);
+    
+    /* скрыывает запрос */
+    request.classList.add('visually-hidden');
+    /* очищает поля запроса */
+    requestWrap.innerHTML = "";
+    offerBtn.disabled = false;
+
+    getOfferReset();
+    getDefValue();
+  }
+}
+
 /* добавляет события для всех checkbox */
 for (let i = 0; calcStepCheckbox.length > i; i++ ) {
   const ckeckbox = calcStepCheckbox[i].children[0];
@@ -528,6 +631,5 @@ inputDateRange.oninput = (e) => {
 };
 
 
-
-
-
+/* маска формы телефона */
+$("#phone").mask("8(999) 999-9999");
