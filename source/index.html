@@ -15,6 +15,9 @@
     <include src="build/img/sprite_auto.svg"></include>
   </div>
 
+  <!-- overlay -->
+  <div class="overlay visually-hidden" id="overlay"></div>
+
   <!-- header -->
   <header class="header">
 
@@ -387,40 +390,39 @@
           </div>
         </div>
 
-        <!-- Наше предложение -->
-        <div class="calc__offer" id="offer-success">
+        <!-- Наше предложение SUCCESS-->
+        <div class="calc__offer-success" id="offer-success">
           <h3>Наше предложение</h3>
-
+          
           <div class="calc__offer-wrap">
-
             <div class="calc__offer-item">
               <p id="calc-offer-sum"> </p>
               <span id="offer-success-text"></span>
             </div>
-
+  
             <div class="calc__offer-item">
               <p id="calc-offer-proc"> </p>
               <span>Процентная ставка</span>
             </div>
-
+  
             <div class="calc__offer-item">
               <p id="calc-offer-monthpay"></p>
               <span>Ежемесячный платеж</span>
             </div>
-
+  
             <div class="calc__offer-item">
               <p id="calc-offer-monthprofit"></p>
               <span>Необходимый доход</span>
             </div>
           </div>
+
           <button class="btn calc__offer-btn" id="offer-btn">Оформить заявку</button>
         </div>
 
-        <div class="calc__offer visually-hidden" id="offer-failed">
-          <div class="calc__offer-wrap" >
-            <p id="offer-failed-text"></p>
-            <p>Попробуйте использовать другие параметры</p>
-          </div>
+        <!-- Наше предложение FAILED-->
+        <div class="calc__offer-failed visually-hidden" id="offer-failed">
+          <p id="offer-failed-text"></p>
+          <span>Попробуйте использовать другие параметры для расчета</span>
         </div>
       </div>
 
@@ -446,6 +448,13 @@
           </form>
         </div>
       </section>
+
+      <!-- Спасибо за обращение -->
+      <div class="calc__overlay visually-hidden" id="offer-overlay">
+        <div class="calc__overlay-close" id="close-overlay"></div>
+        <p>Спасибо за обращение в наш банк.</p>
+        <span>Наш менеджер скоро свяжется с вами по указанному номеру телефона.</span>
+      </div>
 
     </section>
 

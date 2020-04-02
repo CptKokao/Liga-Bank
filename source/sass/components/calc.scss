@@ -279,7 +279,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* Наше предложение  */
-.calc__offer {
+.calc__offer-success {
   width: 500px;
   height: 389px;
   padding: 52px 58px;
@@ -294,6 +294,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   @media (max-width: $mobile-width) {
+    height: 433px;
     margin-top: 20px;
     padding: 35px 15px;
   }
@@ -311,12 +312,61 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
-.calc__offer-wrap {
+.calc__offer-wrap{
   display: flex;
   flex-wrap: wrap;
 
   @media (max-width: $mobile-width) {
     flex-direction: column;
+  }
+}
+
+.calc__offer-failed {
+  width: 500px;
+  height: 225px;
+  padding: 52px 58px;
+  margin-top: 58px;
+  background: #f6f7ff;
+  border-radius: 4px;
+
+  p {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 31px;
+    display: flex;
+    color: #1F1E25;
+  }
+
+  span {
+    display: block;
+    margin-top: 25px;
+  }
+
+  @media (max-width: $tablet-width) {
+    width: 100%;
+
+    p {
+      padding-right: 50%;
+    }
+  
+    span {
+      padding-right: 55%;
+    }
+  }
+
+  @media (max-width: $mobile-width) {
+    padding-top: 40px;
+    padding-left: 15px;
+    p {
+      padding-right: 16%;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 25px;
+    }
+  
+    span {
+      padding-right: 0;
+    }
   }
 }
 
@@ -535,3 +585,97 @@ input[type="range"] {
     outline: none;
   }
 }
+
+/* сообщение при overlay */
+.calc__overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 25;
+  width: 500px;
+  height: 193px;
+  left: 50%;
+  top: 35.7%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform:  translateX(-50%) translateY(-50%);
+
+  background: #F6F7FF;
+  border-radius: 4px;
+
+  @media (max-width: $tablet-width) {
+    width: 678px;
+    height: 193px;
+  }
+
+  @media (max-width: $mobile-width) {
+    width: 86%;
+    height: 198px;
+    padding: 40px 25px;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 31px;
+    color: #1F1E25;
+
+    @media (max-width: $mobile-width) {
+      font-size: 18px;
+      line-height: 25px;
+      text-align: center;
+    }
+  }
+
+  span {
+    display: block;
+    margin-top: 25px;
+    text-align: center;
+
+    @media (max-width: $mobile-width) {
+
+    }
+  }
+}
+
+// крестик закрытия
+.calc__overlay-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+
+  @media (max-width: $mobile-width) {
+    top: 0;
+    right: 0;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 21px;
+    left: 10px;
+    width: 26px;
+    height: 2px;
+    background: #000;
+
+    @media (max-width: $mobile-width) {
+      width: 18px;
+      height: 2px;
+    }
+  }
+}
+

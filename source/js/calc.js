@@ -1,5 +1,6 @@
 "use strict";
 
+const body = document.querySelector("body")
 const inputRealty = document.getElementById("calc-realty");
 const inputFirstpay = document.getElementById("calc-firstpay");
 const inputFirstpayRange = document.getElementById("calc-firstpay-range");
@@ -521,6 +522,40 @@ offerBtn.onclick = (e) => {
   }
 }
 
+/* модальное окно */
+var esc = 27;
+const overlay = document.getElementById("overlay");
+const offrOverlay = document.getElementById("offer-overlay");
+const iconClose = document.getElementById("close-overlay");
+
+let closeOverlay =() => {
+  overlay.classList.add('visually-hidden');
+  offrOverlay.classList.add('visually-hidden');
+  body.style.overflow = 'auto';
+};
+
+let openOverlay =() => {
+  overlay.classList.remove('visually-hidden');
+  offrOverlay.classList.remove('visually-hidden');
+  body.style.overflow = 'hidden';
+};
+
+/* закрытие модального окна */
+iconClose.onclick = () => {
+  closeOverlay();
+}
+
+overlay.onclick = () => {
+  closeOverlay();
+}
+
+window.addEventListener('keydown', function (e) {
+  console.log(e)
+  if (e.code === 'Escape' || e.keyCode === esc) {
+    closeOverlay();
+  }
+});
+
 
 /* отслеживает клик по кнопки Отправить*/
 requestBtn.onclick = (e) => {
@@ -535,6 +570,9 @@ requestBtn.onclick = (e) => {
   }
 
   if (error === 0 ) {
+    /* открытие модального окна */
+    openOverlay();
+
     /* хранение данных в localStorage */
     localStorage.setItem('name', formName.value);
     localStorage.setItem('phone', formPhone.value);
@@ -550,6 +588,8 @@ requestBtn.onclick = (e) => {
     getDefValue();
   }
 }
+
+
 
 /* добавляет события для всех checkbox */
 for (let i = 0; calcStepCheckbox.length > i; i++ ) {
@@ -631,6 +671,8 @@ inputDateRange.oninput = (e) => {
   getPayMonth();
   getOffer()
 };
+
+
 
 
 
