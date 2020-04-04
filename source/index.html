@@ -30,23 +30,23 @@
         </div>
       </div>
 
-      <!-- Лого -->
-      <div class="header__logo">
+       <!-- Лого -->
+       <div class="header__logo">
         <a class="logo" href="#">
-          <div class="logo__img">
-            <img src="./img/logo.svg" alt="лига банк">
-          </div>
+          <svg width="28" height="25">
+            <use xlink:href="#icon-logo"/>
+          </svg>
           <h1>ЛИГА Банк</h1>
         </a>
       </div>
 
       <!-- Навигация -->
       <nav class="header__nav">
-        <ul class="header__list">
-          <li class="header__item"><a href="">Услуги</a></li>
-          <li class="header__item"><a href="">Рассчитать кредит</a></li>
-          <li class="header__item"><a href="">Контакты</a></li>
-          <li class="header__item"><a href="">Задать вопрос</a></li>
+        <ul>
+          <li><a href="">Услуги</a></li>
+          <li><a href="">Рассчитать кредит</a></li>
+          <li><a href="">Контакты</a></li>
+          <li><a href="">Задать вопрос</a></li>
         </ul>
       </nav>
 
@@ -329,6 +329,7 @@
         <!-- Шаги калькулятора -->
         <div class="calc__step">
 
+          <!-- Шаг 1 -->
           <div class="calc__step-target">
             <h3>Шаг 1. Цель кредита</h3>
             <select id="calc-select">
@@ -337,8 +338,9 @@
               <option>Потребительский кредит</option>
             </select>
           </div>
-    
-          <div class="calc__step-parametrs">
+
+          <!-- Шаг 2 -->
+          <div class="calc__step-parametrs  visually-hidden">
             <h3>Шаг 2. Введите параметры кредита</h3>
 
             <div class="calc__step-parametrs-wrap">
@@ -391,7 +393,7 @@
         </div>
 
         <!-- Наше предложение SUCCESS-->
-        <div class="calc__offer-success" id="offer-success">
+        <div class="calc__offer-success visually-hidden" id="offer-success">
           <h3>Наше предложение</h3>
           
           <div class="calc__offer-wrap">
@@ -426,14 +428,13 @@
         </div>
       </div>
 
-      <section class="calc__request visually-hidden" id="request">
+      <!-- Шаг 3 -->
+      <div class="calc__request visually-hidden" id="request">
         <h3>Шаг 3. Оформление заявки</h3>
 
-        <div class="calc__request-wrap" id="request-wrap">
-          
-          
-        </div>
+        <div class="calc__request-wrap" id="request-wrap"></div>
 
+        <!-- Форма для обратной связи -->
         <div class="calc__request-form">
           <form action="#" id="request-form">
               <label for="name"></label>
@@ -447,19 +448,20 @@
             <button class="btn calc__request-btn" id="request-btn" type="submit">Отправить</button>
           </form>
         </div>
-      </section>
+      </div>
 
       <!-- Спасибо за обращение -->
-      <div class="calc__overlay visually-hidden" id="offer-overlay">
+      <!-- <div class="calc__overlay visually-hidden" id="offer-overlay">
         <div class="calc__overlay-close" id="close-overlay"></div>
         <p>Спасибо за обращение в наш банк.</p>
         <span>Наш менеджер скоро свяжется с вами по указанному номеру телефона.</span>
-      </div>
-
+      </div> -->
     </section>
 
     <!-- Yandex map -->
     <div class="container">
+
+      <!-- Фильтр для карты -->
       <div class="map__checkbox-wrap">
         
         <div class="map__checkbox">
@@ -476,16 +478,97 @@
           <input type='checkbox' id='euro' checked></input> 
           <label for="euro">Европа</label>
         </div>
-
-
       </div>
-      <div class="map" id="map"></div>
+
+      <!-- Карта -->
+      <div class="map" id=""></div>
     </div>
   </main>
 
+  <footer class="footer">
+    <div class="footer__wrap">
+
+      <!-- Левая часть футера -->
+      <div class="footer__left">
+        <!-- Лого -->
+        <div class="footer__logo">
+          <a class="logo" href="#">
+            <svg width="28" height="25">
+              <use xlink:href="#icon-logo"/>
+            </svg>
+            <h1>ЛИГА Банк</h1>
+          </a>
+        </div>
+        <!-- © -->
+        <p class="footer__address">150015, г. Москва, ул. Московская, д. 32 Генеральная лицензия Банка России №1050 Ⓒ Лига Банк, 2019
+        </p>
+
+        <!-- Навигация -->
+        <nav class="footer__nav">
+          <ul>
+            <li><a href="">Услуги</a></li>
+            <li><a href="">Рассчитать кредит</a></li>
+            <li><a href="">Контакты</a></li>
+            <li><a href="">Задать вопрос</a></li>
+          </ul>
+        </nav>
+      </div>
+
+       <!-- Правая часть футера -->
+      <div class="footer__right">
+
+          <!-- Список телефонов -->
+          <ul class="footer__list-tel">
+            <!-- 1 -->
+            <li>
+              <svg width="10" height="16">
+                <use xlink:href="#icon-mobile"/>
+              </svg>
+              <a href="tel:*0904">*0904</a>
+              <p>Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
+            </li>
+            <!-- 2 -->
+            <li>
+              <svg width="16" height="16">
+                <use xlink:href="#icon-phone"/>
+              </svg>
+              <a href="tel:88001112233">8 800 111 22 33</a>
+              <p>Бесплатный для всех городов России</p>
+            </li>
+          </ul>
+
+          <!-- Социальная сеть -->
+          <div class="footer__social">
+            <ul class="social">
+              <li>
+                <svg width="9" height="16">
+                  <use xlink:href="#icon-fb"/>
+                </svg>
+              </li>
+              <li>
+                <svg width="16" height="16">
+                  <use xlink:href="#icon-ig"/>
+                </svg>
+              </li>
+              <li>
+                <svg width="16" height="13">
+                  <use xlink:href="#icon-twitter"/>
+                </svg>
+              </li>
+              <li>
+                <svg width="16" height="13">
+                  <use xlink:href="#icon-youtube"/>
+                </svg>
+              </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </footer>
+
   <script src="./js/vendor.js"></script>
   <script src="./js/script.js"></script>
-  <script src="./js/calc.js"></script>
+  <!-- <script src="./js/calc.js"></script> -->
 
 </body>
 </html>

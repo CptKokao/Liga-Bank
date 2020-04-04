@@ -32,11 +32,13 @@
 
   @media (max-width: $tablet-width) {
     width: 140px;
+    padding-top: 5px;
   }
 
   @media (max-width: $mobile-width) {
     flex-grow: 2;
-    margin-left: 13px;
+    margin-left: 15px;
+    padding-top: 0;
   }
 }
 
@@ -51,23 +53,23 @@
   @media (max-width: $mobile-width) {
     display: none;
   }
-}
 
-.header__list {
-  display: flex;
+  ul {
+    display: flex;
 
-  li {
-    line-height: 19px;
-    padding-right: 28px;
+    li {
+      line-height: 19px;
+      padding-right: 28px;
 
-    &:last-child {
-      padding-right: 0;
-    }
+      &:last-child {
+        padding-right: 0;
+      }
 
-    @media (max-width: $tablet-width) {
-      font-size: 14px;
-      line-height: 16px;
-      padding-right: 23px;
+      @media (max-width: $tablet-width) {
+        font-size: 14px;
+        line-height: 16px;
+        padding-right: 23px;
+      }
     }
   }
 }

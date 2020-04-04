@@ -2,10 +2,15 @@
   position: relative; /* Относительное позиционирование */
   display: flex;
   margin-top: 60px;
+  padding: 0;
 
   @media (max-width: $tablet-width) {
     display: none;
   }
+}
+
+.tab__item {
+  width: 25%;
 }
 
 .tab__item input[type="radio"] {
@@ -15,7 +20,6 @@
 .tab__title {
   display: flex;
   align-items: center;
-  width: 293px;
   height: 93px;
   position: relative;
   font-weight: 500;
@@ -72,7 +76,7 @@
   &::before {
     content: "";
     position: absolute;
-    background: url("../img/mobile.svg") no-repeat;
+    background: url("../img/icon-mobile.svg") no-repeat;
     top: 30%;
     left: 20%;
     width: 34px;

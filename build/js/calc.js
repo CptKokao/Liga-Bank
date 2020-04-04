@@ -604,7 +604,7 @@ for (let i = 0; calcStepCheckbox.length > i; i++ ) {
 } 
 
 /* Получает дефолтные % и выводим в html */
-getDefValue();
+// getDefValue();
 getSumDate();
 
 /* Событие при изменении категории */
