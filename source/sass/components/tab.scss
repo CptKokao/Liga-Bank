@@ -1,4 +1,4 @@
-.tab {
+.tab__wrap {
   position: relative; /* Относительное позиционирование */
   display: flex;
   margin-top: 60px;
@@ -251,6 +251,7 @@
   font-weight: 700;
   text-decoration-line: underline;
 }
+
 
 .tab__slider {
   display: none;
