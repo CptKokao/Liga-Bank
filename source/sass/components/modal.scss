@@ -59,6 +59,7 @@
 
 // крестик закрытия
 .modal__close {
+  position: relative;
   @include close();
 }
 
@@ -117,7 +118,6 @@
     }
   }
 }
-
 
 .modal__btn {
   width: 100%;

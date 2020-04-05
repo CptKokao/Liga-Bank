@@ -66,10 +66,10 @@
       <!-- Навигация -->
       <nav class="header__nav">
         <ul>
-          <li><a href="">Услуги</a></li>
-          <li><a href="">Рассчитать кредит</a></li>
-          <li><a href="">Контакты</a></li>
-          <li><a href="">Задать вопрос</a></li>
+          <li><a href="#">Услуги</a></li>
+          <li><a href="#calc">Рассчитать кредит</a></li>
+          <li><a href="#">Контакты</a></li>
+          <li><a href="#">Задать вопрос</a></li>
         </ul>
       </nav>
 
@@ -113,7 +113,7 @@
             </svg>
             <a href="#">Забыли пароль?</a>
   
-            <button class="btn modal__btn" id="request-btn" type="submit">Войти</button>
+            <button class="btn modal__btn" type="submit">Войти</button>
           </form>
         </div>
 
@@ -181,7 +181,7 @@
             <div class="slider__desc">
               <p>Лига Банк</p>
               <h2>Всегда рядом</h2>
-              <a class="btn" href="#">Найти отделение</a>  
+              <a class="btn" href="#map">Найти отделение</a>  
             </div>
           </div>
         </div>
@@ -387,10 +387,10 @@
       </div>
     </div>
 
-    <section class="container calc">
+    <section class="container calc" id="calc">
       <h2>Кредитный калькулятор</h2>
 
-      <div class="calc__flex">
+      <div class="calc__flex" id="calc__flex">
         <!-- Шаги калькулятора -->
         <div class="calc__step">
 
@@ -398,6 +398,7 @@
           <div class="calc__step-target">
             <h3>Шаг 1. Цель кредита</h3>
             <select id="calc-select">
+              <option id="option-hidden">Выберите цель кредита</option>
               <option>Ипотечное кредитование</option>
               <option>Автомобильное кредитование</option>
               <option>Потребительский кредит</option>
@@ -494,7 +495,7 @@
       </div>
 
       <!-- Шаг 3 -->
-      <div class="calc__request visually-hidden" id="request" style="display: none">
+      <div class="calc__request visually-hidden" id="request">
         <h3>Шаг 3. Оформление заявки</h3>
 
         <div class="calc__request-wrap" id="request-wrap"></div>
@@ -516,11 +517,11 @@
       </div>
 
       <!-- Спасибо за обращение -->
-      <!-- <div class="calc__overlay visually-hidden" id="offer-overlay">
+      <div class="calc__overlay visually-hidden" id="offer-overlay">
         <div class="calc__overlay-close" id="close-overlay"></div>
         <p>Спасибо за обращение в наш банк.</p>
         <span>Наш менеджер скоро свяжется с вами по указанному номеру телефона.</span>
-      </div> -->
+      </div>
     </section>
 
 
@@ -572,10 +573,10 @@
         <!-- Навигация -->
         <nav class="footer__nav">
           <ul>
-            <li><a href="">Услуги</a></li>
-            <li><a href="">Рассчитать кредит</a></li>
-            <li><a href="">Контакты</a></li>
-            <li><a href="">Задать вопрос</a></li>
+            <li><a href="#">Услуги</a></li>
+            <li><a href="#calc">Рассчитать кредит</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Задать вопрос</a></li>
           </ul>
         </nav>
       </div>
@@ -607,24 +608,32 @@
           <div class="footer__social">
             <ul class="social">
               <li>
-                <svg width="9" height="16">
-                  <use xlink:href="#icon-fb"></use>
-                </svg>
+                <a href="#">
+                  <svg width="9" height="16">
+                    <use xlink:href="#icon-fb"></use>
+                  </svg>
+                </a>
               </li>
               <li>
-                <svg width="16" height="16">
-                  <use xlink:href="#icon-ig"></use>
-                </svg>
+                <a href="#">
+                  <svg width="16" height="16">
+                    <use xlink:href="#icon-ig"></use>
+                  </svg>
+                </a>
               </li>
               <li>
-                <svg width="16" height="13">
-                  <use xlink:href="#icon-twitter"></use>
-                </svg>
+                <a href="#">
+                  <svg width="16" height="13">
+                    <use xlink:href="#icon-twitter"></use>
+                  </svg>
+                </a>
               </li>
               <li>
-                <svg width="16" height="13">
-                  <use xlink:href="#icon-youtube"></use>
-                </svg>
+                <a href="#">
+                  <svg width="16" height="13">
+                    <use xlink:href="#icon-youtube"></use>
+                  </svg>
+                </a>
               </li>
             </ul>
           </div>
@@ -635,7 +644,14 @@
   <script src="./js/vendor.js"></script>
   <script src="./js/script.js"></script>
 
+  <script src="./js/variables.js"></script>
   <script src="./js/calc.js"></script>
+  <script src="./js/default.js"></script>
+  <script src="./js/offer.js"></script>
+  <script src="./js/calculation.js"></script>
+  <script src="./js/modal.js"></script>
+  <script src="./js/yandexMap.js"></script>
+
 
 </body>
 </html>

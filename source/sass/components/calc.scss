@@ -188,6 +188,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: 0;
   border: none;
   background: #fff;
+  outline: none;
 }
 
 .calc__step-parametrs-minus {
@@ -215,8 +216,22 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .calc__step-date {
+  position: relative;
   margin-top: 20px;
+
+  span:first-of-type {
+    position: absolute;
+    bottom: -17px;
+    left: 0;
+  }
+
+  span:last-of-type {
+    position: absolute;
+    bottom: -17px;
+    right: 0;
+  }
 }
+
 
 .calc__step-checkbox {
   display: flex;

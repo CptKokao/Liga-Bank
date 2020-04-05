@@ -32,3 +32,6 @@ var mySwiper = new Swiper('.swiper-container-tab', {
   // },
   loop: true,
 });
+
+/* маска формы телефона */
+$("#phone").mask("8(999) 999-9999");
