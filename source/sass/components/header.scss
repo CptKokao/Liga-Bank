@@ -44,7 +44,7 @@
 
 .header__nav {
   flex-grow: 2;
-  margin-left: 65px;
+  margin-left: 55px;
 
   @media (max-width: $tablet-width) {
     margin-left: 60px;
@@ -82,6 +82,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+
   @include hover();
 
   p {
@@ -101,4 +102,3 @@
     }
   }
 }
-

@@ -100,7 +100,7 @@ calcMinus.onclick = (e) => {
 }
 
 /* Отслеживание изменения срока кредитования */
-inputDateRange.oninput = () => {
+inputDateRange.onchange = () => {
   getSumDate();
   getSumCredit();
   getSumDate()
@@ -109,17 +109,8 @@ inputDateRange.oninput = () => {
 };
 
 /* Отслеживание изменения % первоначального взноса */
-inputFirstpayRange.oninput = () => {
+inputFirstpayRange.onchange = () => {
   getProcentSum();
-  getSumCredit();
-  getSumDate()
-  getPayMonth();
-  getOffer()
-};
-
-/* Отслеживание изменения срока кредитования */
-inputDateRange.oninput = (e) => {
-  getSumDate();
   getSumCredit();
   getSumDate()
   getPayMonth();

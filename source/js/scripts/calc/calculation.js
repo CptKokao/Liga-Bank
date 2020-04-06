@@ -135,19 +135,19 @@ const getPayMonth = () => {
     if (target.id === calcPlus.id) {
       if (calcSelect.value === 'Ипотечное кредитование') {
         generalSum += realtyStep;
-        inputRealty.valueAsNumber = generalSum;
+        inputRealty.value = generalSum;
       } else {
         generalSum += otherStep;
-        inputRealty.valueAsNumber = generalSum;
+        inputRealty.value = generalSum;
       }
     } else
     if (target.id === calcMinus.id) {
       if (calcSelect.value === 'Ипотечное кредитование') {
         generalSum -= realtyStep;
-        inputRealty.valueAsNumber = generalSum;
+        inputRealty.value = generalSum;
       } else {
         generalSum -= otherStep;
-        inputRealty.valueAsNumber = generalSum;
+        inputRealty.value = generalSum;
       }
     }
   };

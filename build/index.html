@@ -85,6 +85,7 @@
   <main>
     <!-- модальное окно -->
     <div class="modal visually-hidden" id="modal">
+
       <div class="modal__wrap">
         <!-- Лого -->
         <div class="modal__logo">
@@ -96,11 +97,12 @@
             <span>интернет-банк</span>
           </a>
         </div>
-
+      
         <!-- X -->
         <div class="modal__close" id="modal-close"></div>
+      </div>
 
-        <div class="modal__form">
+      <div class="modal__form">
           <form action="#" id="modal-form">
             <label for="login">Логин</label>
             <input id="login" type="text" required="">
@@ -115,9 +117,6 @@
   
             <button class="btn modal__btn" type="submit">Войти</button>
           </form>
-        </div>
-
-
       </div>
     </div>
 
@@ -422,10 +421,9 @@
               <span id="calc-cost"></span>
             </div>
 
-            <div class="" id="calc-firstpay-wrap">
+            <div class="calc__firstpay-wrap" id="calc-firstpay-wrap">
               <p>Первоначальный взнос</p>
               <input type="number" id="calc-firstpay" placeholder="200 000 рублей" readonly="">
-              <p class="calc_fistpay_error" id="calc-fistpay-error"></p>
               <input type="range" id="calc-firstpay-range">
               <span id="calc-firstpay-value"></span>
               <span>%</span>
@@ -435,8 +433,11 @@
               <p>Срок кредитования</p>
               <input id="calc-date" type="text" placeholder="5 лет" readonly="">
               <input id="calc-date-range" type="range">
-              <span id="calc-date-first">лет</span>
-              <span id="calc-date-last">30лет</span>
+              <div class="calc__step-date-value">
+                <span id="calc-date-first">лет</span>
+                <span id="calc-date-last">30лет</span>
+              </div>
+
             </div>
 
             <div class="calc__step-checkbox">
@@ -445,7 +446,7 @@
             </div>
             <div class="calc__step-checkbox">
               <input type="checkbox" id="calc-extra-kacko"> 
-              <label id="calc-extra-kacko" for="calc-extra-kacko">Оформить КАСКО в нашем банке</label>
+              <label for="calc-extra-kacko">Оформить КАСКО в нашем банке</label>
             </div>
             <div class="calc__step-checkbox">
               <input type="checkbox" id="calc-extra-life"> 
@@ -528,6 +529,8 @@
     <!-- Yandex map -->
     <div class="container map">
 
+      <h2>Отделения Лига Банка</h2>
+
       <!-- Фильтр для карты -->
       <div class="map__checkbox-wrap">
         
@@ -608,28 +611,28 @@
           <div class="footer__social">
             <ul class="social">
               <li>
-                <a href="#">
+                <a href="#" aria-label="facebook">
                   <svg width="9" height="16">
                     <use xlink:href="#icon-fb"></use>
                   </svg>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="#" aria-label="instagram">
                   <svg width="16" height="16">
                     <use xlink:href="#icon-ig"></use>
                   </svg>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="#" aria-label="twitter">
                   <svg width="16" height="13">
                     <use xlink:href="#icon-twitter"></use>
                   </svg>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="#" aria-label="youtube">
                   <svg width="16" height="13">
                     <use xlink:href="#icon-youtube"></use>
                   </svg>
@@ -644,13 +647,6 @@
   <script src="./js/vendor.js"></script>
   <script src="./js/script.js"></script>
 
-  <script src="./js/variables.js"></script>
-  <script src="./js/calc.js"></script>
-  <script src="./js/default.js"></script>
-  <script src="./js/offer.js"></script>
-  <script src="./js/calculation.js"></script>
-  <script src="./js/modal.js"></script>
-  <script src="./js/yandexMap.js"></script>
 
 
 </body>

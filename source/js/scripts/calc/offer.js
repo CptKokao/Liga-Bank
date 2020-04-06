@@ -8,10 +8,10 @@ const getOffer = () => {
     } else {
       offerFailed.classList.add("visually-hidden");
       offerSuccess.classList.remove("visually-hidden");
-      offerSum.textContent = sumCredit;
-      offerProc.textContent = procRate;
-      offerMonthpay.textContent = payMonth;
-      offerMonthprofit.textContent = profitMonth;
+      offerSum.textContent = `${sumCredit} рублей`;
+      offerProc.textContent = `${procRate} %`;
+      offerMonthpay.textContent = `${payMonth} рублей`;
+      offerMonthprofit.textContent = `${profitMonth} рублей`;
     }
   } else if (calcSelect.value === "Автомобильное кредитование") {
     if (sumCredit < 200000) {
@@ -21,17 +21,17 @@ const getOffer = () => {
     } else {
       offerFailed.classList.add("visually-hidden");
       offerSuccess.classList.remove("visually-hidden");
-      offerSum.textContent = sumCredit;
-      offerProc.textContent = procRate;
-      offerMonthpay.textContent = payMonth;
-      offerMonthprofit.textContent = profitMonth;
+      offerSum.textContent = `${sumCredit} рублей`;
+      offerProc.textContent = `${procRate} %`;
+      offerMonthpay.textContent = `${payMonth} рублей`;
+      offerMonthprofit.textContent = `${profitMonth} рублей`;
     }
   } else {
     if (calcSelect.value === "Потребительский кредит") {
-      offerSum.textContent = sumCredit;
-      offerProc.textContent = procRate;
-      offerMonthpay.textContent = payMonth;
-      offerMonthprofit.textContent = profitMonth;
+      offerSum.textContent = `${sumCredit} рублей`;
+      offerProc.textContent = `${procRate} %`;
+      offerMonthpay.textContent = `${payMonth} рублей`;
+      offerMonthprofit.textContent = `${profitMonth} рублей`;
     }
   }
 };
