@@ -293,6 +293,9 @@ select {
   /* Показываем галку по состоянию checked */
   input[type="checkbox"]:checked + label::after {
     content: "";
+  }
+
+  input[type="checkbox"]:checked + label::before {
     background: $blue;
   }
 }
