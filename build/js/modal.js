@@ -4,13 +4,13 @@ const overlay = document.getElementById("overlay");
 const offrOverlay = document.getElementById("offer-overlay");
 const iconClose = document.getElementById("close-overlay");
 
-let closeOverlay =(target) => {
+let closeOverlay = (target) => {
   overlay.classList.add('visually-hidden');
   target.classList.add('visually-hidden');
   body.style.overflow = 'auto';
 };
 
-let openOverlay =(target) => {
+let openOverlay = (target) => {
   overlay.classList.remove('visually-hidden');
   target.classList.remove('visually-hidden');
   body.style.overflow = 'hidden';
@@ -18,10 +18,6 @@ let openOverlay =(target) => {
 
 /* закрытие модального окна */
 iconClose.onclick = () => {
-  closeOverlay(offrOverlay);
-}
-
-overlay.onclick = () => {
   closeOverlay(offrOverlay);
 }
 
@@ -48,13 +44,23 @@ modalClose.onclick = () => {
   closeOverlay(modal);
 }
 
-overlay.onclick = () => {
-  closeOverlay(modal);
+overlay.onclick = (e) => {
+  if (modal.classList.contains('visually-hidden')) {
+    closeOverlay(offrOverlay);
+  } else
+  if (offrOverlay.classList.contains('visually-hidden')) {
+    closeOverlay(modal);
+  }
 }
 
 window.addEventListener('keydown', function (e) {
   if (e.code === 'Escape' || e.keyCode === esc) {
-    closeOverlay(modal);
+    if (modal.classList.contains('visually-hidden')) {
+      closeOverlay(offrOverlay);
+    } else
+    if (offrOverlay.classList.contains('visually-hidden')) {
+      closeOverlay(modal);
+    }
   }
 });
 

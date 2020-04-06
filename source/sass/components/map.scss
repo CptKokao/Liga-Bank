@@ -27,6 +27,7 @@
 }
 
 .map__checkbox {
+
   input[type="checkbox"] {
     display: none;
   }
@@ -38,6 +39,7 @@
     font-size: 16px;
     line-height: 22px;
     letter-spacing: 0.3px;
+    cursor: pointer;
 
     &::before {
       position: absolute;

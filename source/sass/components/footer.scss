@@ -95,6 +95,7 @@
       a {
         font-weight: 500;
         line-height: 22px;
+        @include hover();
       }
 
       @media (max-width: $tablet-width) {
@@ -176,6 +177,10 @@
   display: flex;
   justify-content: space-between;
   width: 105px;
+
+  li {
+    @include hover();
+  }
 
   @media (max-width: $tablet-width) {
     width: 120px;

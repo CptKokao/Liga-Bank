@@ -1,3 +1,5 @@
+"use strict";
+
 /* Yandex map */
 ymaps.ready(init);
 

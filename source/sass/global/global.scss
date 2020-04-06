@@ -106,7 +106,7 @@ a {
 .btn {
   width: 234px;
   height: 53px;
-  background: $blue;
+  background-color: $blue;
   border: none;
   border-radius: 4px;
 
@@ -118,6 +118,12 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background-color: #F6F7FF;
+    border: 1px solid $blue;
+    color: $blue;
+  }
 
   @media (max-width: $tablet-width) {
     width: 206px;
@@ -137,6 +143,12 @@ a {
 .btn--white {
   background-color: #F6F7FF;
   color: #1F1E25;
+
+  &:hover {
+    background-color: $blue;
+    border: 1px solid #F6F7FF;
+    color: #F6F7FF;
+  }
 }
 
 /* Стили для ошибок */

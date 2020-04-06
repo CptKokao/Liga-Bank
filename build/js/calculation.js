@@ -27,8 +27,17 @@ const getPayMonth = () => {
   
   /* получает сумму % от общей суммы */
   const getProcentSum = () => {
-    generalSum = inputRealty.valueAsNumber;
+    
+    /* проверяет если общая сумма NaN, то добавляет defValue */
+    if (inputRealty.value === '') {
+      /* добавляет defVal для инпута(общей стоимости) */
+      inputRealty.value = defValue; 
+      generalSum = inputRealty.valueAsNumber;
+    } else {
+      generalSum = inputRealty.valueAsNumber;
+    }
   
+
     if (calcSelect.value === 'Потребительский кредит') {
       /* %=0 т.к. нет блока первоначальный взнос */
       procentSum = 0;
@@ -101,6 +110,7 @@ const getPayMonth = () => {
   /* Получить сумму кредита */
   const getSumCredit = () => {
     sumCredit = generalSum;
+
     if (checkboxСapital.checked) {
       sumCredit = sumCredit - procentSum - capital;
     } else {

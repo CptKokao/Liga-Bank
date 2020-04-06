@@ -61,6 +61,10 @@
       line-height: 19px;
       padding-right: 28px;
 
+      a {
+        @include hover();
+      }
+
       &:last-child {
         padding-right: 0;
       }
@@ -78,6 +82,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  @include hover();
 
   p {
     @media (max-width: $tablet-width) {

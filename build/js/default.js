@@ -38,7 +38,7 @@ const getDefValue = () => {
       if (calcFirstpayWrap.className === "visually-hidden") {
         calcFirstpayWrap.classList.remove('visually-hidden');
       }
-  
+      
       /* цикл проверяет все чекбоксы и показывает только для текущей категории */
       for (let i = 0; calcStepCheckbox.length > i; i++ ) {
         if (calcStepCheckbox[i].children[0].id !== checkboxСapital.id) {
@@ -64,7 +64,7 @@ const getDefValue = () => {
       inputRealty.min = realtyMin;
       inputRealty.max = realtyMax;
       /* добавляет defVal для инпута(общей стоимости) */
-      inputRealty.value = defValue;
+      // inputRealty.value = defValue;
       /* добавляет значение для инпута(первоначальный взнос) */
       inputFirstpay.value = generalSum * 10 / 100;
   
