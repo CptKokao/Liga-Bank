@@ -32,7 +32,6 @@ body {
   flex-direction: column;
   height: 100%;
 
-  max-width: 1366px;
   margin: 0 auto;
   // outline: 1px solid goldenrod;
 }
@@ -64,19 +63,22 @@ a {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1366px;
+  min-width: 1024px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 15px;
   outline: 1px solid rgb(192, 255, 239);
 
   @media (max-width: $tablet-width) {
+    max-width: 1023px;
+    min-width: 768px;
     width: 100%;
-    padding: 0 45px;
   }
 
   @media (max-width: $mobile-width) {
     max-width: 767px;
-    padding: 0 15px;
+    min-width: 320px;
+    width: 100%;
   }
 }
 
@@ -105,7 +107,8 @@ a {
 
 .btn {
   width: 234px;
-  height: 53px;
+  padding: 10px 10px;
+  min-height: 53px;
   background-color: $blue;
   border: none;
   border-radius: 4px;
@@ -127,16 +130,16 @@ a {
 
   @media (max-width: $tablet-width) {
     width: 206px;
-    height: 48px;
+    min-height: 48px;
 
     font-size: 14px;
     line-height: 16px;
-    letter-spacing: 1.3px;
+    // letter-spacing: 1.3px;
   }
 
   @media (max-width: $mobile-width) {
     width: 188px;
-    height: 43px;
+    min-height: 43px;
   }
 }
 
