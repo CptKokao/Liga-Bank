@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   height: 91px;
-  padding-left: 60px;
-  padding-right: 100px;
+  padding-left: 4.5%;
+  padding-right: 6.5%;
   outline: 1px solid goldenrod;
 
   @media (max-width: $tablet-width) {
@@ -43,11 +43,17 @@
 }
 
 .header__nav {
-  flex-grow: 2;
+  /*
+  logo - 150
+  enter - 210
+  margin - 60
+  */
+  width: calc(100% - 150px - 210px - 55px);
   margin-left: 55px;
 
   @media (max-width: $tablet-width) {
-    margin-left: 60px;
+    width: calc(100% - 150px - 45px);
+    margin-left: 70px;
   }
 
   @media (max-width: $mobile-width) {
@@ -56,23 +62,20 @@
 
   ul {
     display: flex;
+    flex-wrap: wrap;
 
     li {
       line-height: 19px;
-      padding-right: 28px;
+      padding-right: 26px;
 
       a {
         @include hover();
       }
 
-      &:last-child {
-        padding-right: 0;
-      }
-
       @media (max-width: $tablet-width) {
         font-size: 14px;
         line-height: 16px;
-        padding-right: 23px;
+        padding-right: 20px;
       }
     }
   }
@@ -81,9 +84,18 @@
 .header__enter {
   display: flex;
   align-items: center;
+  width: 210px;
   cursor: pointer;
 
   @include hover();
+
+  @media (max-width: $tablet-width) {
+    width: 32px;
+  }
+
+  @media (max-width: $mobile-width) {
+    width: 25px;
+  }
 
   p {
     @media (max-width: $tablet-width) {
