@@ -1,4 +1,9 @@
-.header {
+header {
+  width: 100%;
+  background-color: #F6F7FF;
+}
+
+.header__wrap {
   display: flex;
   align-items: center;
   height: 91px;

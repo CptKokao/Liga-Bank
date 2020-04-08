@@ -7,7 +7,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Лига Банка</title>
   <link rel="stylesheet" href="./css/style.min.css">
-  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=43636858-ed74-463e-a4fe-d4ee13c2d867" type="text/javascript"></script>
 </head>
 <body>
   <!-- подключение svg sprite -->
@@ -18,52 +17,53 @@
   <!-- overlay -->
   <div class="overlay visually-hidden" id="overlay"></div>
 
-  <!-- header -->
-  <header class="container">
-    <div class="header">
-      <!-- Гамбургер -->
-      <div class="header__hamburger">
-        <div class="hamburger">
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
+  <!-- Header -->
+  <header class="header">
+    <div class="container-fluid">
+      <div class="header__wrap">
+
+        <!-- гамбургер -->
+        <div class="header__hamburger">
+          <div class="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </div>
+        </div>
+  
+         <!-- лого -->
+         <div class="header__logo">
+          <a class="logo">
+            <svg width="28" height="25">
+              <use xlink:href="#icon-logo"/>
+            </svg>
+            <p>ЛИГА Банк</p>
+          </a>
+        </div>
+  
+        <!-- навигация -->
+        <nav class="header__nav">
+          <ul>
+            <li><a href="#">Услуги</a></li>
+            <li><a href="#calc">Рассчитать кредит</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Задать вопрос</a></li>
+          </ul>
+        </nav>
+  
+        <!-- вход в личный кабинет-->
+        <div class="header__enter" id="enter-cabinet">
+          <svg width="20" height="22">
+            <use xlink:href="#icon-enter"/>
+          </svg>
+          <p>Войти в Интернет-банк</p>
         </div>
       </div>
-
-       <!-- Лого -->
-       <div class="header__logo">
-        <a class="logo">
-          <svg width="28" height="25">
-            <use xlink:href="#icon-logo"/>
-          </svg>
-          <p>ЛИГА Банк</p>
-        </a>
-      </div>
-
-      <!-- Навигация -->
-      <nav class="header__nav">
-        <ul>
-          <li><a href="#">Услуги</a></li>
-          <li><a href="#calc">Рассчитать кредит</a></li>
-          <li><a href="#">Контакты</a></li>
-          <li><a href="#">Задать вопрос</a></li>
-        </ul>
-      </nav>
-
-      <!-- вход в личный кабинет-->
-      <div class="header__enter" id="enter-cabinet">
-        <svg width="20" height="22">
-          <use xlink:href="#icon-enter"/>
-        </svg>
-        <p>Войти в Интернет-банк</p>
-      </div>
     </div>
-
-
   </header>
 
   <main>
-    <!-- модальное окно -->
+    <!-- Модальное окно -->
     <div class="modal visually-hidden" id="modal">
 
       <div class="modal__wrap">
@@ -100,8 +100,10 @@
       </div>
     </div>
 
+    <!-- Заголовок -->
     <h1 class="visually-hidden">Лига Банк. Инвестиция в свое будущее</h1>
-    <!-- слайдер -->
+
+    <!-- Cлайдер -->
     <div class="swiper">
       <!-- Slider main container -->
       <div class="swiper-container">
@@ -170,9 +172,10 @@
               </div>
             </div>
           </div>
-
+        </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
+
       </div>
     </div>
 
@@ -694,6 +697,7 @@
       </div>
     </div>
   </footer>
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=43636858-ed74-463e-a4fe-d4ee13c2d867" type="text/javascript"></script>
 
   <script src="./js/vendor.js"></script>
   <script src="./js/script.js"></script>

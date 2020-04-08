@@ -62,7 +62,7 @@ a {
   color: $black;
 }
 
-.container {
+.container-fluid {
   max-width: 1366px;
   min-width: 1024px;
   width: 100%;
@@ -70,15 +70,28 @@ a {
   outline: 1px solid rgb(192, 255, 239);
 
   @media (max-width: $tablet-width) {
-    max-width: 1023px;
     min-width: 768px;
-    width: 100%;
   }
 
   @media (max-width: $mobile-width) {
-    max-width: 767px;
     min-width: 320px;
-    width: 100%;
+  }
+}
+
+.container {
+  max-width: 1170px;
+  min-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+  outline: 1px solid rgb(53, 192, 157);
+
+
+  @media (max-width: $tablet-width) {
+    min-width: 678px;
+  }
+
+  @media (max-width: $mobile-width) {
+    min-width: 320px;
   }
 }
 
