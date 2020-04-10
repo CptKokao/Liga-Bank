@@ -11,8 +11,8 @@ if (!String.prototype.startsWith) {
   });
 }
 
-/* Слайдер для блока tab */
-var mySwiper = new Swiper('.swiper-container', {
+/* Слайдер для блока slider */
+var mySwiper = new Swiper('#swiper1', {
   pagination: {
     el: '.swiper-pagination',
     clickable: true, 
@@ -23,14 +23,13 @@ var mySwiper = new Swiper('.swiper-container', {
   loop: true,
 });
 
-/* Слайдер для блока slider */
-var mySwiper = new Swiper('.swiper-container-tab', {
-  // pagination: {
-  //   el: '.swiper-pagination-tab',
-  //   clickable: true, 
-  // },  
+/* Слайдер для блока tab */
+var tabSwiper = new Swiper('#swiper2', {
   loop: true,
 });
+
+mySwiper.init();
+tabSwiper.init();
 
 /* маска формы телефона */
 $("#phone").mask("8(999) 999-9999");
