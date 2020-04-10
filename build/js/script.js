@@ -14,22 +14,21 @@ if (!String.prototype.startsWith) {
 
 var mySwiper = new Swiper('.swiper-container', {
   pagination: {
-    el: '.swiper-pagination'
+    el: '.swiper-pagination',
+    clickable: true
   },
-  // autoplay: {
-  //   delay: 4000,
-  // },
+  autoplay: {
+    delay: 4000
+  },
   loop: true
 });
 /* Слайдер для блока slider */
 
 var mySwiper = new Swiper('.swiper-container-tab', {
-  pagination: {
-    el: '.swiper-pagination-tab'
-  },
-  // autoplay: {
-  //   delay: 4000,
-  // },
+  // pagination: {
+  //   el: '.swiper-pagination-tab',
+  //   clickable: true, 
+  // },  
   loop: true
 });
 /* маска формы телефона */
