@@ -1,13 +1,13 @@
 @mixin hover {
   &:hover {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 }
 
 // крестик закрытия
 @mixin close {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
 
   &::before {
