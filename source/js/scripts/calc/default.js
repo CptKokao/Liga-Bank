@@ -1,10 +1,5 @@
-"use strict";
+/* eslint-disable */
 
-const dropdown = document.querySelector(".dropdown");
-const dropdownInput = document.getElementById("dropdown-input");
-const calcStep2 = document.getElementById("calc-step2");
-
-const calcFirstpayWrap = document.getElementById("calc-firstpay-wrap");
 
 /* получает дефолтное значение в зависимости от категории */
 const getDefValue = () => {
@@ -40,7 +35,7 @@ const getDefValue = () => {
 
   if (dropdownInput.value === "credit-realty") {
     /* проверяет если категория первоначальный взнос скрыта, то показать */
-    if (calcFirstpayWrap.className === "visually-hidden") {
+    if (calcFirstpayWrap.classList.contains("visually-hidden")) {
       calcFirstpayWrap.classList.remove("visually-hidden");
     }
     
@@ -66,6 +61,7 @@ const getDefValue = () => {
       offerFailed.classList.add("visually-hidden");
       offerSuccess.classList.remove("visually-hidden");
     }
+
     /* записывает defValue в переменную где храниться общая сумма */
     generalSum = defValue;
 
@@ -101,7 +97,7 @@ const getDefValue = () => {
     calcDateLast.textContent = realtyYearLast + " лет";
   } else if (dropdownInput.value === "credit-auto") {
     /* проверяет если категория первоначальный взнос скрыта, то показать */
-    if (calcFirstpayWrap.className === "visually-hidden") {
+    if (calcFirstpayWrap.classList.contains("visually-hidden")) {
       calcFirstpayWrap.classList.remove("visually-hidden");
     }
     if (calcStep2.classList.contains("visually-hidden")) {
@@ -191,11 +187,11 @@ const getDefValue = () => {
     /* записывает defValue в переменную где храниться общая сумма */
     generalSum = defValue;
 
-    /* добавляет min/max для инпута(потребительский кредит) */
+    /* добавляет min/max для инпута(credit-realty) */
     inputRealty.min = creditMin;
     inputRealty.max = creditMax;
 
-    /* добавляет defVal для инпута(потребительский кредит) */
+    /* добавляет defVal для инпута(credit-realty) */
     inputRealty.value = defValue;
     /* добавляет значение для инпута(первоначальный взнос) */
     inputFirstpay.value = 0;

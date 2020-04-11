@@ -1,6 +1,8 @@
+/* eslint-disable */
+
 /* отображает значения для offer */
 const getOffer = () => {
-  if (calcSelect.value === "Ипотечное кредитование") {
+  if (dropdownInput.value === "credit-realty") {
     if (sumCredit < 500000) {
       offerFailedText.textContent = `Наш банк не выдыет ипотечные кредиты меньше 500000 рублей`;
       offerFailed.classList.remove("visually-hidden");
@@ -13,7 +15,7 @@ const getOffer = () => {
       offerMonthpay.textContent = `${payMonth} рублей`;
       offerMonthprofit.textContent = `${profitMonth} рублей`;
     }
-  } else if (calcSelect.value === "Автомобильное кредитование") {
+  } else if (dropdownInput.value === "credit-auto") {
     if (sumCredit < 200000) {
       offerFailedText.textContent = `Наш банк не выдыет автокредиты меньше 200000 рублей`;
       offerFailed.classList.remove("visually-hidden");
@@ -27,7 +29,7 @@ const getOffer = () => {
       offerMonthprofit.textContent = `${profitMonth} рублей`;
     }
   } else {
-    if (calcSelect.value === "Потребительский кредит") {
+    if (dropdownInput.value === "credit-user") {
       offerSum.textContent = `${sumCredit} рублей`;
       offerProc.textContent = `${procRate} %`;
       offerMonthpay.textContent = `${payMonth} рублей`;

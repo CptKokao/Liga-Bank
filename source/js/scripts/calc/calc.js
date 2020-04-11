@@ -1,4 +1,5 @@
-"use strict";
+/* eslint-disable */
+
 
 const dropdown = document.querySelector(".dropdown");
 
@@ -62,43 +63,52 @@ requestBtn.onclick = (e) => {
 }
 
 /* Событие при изменении категории */
-console.log(dropdown);
 dropdown.onclick = (e) => {
+  if (e.target.classList.contains("active")) {
+    return;
+  }
   getDefValue();
   getSumDate();
   getOfferReset();
 }
 
 /* Событие при снятии фокуса */
-inputRealty.onblur = () => {
-  getProcentSum();
+inputRealty.oninput = () => {
+  
+  if(!getProcentSum()) {
+    return;
+  }
+  
   getSumCredit();
   getSumDate();
   getPayMonth();
   getOffer()
-  chcekSum(inputRealty);
+  ;
 };
 
 /* Отслеживание клика plus */
 calcPlus.onclick = (e) => {
   getStep(e);
-  getProcentSum();
+  if(!getProcentSum()) {
+    return;
+  }
   getSumCredit();
   getSumDate();
   getPayMonth();
   getOffer()
-  chcekSum(inputRealty);
 }
 
 /* Отслеживание клика minus */
 calcMinus.onclick = (e) => {
   getStep(e);
-  getProcentSum();
+  if(!getProcentSum()) {
+    return;
+  }
   getSumCredit();
   getSumDate();
   getPayMonth();
   getOffer()
-  chcekSum(inputRealty);
+
 }
 
 /* Отслеживание изменения срока кредитования */
@@ -111,7 +121,7 @@ inputDateRange.onchange = () => {
 };
 
 /* Отслеживание изменения % первоначального взноса */
-inputFirstpayRange.onchange = () => {
+inputFirstpayRange.oninput = () => {
   getProcentSum();
   getSumCredit();
   getSumDate()

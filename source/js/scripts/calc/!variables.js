@@ -1,4 +1,5 @@
-"use strict";
+/* eslint-disable */
+'use strict';
 
 const body = document.querySelector("body")
 const inputRealty = document.getElementById("calc-realty");
@@ -9,7 +10,11 @@ const inputDate = document.getElementById("calc-date");
 
 const calcFlex = document.getElementById("calc__flex");
 
+const dropdown = document.querySelector(".dropdown");
+const dropdownInput = document.getElementById("dropdown-input");
+const calcStep2 = document.getElementById("calc-step2");
 
+const calcFirstpayWrap = document.getElementById("calc-firstpay-wrap");
 
 
 const calcTitle = document.getElementById("calc-title");

@@ -77,7 +77,8 @@ $('.dropdown-menu li').click(function () {
     }
   }
 })();
-"use strict";
+/* eslint-disable */
+'use strict';
 
 var body = document.querySelector("body");
 var inputRealty = document.getElementById("calc-realty");
@@ -86,6 +87,10 @@ var inputFirstpayRange = document.getElementById("calc-firstpay-range");
 var inputDateRange = document.getElementById("calc-date-range");
 var inputDate = document.getElementById("calc-date");
 var calcFlex = document.getElementById("calc__flex");
+var dropdown = document.querySelector(".dropdown");
+var dropdownInput = document.getElementById("dropdown-input");
+var calcStep2 = document.getElementById("calc-step2");
+var calcFirstpayWrap = document.getElementById("calc-firstpay-wrap");
 var calcTitle = document.getElementById("calc-title");
 var calcCost = document.getElementById("calc-cost");
 var calcDateFirst = document.getElementById("calc-date-first");
@@ -140,6 +145,7 @@ var offerMonthpay = document.getElementById("calc-offer-monthpay");
 var offerMonthprofit = document.getElementById("calc-offer-monthprofit");
 "use strict";
 
+/* eslint-disable */
 var dropdown = document.querySelector(".dropdown");
 /* отслеживает клик по кнопки Оформить заявку*/
 
@@ -207,9 +213,11 @@ requestBtn.onclick = function (e) {
 /* Событие при изменении категории */
 
 
-console.log(dropdown);
-
 dropdown.onclick = function (e) {
+  if (e.target.classList.contains("active")) {
+    return;
+  }
+
   getDefValue();
   getSumDate();
   getOfferReset();
@@ -217,37 +225,45 @@ dropdown.onclick = function (e) {
 /* Событие при снятии фокуса */
 
 
-inputRealty.onblur = function () {
-  getProcentSum();
+inputRealty.oninput = function () {
+  if (!getProcentSum()) {
+    return;
+  }
+
   getSumCredit();
   getSumDate();
   getPayMonth();
   getOffer();
-  chcekSum(inputRealty);
 };
 /* Отслеживание клика plus */
 
 
 calcPlus.onclick = function (e) {
   getStep(e);
-  getProcentSum();
+
+  if (!getProcentSum()) {
+    return;
+  }
+
   getSumCredit();
   getSumDate();
   getPayMonth();
   getOffer();
-  chcekSum(inputRealty);
 };
 /* Отслеживание клика minus */
 
 
 calcMinus.onclick = function (e) {
   getStep(e);
-  getProcentSum();
+
+  if (!getProcentSum()) {
+    return;
+  }
+
   getSumCredit();
   getSumDate();
   getPayMonth();
   getOffer();
-  chcekSum(inputRealty);
 };
 /* Отслеживание изменения срока кредитования */
 
@@ -262,7 +278,7 @@ inputDateRange.onchange = function () {
 /* Отслеживание изменения % первоначального взноса */
 
 
-inputFirstpayRange.onchange = function () {
+inputFirstpayRange.oninput = function () {
   getProcentSum();
   getSumCredit();
   getSumDate();
@@ -270,6 +286,8 @@ inputFirstpayRange.onchange = function () {
   getOffer();
 };
 "use strict";
+
+/* eslint-disable */
 
 /* получает ежемесячный платеж */
 var getPayMonth = function getPayMonth() {
@@ -286,15 +304,26 @@ var chcekSum = function chcekSum(target) {
     /* Если значение больше */
     if (target.validity.rangeUnderflow) {
       calcRealtyError.textContent = "\u0412\u0437\u043D\u043E\u0441 \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 ".concat(target.min);
+      calcRealtyError.style.color = '#d40101';
+      inputRealty.style.border = '1px solid #d40101';
+      offerBtn.disabled = true;
+      return false;
     } else
       /* Если значение меньше */
       if (target.validity.rangeOverflow) {
         calcRealtyError.textContent = "\u0412\u0437\u043D\u043E\u0441 \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u043C\u0435\u043D\u044C\u0448\u0435 ".concat(target.max);
+        calcRealtyError.style.color = '#d40101';
+        inputRealty.style.border = '1px solid #d40101';
+        offerBtn.disabled = true;
+        return false;
       }
     /* Если валидность true */
 
   } else {
     calcRealtyError.textContent = "";
+    inputRealty.style.border = '';
+    offerBtn.disabled = false;
+    return true;
   }
 };
 /* получает сумму % от общей суммы */
@@ -310,71 +339,77 @@ var getProcentSum = function getProcentSum() {
     generalSum = inputRealty.valueAsNumber;
   }
 
-  if (calcSelect.value === 'Потребительский кредит') {
-    /* %=0 т.к. нет блока первоначальный взнос */
-    procentSum = 0;
+  if (!chcekSum(inputRealty)) {
+    return false;
+  } else {
+    if (dropdownInput.value === 'credit-user') {
+      /* %=0 т.к. нет блока первоначальный взнос */
+      procentSum = 0;
 
-    if (checkboxProject.checked) {
-      if (sumCredit >= 2000000) {
-        procRate = '9';
-        procRateMonth = 9 / 100 / 12;
-      } else if (750000 <= sumCredit < 2000000) {
-        procRate = '12';
-        procRateMonth = 12 / 100 / 12;
+      if (checkboxProject.checked) {
+        if (sumCredit >= 2000000) {
+          procRate = '9';
+          procRateMonth = 9 / 100 / 12;
+        } else if (750000 <= sumCredit < 2000000) {
+          procRate = '12';
+          procRateMonth = 12 / 100 / 12;
+        } else {
+          procRate = '14.5';
+          procRateMonth = 14.5 / 100 / 12;
+        }
       } else {
-        procRate = '14.5';
-        procRateMonth = 14.5 / 100 / 12;
+        if (sumCredit >= 2000000) {
+          procRate = '9.5';
+          procRateMonth = 9.5 / 100 / 12;
+        } else if (750000 <= sumCredit < 2000000) {
+          procRate = '12.5';
+          procRateMonth = 12.5 / 100 / 12;
+        } else {
+          procRate = '15';
+          procRateMonth = 15 / 100 / 12;
+        }
       }
     } else {
-      if (sumCredit >= 2000000) {
-        procRate = '9.5';
-        procRateMonth = 9.5 / 100 / 12;
-      } else if (750000 <= sumCredit < 2000000) {
-        procRate = '12.5';
-        procRateMonth = 12.5 / 100 / 12;
-      } else {
-        procRate = '15';
-        procRateMonth = 15 / 100 / 12;
+      /* получает % */
+      var procent = Number(inputFirstpayRange.value);
+      /* выводим % в html */
+
+      calcProcentValue.textContent = procent;
+      /* вычисляем какой % от суммы */
+
+      procentSum = generalSum / 100 * procent;
+      /* добавляет procent в value инпута(первоначальный взнос) */
+
+      inputFirstpay.value = procentSum;
+      /* проверяет %, на основе этого находит % ставку  */
+
+      if (dropdownInput.value === 'credit-realty') {
+        if (procent >= 20) {
+          procRate = '8.5';
+          procRateMonth = 8.5 / 100 / 12;
+        } else {
+          procRate = '9.4';
+          procRateMonth = 9.4 / 100 / 12;
+        }
+      } else if (dropdownInput.value === 'credit-auto') {
+        /* проверяет % и checkbox с услугами, на основе этого находит % ставку  */
+        if (checkboxKacko.checked && checkboxLife.checked) {
+          procRate = '3.5';
+          procRateMonth = 3.5 / 100 / 12;
+        } else if (checkboxKacko.checked || checkboxLife.checked) {
+          procRate = '8.5';
+          procRateMonth = 8.5 / 100 / 12;
+        } else if (sumCredit >= 2000000) {
+          procRate = '15';
+          procRateMonth = 15 / 100 / 12;
+        } else {
+          procRate = '16';
+          procRateMonth = 16 / 100 / 12;
+        }
       }
     }
-  } else {
-    /* получает % */
-    var procent = Number(inputFirstpayRange.value);
-    /* выводим % в html */
 
-    calcProcentValue.textContent = procent;
-    /* вычисляем какой % от суммы */
-
-    procentSum = generalSum / 100 * procent;
-    /* добавляет procent в value инпута(первоначальный взнос) */
-
-    inputFirstpay.value = procentSum;
-    /* проверяет %, на основе этого находит % ставку  */
-
-    if (calcSelect.value === 'Ипотечное кредитование') {
-      if (procent >= 20) {
-        procRate = '8.5';
-        procRateMonth = 8.5 / 100 / 12;
-      } else {
-        procRate = '9.4';
-        procRateMonth = 9.4 / 100 / 12;
-      }
-    } else if (calcSelect.value === 'Автомобильное кредитование') {
-      /* проверяет % и checkbox с услугами, на основе этого находит % ставку  */
-      if (checkboxKacko.checked && checkboxLife.checked) {
-        procRate = '3.5';
-        procRateMonth = 3.5 / 100 / 12;
-      } else if (checkboxKacko.checked || checkboxLife.checked) {
-        procRate = '8.5';
-        procRateMonth = 8.5 / 100 / 12;
-      } else if (sumCredit >= 2000000) {
-        procRate = '15';
-        procRateMonth = 15 / 100 / 12;
-      } else {
-        procRate = '16';
-        procRateMonth = 16 / 100 / 12;
-      }
-    }
+    return true;
   }
 };
 /* Получить сумму кредита */
@@ -407,7 +442,7 @@ var getStep = function getStep(e) {
   var otherStep = 50000;
 
   if (target.id === calcPlus.id) {
-    if (calcSelect.value === 'Ипотечное кредитование') {
+    if (dropdownInput.value === 'credit-realty') {
       generalSum += realtyStep;
       inputRealty.value = generalSum;
     } else {
@@ -415,7 +450,7 @@ var getStep = function getStep(e) {
       inputRealty.value = generalSum;
     }
   } else if (target.id === calcMinus.id) {
-    if (calcSelect.value === 'Ипотечное кредитование') {
+    if (dropdownInput.value === 'credit-realty') {
       generalSum -= realtyStep;
       inputRealty.value = generalSum;
     } else {
@@ -452,12 +487,9 @@ function addZero(num, size) {
 }
 "use strict";
 
-var dropdown = document.querySelector(".dropdown");
-var dropdownInput = document.getElementById("dropdown-input");
-var calcStep2 = document.getElementById("calc-step2");
-var calcFirstpayWrap = document.getElementById("calc-firstpay-wrap");
-/* получает дефолтное значение в зависимости от категории */
+/* eslint-disable */
 
+/* получает дефолтное значение в зависимости от категории */
 var getDefValue = function getDefValue() {
   /* название категорий */
   var realtyTitle = "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u043D\u0435\u0434\u0432\u0438\u0436\u0438\u043C\u043E\u0441\u0442\u044C";
@@ -491,7 +523,7 @@ var getDefValue = function getDefValue() {
 
   if (dropdownInput.value === "credit-realty") {
     /* проверяет если категория первоначальный взнос скрыта, то показать */
-    if (calcFirstpayWrap.className === "visually-hidden") {
+    if (calcFirstpayWrap.classList.contains("visually-hidden")) {
       calcFirstpayWrap.classList.remove("visually-hidden");
     }
 
@@ -557,7 +589,7 @@ var getDefValue = function getDefValue() {
     calcDateLast.textContent = realtyYearLast + " лет";
   } else if (dropdownInput.value === "credit-auto") {
     /* проверяет если категория первоначальный взнос скрыта, то показать */
-    if (calcFirstpayWrap.className === "visually-hidden") {
+    if (calcFirstpayWrap.classList.contains("visually-hidden")) {
       calcFirstpayWrap.classList.remove("visually-hidden");
     }
 
@@ -653,11 +685,11 @@ var getDefValue = function getDefValue() {
 
 
     generalSum = defValue;
-    /* добавляет min/max для инпута(потребительский кредит) */
+    /* добавляет min/max для инпута(credit-realty) */
 
     inputRealty.min = creditMin;
     inputRealty.max = creditMax;
-    /* добавляет defVal для инпута(потребительский кредит) */
+    /* добавляет defVal для инпута(credit-realty) */
 
     inputRealty.value = defValue;
     /* добавляет значение для инпута(первоначальный взнос) */
@@ -684,6 +716,8 @@ var getDefValue = function getDefValue() {
   }
 };
 "use strict";
+
+/* eslint-disable */
 
 /* модальное окно - Спасибо за обращение */
 var esc = 27;
@@ -763,9 +797,11 @@ showPassword.onclick = function () {
 };
 "use strict";
 
+/* eslint-disable */
+
 /* отображает значения для offer */
 var getOffer = function getOffer() {
-  if (calcSelect.value === "Ипотечное кредитование") {
+  if (dropdownInput.value === "credit-realty") {
     if (sumCredit < 500000) {
       offerFailedText.textContent = "\u041D\u0430\u0448 \u0431\u0430\u043D\u043A \u043D\u0435 \u0432\u044B\u0434\u044B\u0435\u0442 \u0438\u043F\u043E\u0442\u0435\u0447\u043D\u044B\u0435 \u043A\u0440\u0435\u0434\u0438\u0442\u044B \u043C\u0435\u043D\u044C\u0448\u0435 500000 \u0440\u0443\u0431\u043B\u0435\u0439";
       offerFailed.classList.remove("visually-hidden");
@@ -778,7 +814,7 @@ var getOffer = function getOffer() {
       offerMonthpay.textContent = "".concat(payMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
       offerMonthprofit.textContent = "".concat(profitMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
     }
-  } else if (calcSelect.value === "Автомобильное кредитование") {
+  } else if (dropdownInput.value === "credit-auto") {
     if (sumCredit < 200000) {
       offerFailedText.textContent = "\u041D\u0430\u0448 \u0431\u0430\u043D\u043A \u043D\u0435 \u0432\u044B\u0434\u044B\u0435\u0442 \u0430\u0432\u0442\u043E\u043A\u0440\u0435\u0434\u0438\u0442\u044B \u043C\u0435\u043D\u044C\u0448\u0435 200000 \u0440\u0443\u0431\u043B\u0435\u0439";
       offerFailed.classList.remove("visually-hidden");
@@ -792,7 +828,7 @@ var getOffer = function getOffer() {
       offerMonthprofit.textContent = "".concat(profitMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
     }
   } else {
-    if (calcSelect.value === "Потребительский кредит") {
+    if (dropdownInput.value === "credit-user") {
       offerSum.textContent = "".concat(sumCredit, " \u0440\u0443\u0431\u043B\u0435\u0439");
       offerProc.textContent = "".concat(procRate, " %");
       offerMonthpay.textContent = "".concat(payMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");

@@ -1,3 +1,6 @@
+/* eslint-disable */
+
+
 /* модальное окно - Спасибо за обращение */
 var esc = 27;
 const overlay = document.getElementById("overlay");

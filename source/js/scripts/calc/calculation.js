@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /* получает ежемесячный платеж */
 const getPayMonth = () => {
     let countPeriods = dateSum * 12;
@@ -12,15 +14,26 @@ const getPayMonth = () => {
     if (!target.validity.valid) {
       /* Если значение больше */
       if (target.validity.rangeUnderflow) {
-        calcRealtyError.textContent = `Взнос должен быть больше ${target.min}`
+        calcRealtyError.textContent = `Взнос должен быть больше ${target.min}`;
+        calcRealtyError.style.color = '#d40101';
+        inputRealty.style.border = '1px solid #d40101';
+        offerBtn.disabled = true;
+        return false;
       } else
       /* Если значение меньше */
       if (target.validity.rangeOverflow) {
-        calcRealtyError.textContent = `Взнос должен быть меньше ${target.max}`
+        calcRealtyError.textContent = `Взнос должен быть меньше ${target.max}`;
+        calcRealtyError.style.color = '#d40101';
+        inputRealty.style.border = '1px solid #d40101';
+        offerBtn.disabled = true;
+        return false;
       }
     /* Если валидность true */
     } else {
       calcRealtyError.textContent = ``;
+      inputRealty.style.border = '';
+      offerBtn.disabled = false;
+      return true;
     }
   }
   
@@ -36,75 +49,82 @@ const getPayMonth = () => {
     } else {
       generalSum = inputRealty.valueAsNumber;
     }
-  
 
-    if (calcSelect.value === 'Потребительский кредит') {
-      /* %=0 т.к. нет блока первоначальный взнос */
-      procentSum = 0;
-      if (checkboxProject.checked) {
-        if (sumCredit >= 2000000) {
-          procRate = '9';
-          procRateMonth = 9 / 100 / 12;
-        } else 
-        if (750000 <= sumCredit < 2000000) {
-          procRate = '12';
-          procRateMonth = 12 / 100 / 12;
+    if(!chcekSum(inputRealty)) {
+      return false;
+    } else {
+      if (dropdownInput.value === 'credit-user') {
+        /* %=0 т.к. нет блока первоначальный взнос */
+        procentSum = 0;
+        if (checkboxProject.checked) {
+          if (sumCredit >= 2000000) {
+            procRate = '9';
+            procRateMonth = 9 / 100 / 12;
+          } else 
+          if (750000 <= sumCredit < 2000000) {
+            procRate = '12';
+            procRateMonth = 12 / 100 / 12;
+          } else {
+            procRate = '14.5';
+            procRateMonth = 14.5 / 100 / 12;
+          }
         } else {
-          procRate = '14.5';
-          procRateMonth = 14.5 / 100 / 12;
+          if (sumCredit >= 2000000) {
+            procRate = '9.5';
+            procRateMonth = 9.5 / 100 / 12;
+          } else 
+          if (750000 <= sumCredit < 2000000) {
+            procRate = '12.5';
+            procRateMonth = 12.5 / 100 / 12;
+          } else {
+            procRate = '15';
+            procRateMonth = 15 / 100 / 12;
+          }
         }
       } else {
-        if (sumCredit >= 2000000) {
-          procRate = '9.5';
-          procRateMonth = 9.5 / 100 / 12;
-        } else 
-        if (750000 <= sumCredit < 2000000) {
-          procRate = '12.5';
-          procRateMonth = 12.5 / 100 / 12;
-        } else {
-          procRate = '15';
-          procRateMonth = 15 / 100 / 12;
-        }
-      }
-    } else {
-      /* получает % */
-      let procent = Number(inputFirstpayRange.value);
-      /* выводим % в html */
-      calcProcentValue.textContent = procent;
-      /* вычисляем какой % от суммы */
-      procentSum = generalSum / 100 * procent;
-      /* добавляет procent в value инпута(первоначальный взнос) */
-      inputFirstpay.value = procentSum;
-  
-      /* проверяет %, на основе этого находит % ставку  */
-      if (calcSelect.value === 'Ипотечное кредитование') {
-        if (procent >= 20) {
-          procRate = '8.5';
-          procRateMonth = 8.5 / 100 / 12;
-        } else {
-          procRate = '9.4';
-          procRateMonth = 9.4 / 100 / 12;
-        }
-      } else
-      if (calcSelect.value === 'Автомобильное кредитование') {
-        /* проверяет % и checkbox с услугами, на основе этого находит % ставку  */
-        if (checkboxKacko.checked && checkboxLife.checked) {
-          procRate = '3.5';
-          procRateMonth = 3.5 / 100 / 12;
-        } else 
-        if (checkboxKacko.checked || checkboxLife.checked) {
-          procRate = '8.5';
-          procRateMonth = 8.5 / 100 / 12;
+        /* получает % */
+        let procent = Number(inputFirstpayRange.value);
+        /* выводим % в html */
+        calcProcentValue.textContent = procent;
+        /* вычисляем какой % от суммы */
+        procentSum = generalSum / 100 * procent;
+        /* добавляет procent в value инпута(первоначальный взнос) */
+        inputFirstpay.value = procentSum;
+    
+        /* проверяет %, на основе этого находит % ставку  */
+        if (dropdownInput.value === 'credit-realty') {
+          if (procent >= 20) {
+            procRate = '8.5';
+            procRateMonth = 8.5 / 100 / 12;
+          } else {
+            procRate = '9.4';
+            procRateMonth = 9.4 / 100 / 12;
+          }
         } else
-        if (sumCredit >= 2000000) {
-          procRate = '15';
-          procRateMonth = 15 / 100 / 12;
-        } else {
-          procRate = '16';
-          procRateMonth = 16 / 100 / 12;
+        if (dropdownInput.value === 'credit-auto') {
+          /* проверяет % и checkbox с услугами, на основе этого находит % ставку  */
+          if (checkboxKacko.checked && checkboxLife.checked) {
+            procRate = '3.5';
+            procRateMonth = 3.5 / 100 / 12;
+          } else 
+          if (checkboxKacko.checked || checkboxLife.checked) {
+            procRate = '8.5';
+            procRateMonth = 8.5 / 100 / 12;
+          } else
+          if (sumCredit >= 2000000) {
+            procRate = '15';
+            procRateMonth = 15 / 100 / 12;
+          } else {
+            procRate = '16';
+            procRateMonth = 16 / 100 / 12;
+          }
         }
       }
+      return true;
     }
+   
+
+
   };
   
   /* Получить сумму кредита */
@@ -133,7 +153,7 @@ const getPayMonth = () => {
     const realtyStep = 100000;
     const otherStep = 50000;
     if (target.id === calcPlus.id) {
-      if (calcSelect.value === 'Ипотечное кредитование') {
+      if (dropdownInput.value === 'credit-realty') {
         generalSum += realtyStep;
         inputRealty.value = generalSum;
       } else {
@@ -142,7 +162,7 @@ const getPayMonth = () => {
       }
     } else
     if (target.id === calcMinus.id) {
-      if (calcSelect.value === 'Ипотечное кредитование') {
+      if (dropdownInput.value === 'credit-realty') {
         generalSum -= realtyStep;
         inputRealty.value = generalSum;
       } else {
