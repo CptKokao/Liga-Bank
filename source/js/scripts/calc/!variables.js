@@ -6,16 +6,17 @@ const inputFirstpay = document.getElementById("calc-firstpay");
 const inputFirstpayRange = document.getElementById("calc-firstpay-range");
 const inputDateRange = document.getElementById("calc-date-range");
 const inputDate = document.getElementById("calc-date");
-const calcStep2 = document.getElementById("calc-step2");
-const calcFlex = document.getElementById("calc__flex");
-const optionHidden = document.getElementById("option-hidden");
 
-const calcSelect = document.getElementById("calc-select");
+const calcFlex = document.getElementById("calc__flex");
+
+
+
+
 const calcTitle = document.getElementById("calc-title");
 const calcCost = document.getElementById("calc-cost");
 const calcDateFirst = document.getElementById("calc-date-first");
 const calcDateLast = document.getElementById("calc-date-last");
-const calcFirstpayWrap = document.getElementById("calc-firstpay-wrap");
+
 
 const calcPlus = document.getElementById("calc-plus");
 const calcMinus = document.getElementById("calc-minus");

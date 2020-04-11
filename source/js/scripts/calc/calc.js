@@ -1,5 +1,7 @@
 "use strict";
 
+const dropdown = document.querySelector(".dropdown");
+
 /* отслеживает клик по кнопки Оформить заявку*/
 offerBtn.onclick = (e) => {
   e.preventDefault();
@@ -60,11 +62,11 @@ requestBtn.onclick = (e) => {
 }
 
 /* Событие при изменении категории */
-calcSelect.onchange = (e) => {
+console.log(dropdown);
+dropdown.onclick = (e) => {
   getDefValue();
   getSumDate();
   getOfferReset();
-  calcStep2.classList.remove('visually-hidden')
 }
 
 /* Событие при снятии фокуса */

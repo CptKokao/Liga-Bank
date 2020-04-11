@@ -32,6 +32,28 @@ tabSwiper.init();
 /* маска формы телефона */
 
 $("#phone").mask("8(999) 999-9999");
+/*Dropdown Menu*/
+
+$('.dropdown').click(function () {
+  $(this).attr('tabindex', 1).focus();
+  $(this).toggleClass('active');
+  $(this).find('.dropdown-menu').slideToggle(300);
+});
+$('.dropdown').focusout(function () {
+  $(this).removeClass('active');
+  $(this).find('.dropdown-menu').slideUp(300);
+});
+$('.dropdown .dropdown-menu li').click(function () {
+  $(this).parents('.dropdown').find('span').text($(this).text());
+  $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+});
+/*End Dropdown Menu*/
+
+$('.dropdown-menu li').click(function () {
+  var input = '<strong>' + $(this).parents('.dropdown').find('input').val() + '</strong>',
+      msg = '<span class="msg">Hidden input value: ';
+  $('.msg').html(msg + input + '</span>');
+});
 "use strict";
 
 (function () {
@@ -63,15 +85,11 @@ var inputFirstpay = document.getElementById("calc-firstpay");
 var inputFirstpayRange = document.getElementById("calc-firstpay-range");
 var inputDateRange = document.getElementById("calc-date-range");
 var inputDate = document.getElementById("calc-date");
-var calcStep2 = document.getElementById("calc-step2");
 var calcFlex = document.getElementById("calc__flex");
-var optionHidden = document.getElementById("option-hidden");
-var calcSelect = document.getElementById("calc-select");
 var calcTitle = document.getElementById("calc-title");
 var calcCost = document.getElementById("calc-cost");
 var calcDateFirst = document.getElementById("calc-date-first");
 var calcDateLast = document.getElementById("calc-date-last");
-var calcFirstpayWrap = document.getElementById("calc-firstpay-wrap");
 var calcPlus = document.getElementById("calc-plus");
 var calcMinus = document.getElementById("calc-minus");
 var calcRealtyError = document.getElementById("calc-realty-error");
@@ -121,6 +139,8 @@ var offerProc = document.getElementById("calc-offer-proc");
 var offerMonthpay = document.getElementById("calc-offer-monthpay");
 var offerMonthprofit = document.getElementById("calc-offer-monthprofit");
 "use strict";
+
+var dropdown = document.querySelector(".dropdown");
 /* отслеживает клик по кнопки Оформить заявку*/
 
 offerBtn.onclick = function (e) {
@@ -187,11 +207,12 @@ requestBtn.onclick = function (e) {
 /* Событие при изменении категории */
 
 
-calcSelect.onchange = function (e) {
+console.log(dropdown);
+
+dropdown.onclick = function (e) {
   getDefValue();
   getSumDate();
   getOfferReset();
-  calcStep2.classList.remove('visually-hidden');
 };
 /* Событие при снятии фокуса */
 
@@ -431,7 +452,12 @@ function addZero(num, size) {
 }
 "use strict";
 
+var dropdown = document.querySelector(".dropdown");
+var dropdownInput = document.getElementById("dropdown-input");
+var calcStep2 = document.getElementById("calc-step2");
+var calcFirstpayWrap = document.getElementById("calc-firstpay-wrap");
 /* получает дефолтное значение в зависимости от категории */
+
 var getDefValue = function getDefValue() {
   /* название категорий */
   var realtyTitle = "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u043D\u0435\u0434\u0432\u0438\u0436\u0438\u043C\u043E\u0441\u0442\u044C";
@@ -462,23 +488,24 @@ var getDefValue = function getDefValue() {
   var autoYearLast = 5;
   var creditYearFirst = 1;
   var creditYearLast = 7;
-  /* скрывает option */
 
-  optionHidden.hidden = true;
-
-  if (calcSelect.value === 'Ипотечное кредитование') {
+  if (dropdownInput.value === "credit-realty") {
     /* проверяет если категория первоначальный взнос скрыта, то показать */
     if (calcFirstpayWrap.className === "visually-hidden") {
-      calcFirstpayWrap.classList.remove('visually-hidden');
+      calcFirstpayWrap.classList.remove("visually-hidden");
+    }
+
+    if (calcStep2.classList.contains("visually-hidden")) {
+      calcStep2.classList.remove('visually-hidden');
     }
     /* цикл проверяет все чекбоксы и показывает только для текущей категории */
 
 
     for (var i = 0; calcStepCheckbox.length > i; i++) {
       if (calcStepCheckbox[i].children[0].id !== checkboxСapital.id) {
-        calcStepCheckbox[i].classList.add('visually-hidden');
+        calcStepCheckbox[i].classList.add("visually-hidden");
       } else {
-        calcStepCheckbox[i].classList.remove('visually-hidden');
+        calcStepCheckbox[i].classList.remove("visually-hidden");
       }
     }
     /* цикл сбрасывает значения checkbox  */
@@ -488,9 +515,9 @@ var getDefValue = function getDefValue() {
       calcCheckbox[_i].checked = false;
     }
 
-    if (offerSuccess.classList.contains('visually-hidden')) {
-      offerFailed.classList.add('visually-hidden');
-      offerSuccess.classList.remove('visually-hidden');
+    if (offerSuccess.classList.contains("visually-hidden")) {
+      offerFailed.classList.add("visually-hidden");
+      offerSuccess.classList.remove("visually-hidden");
     }
     /* записывает defValue в переменную где храниться общая сумма */
 
@@ -526,23 +553,27 @@ var getDefValue = function getDefValue() {
     requestTarget = realtyTitle;
     calcCost.textContent = realtyCost;
     calcProcentValue.textContent = realtyProc;
-    calcDateFirst.textContent = realtyYearFirst + ' лет';
-    calcDateLast.textContent = realtyYearLast + ' лет';
-  } else if (calcSelect.value === 'Автомобильное кредитование') {
+    calcDateFirst.textContent = realtyYearFirst + " лет";
+    calcDateLast.textContent = realtyYearLast + " лет";
+  } else if (dropdownInput.value === "credit-auto") {
     /* проверяет если категория первоначальный взнос скрыта, то показать */
     if (calcFirstpayWrap.className === "visually-hidden") {
-      calcFirstpayWrap.classList.remove('visually-hidden');
+      calcFirstpayWrap.classList.remove("visually-hidden");
+    }
+
+    if (calcStep2.classList.contains("visually-hidden")) {
+      calcStep2.classList.remove('visually-hidden');
     }
     /* цикл проверяет все чекбоксы и показывает только для текущей категории */
 
 
     for (var _i2 = 0; calcStepCheckbox.length > _i2; _i2++) {
       if (calcStepCheckbox[_i2].children[0].id !== checkboxKacko.id && calcStepCheckbox[_i2].children[0].id !== checkboxLife.id) {
-        calcStepCheckbox[_i2].classList.add('visually-hidden');
+        calcStepCheckbox[_i2].classList.add("visually-hidden");
 
         calcStepCheckbox.checked = false;
       } else {
-        calcStepCheckbox[_i2].classList.remove('visually-hidden');
+        calcStepCheckbox[_i2].classList.remove("visually-hidden");
       }
     }
     /* цикл сбрасывает значения checkbox  */
@@ -552,9 +583,9 @@ var getDefValue = function getDefValue() {
       calcCheckbox[_i3].checked = false;
     }
 
-    if (offerSuccess.classList.contains('visually-hidden')) {
-      offerFailed.classList.add('visually-hidden');
-      offerSuccess.classList.remove('visually-hidden');
+    if (offerSuccess.classList.contains("visually-hidden")) {
+      offerFailed.classList.add("visually-hidden");
+      offerSuccess.classList.remove("visually-hidden");
     }
     /* записывает defValue в переменную где зраниться общая сумма */
 
@@ -590,18 +621,22 @@ var getDefValue = function getDefValue() {
     requestTarget = autoTitle;
     calcCost.textContent = autoCost;
     calcProcentValue.textContent = autoProc;
-    calcDateFirst.textContent = autoYearFirst + ' лет';
-    calcDateLast.textContent = autoYearLast + ' лет';
-  } else if (calcSelect.value === 'Потребительский кредит') {
+    calcDateFirst.textContent = autoYearFirst + " лет";
+    calcDateLast.textContent = autoYearLast + " лет";
+  } else if (dropdownInput.value === "credit-user") {
     /* цикл проверяет все чекбоксы и показывает только для текущей категории */
     for (var _i4 = 0; calcStepCheckbox.length > _i4; _i4++) {
       if (calcStepCheckbox[_i4].children[0].id !== checkboxProject.id) {
-        calcStepCheckbox[_i4].classList.add('visually-hidden');
+        calcStepCheckbox[_i4].classList.add("visually-hidden");
 
         calcStepCheckbox.checked = false;
       } else {
-        calcStepCheckbox[_i4].classList.remove('visually-hidden');
+        calcStepCheckbox[_i4].classList.remove("visually-hidden");
       }
+    }
+
+    if (calcStep2.classList.contains("visually-hidden")) {
+      calcStep2.classList.remove('visually-hidden');
     }
     /* цикл сбрасывает значения checkbox  */
 
@@ -610,9 +645,9 @@ var getDefValue = function getDefValue() {
       calcCheckbox[_i5].checked = false;
     }
 
-    if (offerSuccess.classList.contains('visually-hidden')) {
-      offerFailed.classList.add('visually-hidden');
-      offerSuccess.classList.remove('visually-hidden');
+    if (offerSuccess.classList.contains("visually-hidden")) {
+      offerFailed.classList.add("visually-hidden");
+      offerSuccess.classList.remove("visually-hidden");
     }
     /* записывает defValue в переменную где храниться общая сумма */
 
@@ -641,11 +676,11 @@ var getDefValue = function getDefValue() {
     calcTitle.textContent = creditTitle;
     requestTarget = creditTitle;
     calcCost.textContent = creditCost;
-    calcDateFirst.textContent = creditYearFirst + ' лет';
-    calcDateLast.textContent = creditYearLast + ' лет';
+    calcDateFirst.textContent = creditYearFirst + " лет";
+    calcDateLast.textContent = creditYearLast + " лет";
     /* скрывает блок */
 
-    calcFirstpayWrap.classList.add('visually-hidden');
+    calcFirstpayWrap.classList.add("visually-hidden");
   }
 };
 "use strict";

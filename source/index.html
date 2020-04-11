@@ -440,19 +440,28 @@
     <section class="container calc" id="calc">
       <h2>Кредитный калькулятор</h2>
 
+
+
       <div class="calc__flex" id="calc__flex">
         <!-- Шаги калькулятора -->
         <div class="calc__step">
 
+
           <!-- Шаг 1 -->
           <div class="calc__step-target">
             <h3>Шаг 1. Цель кредита</h3>
-            <select id="calc-select">
-              <option id="option-hidden">Выберите цель кредита</option>
-              <option>Ипотечное кредитование</option>
-              <option>Автомобильное кредитование</option>
-              <option>Потребительский кредит</option>
-            </select>
+            <!-- Select -->
+
+            <div class="dropdown">
+              <span>Выберите цель кредита</span>
+              <input type="hidden" id="dropdown-input">
+              <ul class="dropdown-menu">
+                <li id="credit-realty">Ипотечное кредитование</li>
+                <li id="credit-auto">Автомобильное кредитование</li>
+                <li id="credit-user">Потребительский кредит</li>
+              </ul>
+          </div>
+
           </div>
 
           <!-- Шаг 2 -->
@@ -694,6 +703,8 @@
       </div>
     </div>
   </footer>
+
+
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=43636858-ed74-463e-a4fe-d4ee13c2d867" type="text/javascript"></script>
 
   <script src="./js/vendor.js"></script>
