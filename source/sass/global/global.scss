@@ -79,14 +79,14 @@ a {
 }
 
 .container {
-  max-width: 1170px;
-  min-width: 1024px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 15px;
   // outline: 1px solid rgb(53, 192, 157);
 
   @media (max-width: $tablet-width) {
-    min-width: 678px;
+    // min-width: 678px;
   }
 
   @media (max-width: $mobile-width) {

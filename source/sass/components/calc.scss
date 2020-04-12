@@ -1,5 +1,5 @@
 .calc {
-  margin-top: 57px;
+  margin-top: 45px;
   position: relative;
 
   @media (max-width: $tablet-width) {
@@ -47,6 +47,7 @@
 .calc__flex {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 
   @media (max-width: $tablet-width) {
     flex-direction: column;
@@ -108,7 +109,8 @@
     margin-top: 25px;
   }
 
-  p {
+  span {
+    display: none;
     margin-top: 15px;
     line-height: 22px;
 
@@ -119,8 +121,7 @@
 }
 
 .calc__step-parametrs-wrap {
-  // input {
-  //   margin-top: 10px;
+  margin-top: 20px;
 
   @media (max-width: $tablet-width) {
     width: 100%;
@@ -136,6 +137,10 @@
   }
 }
 
+.calc__firstpay-wrap {
+  margin-top: 18px;
+}
+
 .calc__firstpay-wrap,
 .calc__step-date-value {
   & > span {
@@ -148,6 +153,7 @@
 /* стилизация input[type=number] */
 .calc__step-parametrs-input {
   position: relative;
+
 }
 
 .calc__step-parametrs-minus,
@@ -163,13 +169,13 @@
 }
 
 .calc__step-parametrs-minus {
-  left: 2%;
+  left: 3%;
   font-size: 42px;
   transform: translateY(-68%);
 }
 
 .calc__step-parametrs-plus {
-  right: 2%;
+  right: 3%;
   font-size: 32px;
   transform: translateY(-50%);
 }
@@ -202,7 +208,8 @@
 
 .calc__step-checkbox {
   display: flex;
-  margin-top: 22px;
+  margin-top: 20px;
+
 
   @media (max-width: $tablet-width) {
     margin-top: 17px;
@@ -222,6 +229,7 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 22px;
+    cursor: pointer;
 
     &::before {
       position: absolute;
@@ -275,8 +283,8 @@
 
 /* Наше предложение  */
 .calc__offer-success {
-  width: 500px;
-  height: 389px;
+  width: 43%;
+  min-height: 389px;
   padding: 54px 53px 58px 57px;
   margin-top: 58px;
   background: #f6f7ff;
@@ -335,7 +343,9 @@
 
   span {
     display: block;
-    margin-top: 25px;
+    margin-top: 12px;
+    line-height: 22px;
+    width: 265px;
   }
 
   @media (max-width: $tablet-width) {
@@ -473,7 +483,7 @@
 
 .calc__request-wrap {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 12px;
 
   @media (max-width: $tablet-width) {
     margin-top: 23px;
@@ -488,7 +498,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 12px 0;
+  padding: 11px 0;
   border-bottom: 1px solid #c4c4c4;
 
   @media (max-width: $mobile-width) {
@@ -511,7 +521,7 @@
 
 .calc__request-form {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 23px;
 
   @media (max-width: $tablet-width) {
     width: 100%;
@@ -529,15 +539,9 @@
       }
 
       width: 48%;
-      margin-bottom: 30px;
-      height: 60px;
-
+      margin-bottom: 20px;
       padding-left: 25px;
-
-      border: 1px solid #1f1e25;
-      box-sizing: border-box;
-      border-radius: 4px;
-      background: #ffffff;
+      text-align: left;
 
       @media (max-width: $mobile-width) {
         width: 100%;
@@ -550,7 +554,7 @@
   .calc__request-btn {
     width: 200px;
     margin: 0 auto;
-    margin-top: 7px;
+    margin-top: 20px;
     font-size: 16px;
 
     @media (max-width: $tablet-width) {
@@ -571,7 +575,7 @@
 input[type="range"] {
   // -webkit-appearance: none;
   appearance: none;
-  margin-top: 22px;
+  margin-top: 20px;
   padding: 0;
   width: 100%;
 
@@ -632,8 +636,8 @@ input[type="range"] {
 
   span {
     display: block;
-    width: 100%;
-    margin-top: 25px;
+    width: 310px;
+    margin-top: 12px;
     text-align: center;
   }
 }
@@ -642,7 +646,7 @@ input[type="range"] {
 .calc__overlay-close {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 23px;
   border-radius: 50%;
 
   @include close();

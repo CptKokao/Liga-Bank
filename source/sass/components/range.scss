@@ -61,10 +61,6 @@ input[type="range"] {
     color: transparent;
   }
 
-  &:focus::-webkit-slider-runnable-track {
-    background: #ac51b5;
-  }
-
   &::-ms-fill-lower,
   &::-ms-fill-upper {
     background: #2a6495;

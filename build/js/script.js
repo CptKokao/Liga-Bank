@@ -17,9 +17,9 @@ var mySwiper = new Swiper('#swiper1', {
     el: '.swiper-pagination',
     clickable: true
   },
-  autoplay: {
-    delay: 4000
-  },
+  // autoplay: {
+  //   delay: 4000,
+  // },
   loop: true
 });
 /* Слайдер для блока tab */
@@ -121,6 +121,7 @@ var formPhone = document.getElementById("phone");
 var formEmail = document.getElementById("email");
 var requestNumber = 0;
 var requestTarget;
+var requestPrice;
 var defValue = 2000000;
 var capital = 470000;
 var generalSum; // стоимость недвижимости
@@ -155,6 +156,7 @@ offerBtn.onclick = function (e) {
 
   if (procentSum !== undefined) {
     // calcFlex.classList.add('visually-hidden');
+    disableForm(true);
     formName.focus();
     offerBtn.disabled = true;
     /* прибавляет ++ к номеру заказа, ТОЛЬКО один раз */
@@ -186,6 +188,9 @@ requestBtn.onclick = function (e) {
 
     if (input.checkValidity() === false) {
       error++;
+      input.style.border = "1px solid #d40101";
+    } else {
+      input.style.border = "none";
     }
   }
 
@@ -206,6 +211,7 @@ requestBtn.onclick = function (e) {
     requestWrap.innerHTML = "";
     offerBtn.disabled = false;
     requestNumber = addZero(requestNumber, 4);
+    disableForm(false);
     getOfferReset();
     getDefValue();
   }
@@ -218,93 +224,54 @@ dropdown.onclick = function (e) {
     return;
   }
 
-  getDefValue();
-  getSumDate();
+  getDefValue(); // getSumYears();
+
   getOfferReset();
-};
-/* Событие при снятии фокуса */
-
-
-inputRealty.oninput = function () {
-  if (!getProcentSum()) {
-    return;
-  }
-
-  getSumCredit();
-  getSumDate();
-  getPayMonth();
-  getOffer();
-};
-/* Отслеживание клика plus */
-
-
-calcPlus.onclick = function (e) {
-  getStep(e);
-
-  if (!getProcentSum()) {
-    return;
-  }
-
-  getSumCredit();
-  getSumDate();
-  getPayMonth();
-  getOffer();
-};
-/* Отслеживание клика minus */
-
-
-calcMinus.onclick = function (e) {
-  getStep(e);
-
-  if (!getProcentSum()) {
-    return;
-  }
-
-  getSumCredit();
-  getSumDate();
-  getPayMonth();
-  getOffer();
-};
-/* Отслеживание изменения срока кредитования */
-
-
-inputDateRange.onchange = function () {
-  getSumDate();
-  getSumCredit();
-  getSumDate();
-  getPayMonth();
-  getOffer();
-};
-/* Отслеживание изменения % первоначального взноса */
-
-
-inputFirstpayRange.oninput = function () {
-  getProcentSum();
-  getSumCredit();
-  getSumDate();
-  getPayMonth();
-  getOffer();
 };
 "use strict";
 
 /* eslint-disable */
+var generalSum; // стоимость недвижимости
 
-/* получает ежемесячный платеж */
-var getPayMonth = function getPayMonth() {
-  var countPeriods = dateSum * 12;
-  payMonth = Math.round(sumCredit * (procRateMonth / (1 - 1 / Math.pow(1 + procRateMonth, countPeriods))));
-  profitMonth = Math.round(payMonth / 0.45);
+var procent; // % 
+
+var procentSum; // сумма первоначальный взнос
+
+var procRate; // % первоначального взноса
+
+var procRateMonth; // процентная ставка
+
+var dateSum; // срок кредитования
+
+var sumCredit; // сумма кредита(с вычитом первоначального взноса)
+
+var payMonth; // ежемесячный платеж
+
+var profitMonth; // ежемесячный платеж
+
+/* получает введенную сумму и записывает в generalSum*/
+
+var getGeneralSum = function getGeneralSum() {
+  /* проверяет если общая сумма NaN, то добавляет defValue */
+  if (inputRealty.value === '') {
+    /* добавляет defVal для инпута(общей стоимости) */
+    inputRealty.value = defValue;
+    generalSum = inputRealty.valueAsNumber;
+  } else {
+    generalSum = inputRealty.valueAsNumber;
+  }
 };
 /* проверяет основную сумму на min/max и выводит сообщение в случае !valid */
 
 
-var chcekSum = function chcekSum(target) {
+var checkGeneralSum = function checkGeneralSum(target) {
   /* Если валидность false */
   if (!target.validity.valid) {
     /* Если значение больше */
     if (target.validity.rangeUnderflow) {
       calcRealtyError.textContent = "\u0412\u0437\u043D\u043E\u0441 \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 ".concat(target.min);
       calcRealtyError.style.color = '#d40101';
+      calcRealtyError.style.display = 'block';
       inputRealty.style.border = '1px solid #d40101';
       offerBtn.disabled = true;
       return false;
@@ -314,6 +281,7 @@ var chcekSum = function chcekSum(target) {
         calcRealtyError.textContent = "\u0412\u0437\u043D\u043E\u0441 \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u043C\u0435\u043D\u044C\u0448\u0435 ".concat(target.max);
         calcRealtyError.style.color = '#d40101';
         inputRealty.style.border = '1px solid #d40101';
+        calcRealtyError.style.display = 'block';
         offerBtn.disabled = true;
         return false;
       }
@@ -321,25 +289,136 @@ var chcekSum = function chcekSum(target) {
 
   } else {
     calcRealtyError.textContent = "";
+    calcRealtyError.style.display = 'none';
     inputRealty.style.border = '';
     offerBtn.disabled = false;
     return true;
   }
 };
-/* получает сумму % от общей суммы */
+/* Задает дефолтный % для категории */
 
 
-var getProcentSum = function getProcentSum() {
-  /* проверяет если общая сумма NaN, то добавляет defValue */
-  if (inputRealty.value === '') {
-    /* добавляет defVal для инпута(общей стоимости) */
-    inputRealty.value = defValue;
-    generalSum = inputRealty.valueAsNumber;
+var setDefProcent = function setDefProcent() {
+  /* defVal % для категорий */
+  var realtyProc = 10;
+  var autoProc = 20;
+
+  if (dropdownInput.value === 'credit-realty') {
+    var value = Number(inputFirstpay.value);
+    procent = realtyProc;
+    /* выводим % в html */
+
+    calcProcentValue.textContent = procent;
+    /* вычисляем какой % от суммы */
+
+    procentSum = generalSum / 100 * procent;
+    /* проверка на введенное число, если value < min, то def % */
+
+    if (value > procentSum) {
+      inputFirstpay.value = value;
+      inputFirstpayRange.value = realtyProc;
+      procentSum = value;
+    } else {
+      /* добавляет procent в value инпута(первоначальный взнос) */
+      inputFirstpay.value = procentSum;
+      inputFirstpayRange.value = realtyProc;
+    }
+  } else if (dropdownInput.value === 'credit-auto') {
+    var _value = Number(inputFirstpay.value);
+
+    procent = autoProc;
+    /* выводим % в html */
+
+    calcProcentValue.textContent = procent;
+    /* вычисляем какой % от суммы */
+
+    procentSum = generalSum / 100 * procent;
+    /* проверка на введенное число, если value < min, то def % */
+
+    if (_value > procentSum) {
+      inputFirstpay.value = _value;
+      inputFirstpayRange.value = autoProc;
+      procentSum = _value;
+    } else {
+      /* добавляет procent в value инпута(первоначальный взнос) */
+      inputFirstpay.value = procentSum;
+      inputFirstpayRange.value = autoProc;
+    }
+  }
+};
+/* Задает % для категории */
+
+
+var setCurProcent = function setCurProcent() {
+  if (dropdownInput.value === 'credit-user') {
+    procentSum = 0;
   } else {
-    generalSum = inputRealty.valueAsNumber;
+    /* получает % */
+    procent = Number(inputFirstpayRange.value);
+    /* выводим % в html */
+
+    calcProcentValue.textContent = procent;
+    /* вычисляем какой % от суммы */
+
+    procentSum = generalSum / 100 * procent;
+    /* добавляет procent в value инпута(первоначальный взнос) */
+
+    inputFirstpay.value = procentSum;
+  }
+};
+/* получает срок кредитования */
+
+
+var getSumYears = function getSumYears() {
+  /* Значение input[type="range"] записывает в переменную dateSum */
+  dateSum = inputDateRange.value;
+  inputDate.value = dateSum;
+  calcDateFirst.textContent = dateSum + ' лет';
+  inputDateRange.value = dateSum;
+};
+/* получает срок кредитования */
+
+
+var getPutYears = function getPutYears() {
+  /* Значение input[type="range"] записывает в переменную dateSum */
+  dateSum = Number(inputDate.value);
+  var dateMin = Number(inputDateRange.min);
+  var dateMax = Number(inputDateRange.max);
+
+  if (dateSum < dateMin) {
+    dateSum = dateMin;
+  } else if (dateSum > dateMax) {
+    dateSum = dateMax;
   }
 
-  if (!chcekSum(inputRealty)) {
+  inputDate.value = dateSum;
+  calcDateFirst.textContent = dateSum + ' лет';
+  inputDateRange.value = dateSum;
+};
+/* получает ежемесячный платеж */
+
+
+var getPayMonth = function getPayMonth() {
+  var countPeriods = dateSum * 12;
+  payMonth = Math.round(sumCredit * (procRateMonth / (1 - 1 / Math.pow(1 + procRateMonth, countPeriods))));
+  profitMonth = Math.round(payMonth / 0.45);
+};
+/* Получить сумму кредита */
+
+
+var calcSumCredit = function calcSumCredit() {
+  if (checkboxСapital.checked) {
+    sumCredit = generalSum - procentSum - capital;
+  } else {
+    sumCredit = generalSum - procentSum;
+  }
+};
+/* получает % ставку */
+
+
+var getProcentRate = function getProcentRate() {
+  /* если проверка не пройдена на min/max то false  */
+  if (!checkGeneralSum(inputRealty)) {
     return false;
   } else {
     if (dropdownInput.value === 'credit-user') {
@@ -350,7 +429,7 @@ var getProcentSum = function getProcentSum() {
         if (sumCredit >= 2000000) {
           procRate = '9';
           procRateMonth = 9 / 100 / 12;
-        } else if (750000 <= sumCredit < 2000000) {
+        } else if (750000 <= sumCredit && sumCredit < 2000000) {
           procRate = '12';
           procRateMonth = 12 / 100 / 12;
         } else {
@@ -361,7 +440,7 @@ var getProcentSum = function getProcentSum() {
         if (sumCredit >= 2000000) {
           procRate = '9.5';
           procRateMonth = 9.5 / 100 / 12;
-        } else if (750000 <= sumCredit < 2000000) {
+        } else if (750000 <= sumCredit && sumCredit < 2000000) {
           procRate = '12.5';
           procRateMonth = 12.5 / 100 / 12;
         } else {
@@ -370,19 +449,7 @@ var getProcentSum = function getProcentSum() {
         }
       }
     } else {
-      /* получает % */
-      var procent = Number(inputFirstpayRange.value);
-      /* выводим % в html */
-
-      calcProcentValue.textContent = procent;
-      /* вычисляем какой % от суммы */
-
-      procentSum = generalSum / 100 * procent;
-      /* добавляет procent в value инпута(первоначальный взнос) */
-
-      inputFirstpay.value = procentSum;
       /* проверяет %, на основе этого находит % ставку  */
-
       if (dropdownInput.value === 'credit-realty') {
         if (procent >= 20) {
           procRate = '8.5';
@@ -412,27 +479,6 @@ var getProcentSum = function getProcentSum() {
     return true;
   }
 };
-/* Получить сумму кредита */
-
-
-var getSumCredit = function getSumCredit() {
-  sumCredit = generalSum;
-
-  if (checkboxСapital.checked) {
-    sumCredit = sumCredit - procentSum - capital;
-  } else {
-    sumCredit = sumCredit - procentSum;
-  }
-};
-/* получает срок кредитования */
-
-
-var getSumDate = function getSumDate() {
-  dateSum = inputDateRange.value;
-  inputDate.value = dateSum;
-  calcDateFirst.textContent = dateSum + ' лет';
-  inputDateRange.value = dateSum;
-};
 /* получает step для инпута */
 
 
@@ -459,16 +505,45 @@ var getStep = function getStep(e) {
     }
   }
 };
+/* получает step для инпута */
+
+
+var disableForm = function disableForm(state) {
+  console.dir(inputRealty);
+  inputRealty.disabled = state;
+  calcPlus.disabled = state;
+  calcMinus.disabled = state;
+  inputFirstpay.disabled = state;
+  inputFirstpayRange.disabled = state;
+  inputDate.disabled = state;
+  inputDateRange.disabled = state;
+
+  for (var i = 0; calcStepCheckbox.length > i; i++) {
+    calcStepCheckbox[i].children[0].disabled = state;
+  }
+};
 /* добавляет события для всех checkbox */
 
 
 for (var i = 0; calcStepCheckbox.length > i; i++) {
   var ckeckbox = calcStepCheckbox[i].children[0];
   ckeckbox.addEventListener('click', function (e) {
-    getProcentSum();
-    getSumCredit();
-    getSumDate();
+    /* После ввода стоимости недвижимости, должно автоматически проставляться минимальное значение первоначального взноса. */
+    setDefProcent();
+    /* получает сумму кредита */
+
+    calcSumCredit();
+    /* получает % ставку */
+
+    getProcentRate();
+    /* получает количество лет */
+
+    getSumYears();
+    /* вычисляет ежемесячный платеж */
+
     getPayMonth();
+    /* показывает offer */
+
     getOffer();
   });
 }
@@ -485,6 +560,218 @@ function addZero(num, size) {
 
   return s;
 }
+/* Событие при изменения значения */
+
+
+inputRealty.oninput = function (e) {
+  getGeneralSum();
+  /* проверяет сумму, если возвращает false то проверка не пройдена */
+
+  if (!checkGeneralSum(inputRealty)) {
+    return;
+  }
+  /* После ввода стоимости недвижимости, должно автоматически проставляться минимальное значение первоначального взноса. */
+
+
+  setDefProcent();
+  /* получает сумму кредита */
+
+  calcSumCredit();
+  /* получает % ставку */
+
+  getProcentRate();
+  /* получает количество лет */
+
+  getSumYears();
+  /* вычисляет ежемесячный платеж */
+
+  getPayMonth();
+  /* показывает offer */
+
+  getOffer();
+};
+/* Отслеживание клика plus */
+
+
+calcPlus.onclick = function (e) {
+  getStep(e);
+  getGeneralSum();
+  /* проверяет сумму, если возвращает false то проверка не пройдена */
+
+  if (!checkGeneralSum(inputRealty)) {
+    return;
+  }
+  /* получает текущий % */
+
+
+  setCurProcent();
+  /* получает сумму кредита */
+
+  calcSumCredit();
+  /* получает % ставку */
+
+  getProcentRate();
+  /* получает количество лет */
+
+  getSumYears();
+  /* вычисляет ежемесячный платеж */
+
+  getPayMonth();
+  /* показывает offer */
+
+  getOffer();
+};
+/* Отслеживание клика minus */
+
+
+calcMinus.onclick = function (e) {
+  getStep(e);
+  getGeneralSum();
+  /* проверяет сумму, если возвращает false то проверка не пройдена */
+
+  if (!checkGeneralSum(inputRealty)) {
+    return;
+  }
+  /* получает текущий % */
+
+
+  setCurProcent();
+  /* получает сумму кредита */
+
+  calcSumCredit();
+  /* получает % ставку */
+
+  getProcentRate();
+  /* получает количество лет */
+
+  getSumYears();
+  /* вычисляет ежемесячный платеж */
+
+  getPayMonth();
+  /* показывает offer */
+
+  getOffer();
+};
+/* Отслеживание изменения % первоначального взноса */
+
+
+inputFirstpayRange.oninput = function () {
+  getGeneralSum();
+  /* проверяет сумму, если возвращает false то проверка не пройдена */
+
+  if (!checkGeneralSum(inputRealty)) {
+    return;
+  }
+  /* получает текущий % */
+
+
+  setCurProcent();
+  /* получает сумму кредита */
+
+  calcSumCredit();
+  /* получает % ставку */
+
+  getProcentRate();
+  /* получает количество лет */
+
+  getSumYears();
+  /* вычисляет ежемесячный платеж */
+
+  getPayMonth();
+  /* показывает offer */
+
+  getOffer();
+};
+/* Отслеживание изменения % первоначального взноса */
+
+
+inputFirstpay.onchange = function () {
+  getGeneralSum();
+  /* проверяет сумму, если возвращает false то проверка не пройдена */
+
+  if (!checkGeneralSum(inputRealty)) {
+    return;
+  }
+  /* получает текущий % */
+
+
+  setDefProcent();
+  /* получает сумму кредита */
+
+  calcSumCredit();
+  /* получает % ставку */
+
+  getProcentRate();
+  /* получает количество лет */
+
+  getSumYears();
+  /* вычисляет ежемесячный платеж */
+
+  getPayMonth();
+  /* показывает offer */
+
+  getOffer();
+};
+/* Отслеживание изменения срока кредитования */
+
+
+inputDateRange.oninput = function () {
+  getGeneralSum();
+  /* проверяет сумму, если возвращает false то проверка не пройдена */
+
+  if (!checkGeneralSum(inputRealty)) {
+    return;
+  }
+  /* получает текущий % */
+
+
+  setCurProcent();
+  /* получает сумму кредита */
+
+  calcSumCredit();
+  /* получает % ставку */
+
+  getProcentRate();
+  /* получает количество лет */
+
+  getSumYears();
+  /* вычисляет ежемесячный платеж */
+
+  getPayMonth();
+  /* показывает offer */
+
+  getOffer();
+};
+/* Отслеживание изменения срока кредитования */
+
+
+inputDate.onchange = function () {
+  getGeneralSum();
+  /* проверяет сумму, если возвращает false то проверка не пройдена */
+
+  if (!checkGeneralSum(inputRealty)) {
+    return;
+  }
+  /* получает текущий % */
+
+
+  setCurProcent();
+  /* получает сумму кредита */
+
+  calcSumCredit();
+  /* получает % ставку */
+
+  getProcentRate();
+  /* получает количество лет */
+
+  getPutYears();
+  /* вычисляет ежемесячный платеж */
+
+  getPayMonth();
+  /* показывает offer */
+
+  getOffer();
+};
 "use strict";
 
 /* eslint-disable */
@@ -492,7 +779,7 @@ function addZero(num, size) {
 /* получает дефолтное значение в зависимости от категории */
 var getDefValue = function getDefValue() {
   /* название категорий */
-  var realtyTitle = "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u043D\u0435\u0434\u0432\u0438\u0436\u0438\u043C\u043E\u0441\u0442\u044C";
+  var realtyTitle = "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u043D\u0435\u0434\u0432\u0438\u0436\u0438\u043C\u043E\u0441\u0442\u0438";
   var autoTitle = "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u0430\u0432\u0442\u043E\u043C\u043E\u0431\u0438\u043B\u044F";
   var creditTitle = "\u0421\u0443\u043C\u043C\u0430 \u043F\u043E\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043B\u044C\u0441\u043A\u043E\u0433\u043E \u043A\u0440\u0435\u0434\u0438\u0442\u0430";
   /* текст min/max для категорий */
@@ -563,8 +850,8 @@ var getDefValue = function getDefValue() {
     // inputRealty.value = defValue;
 
     /* добавляет значение для инпута(первоначальный взнос) */
+    // inputFirstpay.value = (generalSum * 10) / 100;
 
-    inputFirstpay.value = generalSum * 10 / 100;
     /* добавляет параметры для инпута(слайдер) */
 
     inputFirstpayRange.min = realtyProc;
@@ -576,13 +863,12 @@ var getDefValue = function getDefValue() {
     inputDateRange.min = realtyYearFirst;
     inputDateRange.max = 30;
     inputDateRange.step = 1;
-    inputDateRange.value = realtyYearFirst;
-    inputDate.value = realtyYearFirst;
+    inputDateRange.value = realtyYearFirst; // inputDate.value = realtyYearFirst;
+
     offerSuccessText.textContent = "\u0421\u0443\u043C\u043C\u0430 \u0438\u043F\u043E\u0442\u0435\u043A\u0438";
     /* выводим defVal в html */
 
     calcTitle.textContent = realtyTitle;
-    requestTarget = realtyTitle;
     calcCost.textContent = realtyCost;
     calcProcentValue.textContent = realtyProc;
     calcDateFirst.textContent = realtyYearFirst + " лет";
@@ -644,13 +930,12 @@ var getDefValue = function getDefValue() {
     inputDateRange.min = autoYearFirst;
     inputDateRange.max = 5;
     inputDateRange.step = 1;
-    inputDateRange.value = autoYearFirst;
-    inputDate.value = autoYearFirst;
+    inputDateRange.value = autoYearFirst; // inputDate.value = autoYearFirst;
+
     offerSuccessText.textContent = "\u0421\u0443\u043C\u043C\u0430 \u0430\u0432\u0442\u043E\u043A\u0440\u0435\u0434\u0438\u0442\u0430";
     /* выводим defVal в html */
 
     calcTitle.textContent = autoTitle;
-    requestTarget = autoTitle;
     calcCost.textContent = autoCost;
     calcProcentValue.textContent = autoProc;
     calcDateFirst.textContent = autoYearFirst + " лет";
@@ -706,7 +991,6 @@ var getDefValue = function getDefValue() {
     /* выводим defVal в html */
 
     calcTitle.textContent = creditTitle;
-    requestTarget = creditTitle;
     calcCost.textContent = creditCost;
     calcDateFirst.textContent = creditYearFirst + " лет";
     calcDateLast.textContent = creditYearLast + " лет";
@@ -803,7 +1087,7 @@ showPassword.onclick = function () {
 var getOffer = function getOffer() {
   if (dropdownInput.value === "credit-realty") {
     if (sumCredit < 500000) {
-      offerFailedText.textContent = "\u041D\u0430\u0448 \u0431\u0430\u043D\u043A \u043D\u0435 \u0432\u044B\u0434\u044B\u0435\u0442 \u0438\u043F\u043E\u0442\u0435\u0447\u043D\u044B\u0435 \u043A\u0440\u0435\u0434\u0438\u0442\u044B \u043C\u0435\u043D\u044C\u0448\u0435 500000 \u0440\u0443\u0431\u043B\u0435\u0439";
+      offerFailedText.textContent = "\u041D\u0430\u0448 \u0431\u0430\u043D\u043A \u043D\u0435 \u0432\u044B\u0434\u0430\u0451\u0442 \u0438\u043F\u043E\u0442\u0435\u0447\u043D\u044B\u0435 \u043A\u0440\u0435\u0434\u0438\u0442\u044B \u043C\u0435\u043D\u044C\u0448\u0435 500 000 \u0440\u0443\u0431\u043B\u0435\u0439";
       offerFailed.classList.remove("visually-hidden");
       offerSuccess.classList.add("visually-hidden");
     } else {
@@ -847,7 +1131,21 @@ var getOfferReset = function getOfferReset() {
 };
 
 var getRequest = function getRequest() {
-  requestWrap.insertAdjacentHTML("afterbegin", "<div class=\"calc__request-item\">\n        <p>\u041D\u043E\u043C\u0435\u0440 \u0437\u0430\u044F\u0432\u043A\u0438</p>\n        <span>\u2116 ".concat(requestNumber, "</span>\n        </div>\n  \n        <div class=\"calc__request-item\">\n        <p>\u0426\u0435\u043B\u044C \u043A\u0440\u0435\u0434\u0438\u0442\u0430</p>\n        <span>").concat(requestTarget, "</span>\n        </div>\n  \n        <div class=\"calc__request-item\">\n        <p>\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u043D\u0435\u0434\u0432\u0438\u0436\u0438\u043C\u043E\u0441\u0442\u0438</p>\n        <span>").concat(generalSum, " \u0440\u0443\u0431\u043B\u0435\u0439</span>\n        </div>\n  \n        <div class=\"calc__request-item\">\n        <p>\u041F\u0435\u0440\u0432\u043E\u043D\u0430\u0447\u0430\u043B\u044C\u043D\u044B\u0439 \u0432\u0437\u043D\u043E\u0441</p>\n        <span>").concat(procentSum, " \u0440\u0443\u0431\u043B\u0435\u0439</span>\n        </div>\n  \n        <div class=\"calc__request-item\">\n        <p>\u0421\u0440\u043E\u043A \u043A\u0440\u0435\u0434\u0438\u0442\u043E\u0432\u0430\u043D\u0438\u044F</p>\n        <span>").concat(dateSum, " \u043B\u0435\u0442</span>\n      </div>"));
+  var hidden;
+
+  if (dropdownInput.value === "credit-realty") {
+    requestTarget = 'Ипотека';
+    requestPrice = 'Стоимость недвижимости';
+  } else if (dropdownInput.value === "credit-auto") {
+    requestTarget = 'Автокредит';
+    requestPrice = 'Стоимость автомобиля';
+  } else if (dropdownInput.value === "credit-user") {
+    requestTarget = 'Потребительский кредит';
+    requestPrice = 'Сумма кредита';
+    hidden = "style=\"display: none;\"";
+  }
+
+  requestWrap.insertAdjacentHTML("afterbegin", "<div class=\"calc__request-item\">\n        <p>\u041D\u043E\u043C\u0435\u0440 \u0437\u0430\u044F\u0432\u043A\u0438</p>\n        <span>\u2116 ".concat(requestNumber, "</span>\n        </div>\n  \n        <div class=\"calc__request-item\">\n        <p>\u0426\u0435\u043B\u044C \u043A\u0440\u0435\u0434\u0438\u0442\u0430</p>\n        <span>").concat(requestTarget, "</span>\n        </div>\n  \n        <div class=\"calc__request-item\">\n        <p>").concat(requestPrice, "</p>\n        <span>").concat(generalSum, " \u0440\u0443\u0431\u043B\u0435\u0439</span>\n        </div>\n  \n        <div class=\"calc__request-item\" ").concat(hidden, ">\n        <p>\u041F\u0435\u0440\u0432\u043E\u043D\u0430\u0447\u0430\u043B\u044C\u043D\u044B\u0439 \u0432\u0437\u043D\u043E\u0441</p>\n        <span>").concat(procentSum, " \u0440\u0443\u0431\u043B\u0435\u0439</span>\n        </div>\n  \n        <div class=\"calc__request-item\">\n        <p>\u0421\u0440\u043E\u043A \u043A\u0440\u0435\u0434\u0438\u0442\u043E\u0432\u0430\u043D\u0438\u044F</p>\n        <span>").concat(dateSum, " \u043B\u0435\u0442</span>\n      </div>"));
 };
 'use strict';
 /* Yandex map */

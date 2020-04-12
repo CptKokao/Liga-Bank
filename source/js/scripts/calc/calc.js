@@ -9,6 +9,7 @@ offerBtn.onclick = (e) => {
   /* проверка на ввод значений */
   if (procentSum !== undefined) {
     // calcFlex.classList.add('visually-hidden');
+    disableForm(true);
     formName.focus();
     offerBtn.disabled = true;
     /* прибавляет ++ к номеру заказа, ТОЛЬКО один раз */
@@ -36,8 +37,11 @@ requestBtn.onclick = (e) => {
     var input = inputs[i];
     // Проверим валидность поля, используя встроенную в JavaScript функцию checkValidity()
     if (input.checkValidity() === false) {
-      error++
-    } 
+      error++;
+      input.style.border = "1px solid #d40101"
+    } else {
+      input.style.border = "none";
+    }
   }
 
   if (error === 0 ) {
@@ -57,6 +61,7 @@ requestBtn.onclick = (e) => {
     requestWrap.innerHTML = "";
     offerBtn.disabled = false;
     requestNumber = addZero(requestNumber, 4);
+    disableForm(false);
     getOfferReset();
     getDefValue();
   }
@@ -68,63 +73,11 @@ dropdown.onclick = (e) => {
     return;
   }
   getDefValue();
-  getSumDate();
+  // getSumYears();
   getOfferReset();
 }
 
-/* Событие при снятии фокуса */
-inputRealty.oninput = () => {
-  
-  if(!getProcentSum()) {
-    return;
-  }
-  
-  getSumCredit();
-  getSumDate();
-  getPayMonth();
-  getOffer()
-  ;
-};
 
-/* Отслеживание клика plus */
-calcPlus.onclick = (e) => {
-  getStep(e);
-  if(!getProcentSum()) {
-    return;
-  }
-  getSumCredit();
-  getSumDate();
-  getPayMonth();
-  getOffer()
-}
 
-/* Отслеживание клика minus */
-calcMinus.onclick = (e) => {
-  getStep(e);
-  if(!getProcentSum()) {
-    return;
-  }
-  getSumCredit();
-  getSumDate();
-  getPayMonth();
-  getOffer()
 
-}
 
-/* Отслеживание изменения срока кредитования */
-inputDateRange.onchange = () => {
-  getSumDate();
-  getSumCredit();
-  getSumDate()
-  getPayMonth();
-  getOffer()
-};
-
-/* Отслеживание изменения % первоначального взноса */
-inputFirstpayRange.oninput = () => {
-  getProcentSum();
-  getSumCredit();
-  getSumDate()
-  getPayMonth();
-  getOffer()
-};

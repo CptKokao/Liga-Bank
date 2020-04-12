@@ -4,7 +4,7 @@
 /* получает дефолтное значение в зависимости от категории */
 const getDefValue = () => {
   /* название категорий */
-  const realtyTitle = `Стоимость недвижимость`;
+  const realtyTitle = `Стоимость недвижимости`;
   const autoTitle = `Стоимость автомобиля`;
   const creditTitle = `Сумма потребительского кредита`;
 
@@ -71,7 +71,7 @@ const getDefValue = () => {
     /* добавляет defVal для инпута(общей стоимости) */
     // inputRealty.value = defValue;
     /* добавляет значение для инпута(первоначальный взнос) */
-    inputFirstpay.value = (generalSum * 10) / 100;
+    // inputFirstpay.value = (generalSum * 10) / 100;
 
     /* добавляет параметры для инпута(слайдер) */
     inputFirstpayRange.min = realtyProc;
@@ -84,13 +84,12 @@ const getDefValue = () => {
     inputDateRange.max = 30;
     inputDateRange.step = 1;
     inputDateRange.value = realtyYearFirst;
-    inputDate.value = realtyYearFirst;
+    // inputDate.value = realtyYearFirst;
 
     offerSuccessText.textContent = `Сумма ипотеки`;
 
     /* выводим defVal в html */
     calcTitle.textContent = realtyTitle;
-    requestTarget = realtyTitle;
     calcCost.textContent = realtyCost;
     calcProcentValue.textContent = realtyProc;
     calcDateFirst.textContent = realtyYearFirst + " лет";
@@ -149,13 +148,12 @@ const getDefValue = () => {
     inputDateRange.max = 5;
     inputDateRange.step = 1;
     inputDateRange.value = autoYearFirst;
-    inputDate.value = autoYearFirst;
+    // inputDate.value = autoYearFirst;
 
     offerSuccessText.textContent = `Сумма автокредита`;
 
     /* выводим defVal в html */
     calcTitle.textContent = autoTitle;
-    requestTarget = autoTitle;
     calcCost.textContent = autoCost;
     calcProcentValue.textContent = autoProc;
     calcDateFirst.textContent = autoYearFirst + " лет";
@@ -207,7 +205,6 @@ const getDefValue = () => {
 
     /* выводим defVal в html */
     calcTitle.textContent = creditTitle;
-    requestTarget = creditTitle;
     calcCost.textContent = creditCost;
     calcDateFirst.textContent = creditYearFirst + " лет";
     calcDateLast.textContent = creditYearLast + " лет";

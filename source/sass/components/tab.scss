@@ -92,11 +92,11 @@
 
 .tab__content {
   position: absolute; /* Абсолютное позиционирование */
-  top: 94px;
+  top: 93px;
   left: 0; /* Размещаем у левого края */
   display: none; /* Прячем вкладку */
   width: 100%;
-  min-height: 410px;
+  min-height: 390px;
   padding-top: 52px;
   padding-left: 70px;
   padding-bottom: 40px;
@@ -152,6 +152,10 @@
   line-height: 31px;
   letter-spacing: 0;
 
+  &--credit {
+    width: 320px;
+  }
+
   @media (max-width: $tablet-width) {
     width: 350px;
     font-size: 18px;
@@ -165,8 +169,9 @@
   }
 }
 
+
 .tab__list {
-  width: 395px;
+  width: 392px;
   margin-top: 27px;
   padding-left: 20px;
 
@@ -248,8 +253,11 @@
   width: 334px;
   margin-top: 40px;
   font-size: 18px;
-  line-height: 23px;
-  letter-spacing: 0.4px;
+  line-height: 24px;
+
+  &--credit {
+    margin-top: 31px;
+  }
 
   @media (max-width: $tablet-width) {
     font-size: 16px;

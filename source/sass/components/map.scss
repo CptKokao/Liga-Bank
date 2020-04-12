@@ -1,6 +1,6 @@
 .map {
   width: 100%;
-  margin-top: 90px;
+  margin-top: 98px;
 
   @media (max-width: $tablet-width) {
     margin-top: 70px;
@@ -66,10 +66,10 @@
 
   label {
     position: relative;
-    padding: 0 25px;
+    padding: 0 28px;
     font-weight: normal;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 20px;
     cursor: pointer;
 
     @media (max-width: $tablet-width) {

@@ -4,7 +4,7 @@
 const getOffer = () => {
   if (dropdownInput.value === "credit-realty") {
     if (sumCredit < 500000) {
-      offerFailedText.textContent = `Наш банк не выдыет ипотечные кредиты меньше 500000 рублей`;
+      offerFailedText.textContent = `Наш банк не выдаёт ипотечные кредиты меньше 500 000 рублей`;
       offerFailed.classList.remove("visually-hidden");
       offerSuccess.classList.add("visually-hidden");
     } else {
@@ -46,7 +46,22 @@ const getOfferReset = () => {
   offerMonthprofit.textContent = "";
 };
 
+
+
 const getRequest = () => {
+  let hidden;
+  if (dropdownInput.value === "credit-realty") {
+    requestTarget = 'Ипотека';
+    requestPrice = 'Стоимость недвижимости';
+  } else if (dropdownInput.value === "credit-auto") {
+    requestTarget = 'Автокредит';
+    requestPrice = 'Стоимость автомобиля';
+
+  } else if (dropdownInput.value === "credit-user") {
+    requestTarget = 'Потребительский кредит';
+    requestPrice = 'Сумма кредита';
+    hidden = `style="display: none;"`;
+  }
   requestWrap.insertAdjacentHTML(
     "afterbegin",
     `<div class="calc__request-item">
@@ -60,11 +75,11 @@ const getRequest = () => {
         </div>
   
         <div class="calc__request-item">
-        <p>Стоимость недвижимости</p>
+        <p>${requestPrice}</p>
         <span>${generalSum} рублей</span>
         </div>
   
-        <div class="calc__request-item">
+        <div class="calc__request-item" ${hidden}>
         <p>Первоначальный взнос</p>
         <span>${procentSum} рублей</span>
         </div>

@@ -52,8 +52,10 @@ const inputs = document.querySelectorAll(".calc__request-form input");
 const formName = document.getElementById("name");
 const formPhone = document.getElementById("phone");
 const formEmail = document.getElementById("email");
+
 let requestNumber = 0;
 let requestTarget;
+let requestPrice; 
 
 const defValue = 2000000;
 const capital = 470000;

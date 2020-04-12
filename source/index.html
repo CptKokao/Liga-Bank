@@ -223,14 +223,14 @@
 
               <!-- Содержание -->
               <div class="tab__desc">
-                <p class="tab__slogan">Лига Банк выдает кредиты под любые цели</p>
+                <p class="tab__slogan tab__slogan--credit">Лига Банк выдает кредиты под любые цели</p>
                 <ul class="tab__list">
                   <li>Ипотечный кредит</li>
                   <li>Автокредит</li>
                   <li>Потребительский кредит</li>
                 </ul>
                 <!-- Сылка на калькулятор -->
-                <p class="tab__text">Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим <a class="tab__link" href="#calc">кредитным калькулятором</a></p>
+                <p class="tab__text tab__text--credit">Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим <a class="tab__link" href="#calc">кредитным калькулятором</a></p>
               </div>
 
               <!-- Изображение -->
@@ -287,7 +287,7 @@
               <div class="tab__desc">
                 <p class="tab__slogan">Лига Банк — это огромное количество онлайн-сервисов для вашего удобства</p>
                 <ul class="tab__list">
-                  <li>Мобильный банк, который всегда под рукой</li>
+                  <li>Мобильный банк,<br> который всегда под рукой</li>
                   <li>Приложение Лига-проездной позволит вам оплачивать билеты по всему миру</li>
                 </ul>
                 <!-- Кнопка -->
@@ -352,14 +352,14 @@
 
                 <!-- Содержание -->
                 <div class="tab__desc">
-                  <p class="tab__slogan">Лига Банк выдает кредиты под любые цели</p>
+                  <p class="tab__slogan tab__slogan--credit">Лига Банк выдает кредиты под любые цели</p>
                   <ul class="tab__list">
                     <li>Ипотечный кредит</li>
                     <li>Автокредит</li>
                     <li>Потребительский кредит</li>
                   </ul>
                   <!-- Сылка на калькулятор -->
-                  <p class="tab__text">Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим <a class="tab__link" href="#calc">кредитным калькулятором</a></p>
+                  <p class="tab__text tab__text--credit">Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим <a class="tab__link" href="#calc">кредитным калькулятором</a></p>
                 </div>
   
                 <!-- Изображение -->
@@ -414,7 +414,7 @@
                 <div class="tab__desc">
                   <p class="tab__slogan">Лига Банк — это огромное количество онлайн-сервисов для вашего удобства</p>
                   <ul class="tab__list">
-                    <li>Мобильный банк, который всегда под рукой</li>
+                    <li>Мобильный банк,<br> который всегда под рукой</li>
                     <li>Приложение Лига-проездной позволит вам оплачивать билеты по всему миру</li>
                   </ul>
                   <!-- Кнопка -->
@@ -470,20 +470,20 @@
 
             <div class="calc__step-parametrs-wrap">
               <p id="calc-title"></p>
-              <div class="">
+              <!-- <div class=""> -->
                 <div class="calc__step-parametrs-input">
                   <button class="calc__step-parametrs-minus" id="calc-minus">&minus;</button>
                   <button class="calc__step-parametrs-plus" id="calc-plus">&plus;</button>
                   <input type="number" id="calc-realty" placeholder="2 000 000 рублей">
                 </div>
-                <p id="calc-realty-error"></p>
-              </div>
+                <span id="calc-realty-error"></span>
+              <!-- </div> -->
               <span id="calc-cost"></span>
             </div>
 
             <div class="calc__firstpay-wrap" id="calc-firstpay-wrap">
               <p>Первоначальный взнос</p>
-              <input type="number" id="calc-firstpay" placeholder="200 000 рублей" readonly>
+              <input type="number" id="calc-firstpay" placeholder="200 000 рублей">
               <input type="range" id="calc-firstpay-range">
               <span id="calc-firstpay-value"></span>
               <span>%</span>
@@ -491,7 +491,7 @@
 
             <div class="calc__step-date">
               <p>Срок кредитования</p>
-              <input id="calc-date" type="text" placeholder="5 лет" readonly>
+              <input id="calc-date" type="text" placeholder="5 лет">
               <input id="calc-date-range" type="range" >
               <div class="calc__step-date-value">
                 <span id="calc-date-first">лет</span>
@@ -616,7 +616,7 @@
   </main>
 
   <footer class="footer">
-    <div class="footer__wrap">
+    <div class="container footer__wrap">
 
       <!-- Левая часть футера -->
       <div class="footer__left">
@@ -628,10 +628,10 @@
             </svg>
             <p>ЛИГА Банк</p>
           </a>
+          <!-- © -->
+          <p class="footer__address">150015, г. Москва, ул. Московская, д. 32 Генеральная лицензия Банка России №1050 Ⓒ Лига Банк, 2019</p>
         </div>
-        <!-- © -->
-        <p class="footer__address">150015, г. Москва, ул. Московская, д. 32 Генеральная лицензия Банка России №1050 Ⓒ Лига Банк, 2019
-        </p>
+
 
         <!-- Навигация -->
         <nav class="footer__nav">
