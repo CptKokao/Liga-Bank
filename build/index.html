@@ -145,9 +145,9 @@
 
                 <div class="slider-img">
                   <picture>
-                    <!-- <source media="(max-width: 767px)" srcset="./img/black-card@2x.webp 2x, ./img/black-card.webp 1x" type="image/webp"> -->
+                    <source media="(max-width: 767px)" srcset="./img/black-card@2x.webp 2x, ./img/black-card.webp 1x" type="image/webp">
                     <source media="(max-width: 767px)" srcset="./img/black-card@2x.png 2x, ./img/black-card.png 1x">
-                    <!-- <source srcset="./img/cards@2x.webp 2x, ./img/cards.webp 1x" type="image/webp"> -->
+                    <source srcset="./img/cards@2x.webp 2x, ./img/cards.webp 1x" type="image/webp">
                     <img src="./img/cards.png" srcset="./img/cards@2x.png 2x" alt="Кредиты">
                   </picture>
                 </div>
@@ -166,8 +166,9 @@
 
                 <div class="slider-img">
                   <picture>
-                    <source media="(max-width: 767px)" srcset="./img/man-mobile.png 1x">   
-                    <!-- <source srcset="./img/man@2x.webp 2x, ./img/man.webp 1x" type="image/webp"> -->
+                    <source media="(max-width: 767px)" srcset="./img/man-mobile@2x.webp 2x, ./img/man-mobile.webp 1x" type="image/webp">
+                    <source media="(max-width: 767px)" srcset="./img/man-mobiled@2x.png 2x, ./img/man-mobile.png 1x">  
+                    <source srcset="./img/man@2x.webp 2x, ./img/man.webp 1x" type="image/webp">
                     <img src="./img/man.png" srcset="./img/man@2x.png 2x" alt="Уверенность">
                   </picture>
                 </div>
@@ -187,10 +188,11 @@
 
                 <div class="slider-img">
                   <picture>
-                    <source media="(max-width: 767px)" srcset="./img/woman-mobile.png 1x">   
-                    <!-- <source srcset="./img/woman@2x.webp 2x, ./img/woman.webp 1x" type="image/webp"> -->
-                      <img src="./img/woman.png" alt="Всегда рядом">
-                    </picture>
+                    <source media="(max-width: 767px)" srcset="./img/woman-mobile@2x.webp 2x, ./img/woman-mobile.webp 1x" type="image/webp">
+                    <source media="(max-width: 767px)" srcset="./img/woman-mobiled@2x.png 2x, ./img/woman-mobile.png 1x">  
+                    <source srcset="./img/woman@2x.webp 2x, ./img/woman.webp 1x" type="image/webp">
+                    <img src="./img/woman.png" alt="Всегда рядом">
+                  </picture>
                 </div>
               </div>
             </div>
@@ -327,7 +329,6 @@
             </div>
           </div>
         </div>
-  
       </div>
     </div>
 
@@ -457,6 +458,8 @@
             </div>
           </div>
         </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
       </div>
     </div>
 
@@ -478,7 +481,7 @@
             <div class="dropdown">
               <span>Выберите цель кредита</span>
               <input type="hidden" id="dropdown-input">
-              <ul class="dropdown-menu">
+              <ul class="dropdown__menu">
                 <li id="credit-realty">Ипотечное кредитование</li>
                 <li id="credit-auto">Автомобильное кредитование</li>
                 <li id="credit-user">Потребительский кредит</li>
@@ -652,7 +655,7 @@
             <p>ЛИГА Банк</p>
           </a>
           <!-- © -->
-          <p class="footer__address">150015, г. Москва, ул. Московская, д. 32 Генеральная лицензия Банка России №1050 Ⓒ Лига Банк, 2019</p>
+          <p class="footer__address">150015, г. Москва, ул. Московская, д. 32 Генеральная лицензия Банка России №1050 &copy; Лига Банк, 2019</p>
         </div>
 
 
@@ -674,18 +677,20 @@
           <ul class="footer__list-tel">
             <!-- 1 -->
             <li>
-              <svg width="10" height="16">
-                <use xlink:href="#icon-mobile"></use>
-              </svg>
-              <a href="tel:*0904">*0904</a>
+              <a href="tel:*0904">*0904
+                <svg width="10" height="16">
+                  <use xlink:href="#icon-mobile"></use>
+                </svg>
+              </a>
               <p>Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
             </li>
             <!-- 2 -->
             <li>
-              <svg width="16" height="16">
-                <use xlink:href="#icon-phone"></use>
-              </svg>
-              <a href="tel:88001112233">8 800 111 22 33</a>
+              <a href="tel:88001112233">8 800 111 22 33
+                <svg width="16" height="16">
+                  <use xlink:href="#icon-phone"></use>
+                </svg>
+              </a>
               <p>Бесплатный для всех городов России</p>
             </li>
           </ul>

@@ -1,5 +1,5 @@
 .calc {
-  margin-top: 45px;
+  margin-top: 508px;
   position: relative;
 
   @media (max-width: $tablet-width) {
@@ -39,7 +39,6 @@
     @media (max-width: $mobile-width) {
       font-size: 16px;
       line-height: 22px;
-      letter-spacing: 0.3px;
     }
   }
 }
@@ -78,7 +77,6 @@
     }
   }
 }
-
 
 .calc__step {
   width: 51.3%;
@@ -121,11 +119,15 @@
 }
 
 .calc__step-parametrs-wrap {
-  margin-top: 20px;
+  margin-top: 17px;
 
   @media (max-width: $tablet-width) {
     width: 100%;
-    // margin-top: 7px;
+    margin-top: 15px;
+  }
+
+  @media (max-width: $mobile-width) {
+    margin-top: 12px;
   }
 
   & > span {
@@ -139,6 +141,10 @@
 
 .calc__firstpay-wrap {
   margin-top: 18px;
+
+  @media (max-width: $mobile-width) {
+    margin-top: 14px;
+  }
 }
 
 .calc__firstpay-wrap,
@@ -153,7 +159,6 @@
 /* стилизация input[type=number] */
 .calc__step-parametrs-input {
   position: relative;
-
 }
 
 .calc__step-parametrs-minus,
@@ -209,7 +214,6 @@
 .calc__step-checkbox {
   display: flex;
   margin-top: 20px;
-
 
   @media (max-width: $tablet-width) {
     margin-top: 17px;
@@ -285,7 +289,7 @@
 .calc__offer-success {
   width: 43%;
   min-height: 389px;
-  padding: 54px 53px 58px 57px;
+  padding: 48px 53px 58px 60px;
   margin-top: 58px;
   background: #f6f7ff;
   border-radius: 4px;
@@ -300,7 +304,7 @@
   @media (max-width: $mobile-width) {
     height: 433px;
     margin-top: 30px;
-    padding: 35px 15px;
+    padding: 30px 15px;
   }
 
   h3 {
@@ -326,8 +330,8 @@
 }
 
 .calc__offer-failed {
-  width: 500px;
-  height: 225px;
+  width: 43%;
+  min-height: 225px;
   padding: 52px 58px;
   margin-top: 58px;
   background: #f6f7ff;
@@ -352,11 +356,7 @@
     width: 100%;
 
     p {
-      padding-right: 50%;
-    }
-
-    span {
-      padding-right: 55%;
+      padding-right: 25%;
     }
   }
 
@@ -461,7 +461,7 @@
   }
 
   @media (max-width: $mobile-width) {
-    margin-top: 45px;
+    margin-top: 42px;
   }
 
   h3 {
@@ -500,6 +500,10 @@
   align-items: baseline;
   padding: 11px 0;
   border-bottom: 1px solid #c4c4c4;
+
+  @media (max-width: $tablet-width) {
+    padding: 12px 0;
+  }
 
   @media (max-width: $mobile-width) {
     flex-direction: column-reverse;
@@ -545,7 +549,7 @@
 
       @media (max-width: $mobile-width) {
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         padding-left: 15px;
       }
     }

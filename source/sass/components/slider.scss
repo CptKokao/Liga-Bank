@@ -96,19 +96,18 @@
 
     @media (max-width: $tablet-width) {
       padding-top: 57px;
-      padding-left: 11%;
-      padding-right: 11.5%;
+      padding-left: 6%;
+      padding-right: 6%;
     }
 
     @media (max-width: $mobile-width) {
       padding-top: 30px;
-      padding-left: 5%;
+      padding-left: 0;
       padding-right: 0;
     }
   }
 
   .slider__desc {
-
     width: 275px;
     padding-top: 22px;
 
@@ -128,6 +127,9 @@
     }
 
     @media (max-width: $mobile-width) {
+      position: absolute;
+      top: 28px;
+      right: 0;
       width: 82px;
       height: 133px;
       margin-top: 20px;
@@ -137,7 +139,7 @@
 
 // Слайдер MAN
 .slider--man {
-  background: #dee2ed;
+  background: linear-gradient(90deg, #dee2ed 0%, #f1f7ff 100%);
 
   @media (max-width: $tablet-width) {
     width: 311px;
@@ -253,7 +255,7 @@
       @media (max-width: $tablet-width) {
         width: 206px;
       }
-    
+
       @media (max-width: $mobile-width) {
         width: 188px;
       }
@@ -278,5 +280,3 @@
     }
   }
 }
-
-

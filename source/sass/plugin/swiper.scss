@@ -536,10 +536,27 @@ button.swiper-pagination-bullet {
 .swiper-pagination-bullet {
   background: #2028B6;
   opacity: 1;
+
+  @media (max-width: 767px) {
+    width: 6px;
+    height: 6px;
+  }
 }
 
 .swiper-pagination-bullet-active {
   background: #F6F7FF;
+}
+
+.tab > .swiper-container {
+  display: none;
+  
+  @media (max-width: 1023px) {
+    display: block;
+  }
+}
+
+.tab .swiper-pagination-bullet-active {
+  background: #E0E0E0;
 }
 
 .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
@@ -547,7 +564,7 @@ button.swiper-pagination-bullet {
   left: 0;
   width: 100%;
 
-  @media (max-width: 1199px) {
+  @media (max-width: 1023px) {
     bottom: 15px;
   }
 

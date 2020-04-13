@@ -1,127 +1,48 @@
-/* eslint-disable */
-'use strict'; // polyfill swiper for IE11
-
-if (!String.prototype.startsWith) {
-  Object.defineProperty(String.prototype, 'startsWith', {
-    value: function value(search, rawPos) {
-      var pos = rawPos > 0 ? rawPos | 0 : 0;
-      return this.substring(pos, pos + search.length) === search;
-    }
-  });
-}
-/* Слайдер для блока slider */
-
-
-var mySwiper = new Swiper('#swiper1', {
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true
-  },
-  // autoplay: {
-  //   delay: 4000,
-  // },
-  loop: true
-});
-/* Слайдер для блока tab */
-
-var tabSwiper = new Swiper('#swiper2', {
-  loop: true
-});
-mySwiper.init();
-tabSwiper.init();
-/* маска формы телефона */
-
-$("#phone").mask("8(999) 999-9999");
-/*Dropdown Menu*/
-
-$('.dropdown').click(function () {
-  $(this).attr('tabindex', 1).focus();
-  $(this).toggleClass('active');
-  $(this).find('.dropdown-menu').slideToggle(300);
-});
-$('.dropdown').focusout(function () {
-  $(this).removeClass('active');
-  $(this).find('.dropdown-menu').slideUp(300);
-});
-$('.dropdown .dropdown-menu li').click(function () {
-  $(this).parents('.dropdown').find('span').text($(this).text());
-  $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
-});
-/*End Dropdown Menu*/
-
-$('.dropdown-menu li').click(function () {
-  var input = '<strong>' + $(this).parents('.dropdown').find('input').val() + '</strong>',
-      msg = '<span class="msg">Hidden input value: ';
-  $('.msg').html(msg + input + '</span>');
-});
-"use strict";
-
-(function () {
-  /* Internet Explorer 11 may have trouble retrieving the number type
-  of an input value. This short script performs a quick test, and repairs
-  the functionality if necessary. Load before attempting to use the
-  `valueAsNumber` property on input elements. */
-  "use strict";
-
-  var a = document.createElement("input");
-  a.setAttribute("type", "number");
-  a.setAttribute("value", 2319);
-
-  if ("valueAsNumber" in a && a.value != a.valueAsNumber) {
-    if ("defineProperty" in Object && "getPrototypeOf" in Object) {
-      Object.defineProperty(Object.getPrototypeOf(a), "valueAsNumber", {
-        get: function get() {
-          return parseInt(this.value, 10);
-        }
-      });
-    }
-  }
-})();
-/* eslint-disable */
 'use strict';
 
-var body = document.querySelector("body");
-var inputRealty = document.getElementById("calc-realty");
-var inputFirstpay = document.getElementById("calc-firstpay");
-var inputFirstpayRange = document.getElementById("calc-firstpay-range");
-var inputDateRange = document.getElementById("calc-date-range");
-var inputDate = document.getElementById("calc-date");
-var calcFlex = document.getElementById("calc__flex");
-var dropdown = document.querySelector(".dropdown");
-var dropdownInput = document.getElementById("dropdown-input");
-var calcStep2 = document.getElementById("calc-step2");
-var calcFirstpayWrap = document.getElementById("calc-firstpay-wrap");
-var calcTitle = document.getElementById("calc-title");
-var calcCost = document.getElementById("calc-cost");
-var calcDateFirst = document.getElementById("calc-date-first");
-var calcDateLast = document.getElementById("calc-date-last");
-var calcPlus = document.getElementById("calc-plus");
-var calcMinus = document.getElementById("calc-minus");
-var calcRealtyError = document.getElementById("calc-realty-error");
-var calcProcentValue = document.getElementById("calc-firstpay-value");
-var calcFirstpayError = document.getElementById("calc-fistpay-error");
-var checkboxСapital = document.getElementById("calc-extra-capital");
-var checkboxKacko = document.getElementById("calc-extra-kacko");
-var checkboxLife = document.getElementById("calc-extra-life");
-var checkboxProject = document.getElementById("calc-extra-project");
-var calcStepCheckbox = document.querySelectorAll(".calc__step-checkbox");
-var calcCheckbox = document.querySelectorAll(".calc__step-checkbox input[type=checkbox]");
-var offerSuccess = document.getElementById("offer-success");
-var offerFailed = document.getElementById("offer-failed");
-var offerFailedText = document.getElementById("offer-failed-text");
-var offerSuccessText = document.getElementById("offer-success-text");
-var offerBtn = document.getElementById("offer-btn");
-var request = document.getElementById("request");
-var requestWrap = document.getElementById("request-wrap");
-var requestBtn = document.getElementById("request-btn");
-var requestForm = document.getElementById("request-form");
-var inputs = document.querySelectorAll(".calc__request-form input");
-var formName = document.getElementById("name");
-var formPhone = document.getElementById("phone");
-var formEmail = document.getElementById("email");
+var body = document.querySelector('body');
+var inputRealty = document.getElementById('calc-realty');
+var inputFirstpay = document.getElementById('calc-firstpay');
+var inputFirstpayRange = document.getElementById('calc-firstpay-range');
+var inputDateRange = document.getElementById('calc-date-range');
+var inputDate = document.getElementById('calc-date');
+var dropdown = document.querySelector('.dropdown');
+var dropdownInput = document.getElementById('dropdown-input');
+var calcStep2 = document.getElementById('calc-step2');
+var calcFirstpayWrap = document.getElementById('calc-firstpay-wrap');
+var calcTitle = document.getElementById('calc-title');
+var calcCost = document.getElementById('calc-cost');
+var calcDateFirst = document.getElementById('calc-date-first');
+var calcDateLast = document.getElementById('calc-date-last');
+var calcPlus = document.getElementById('calc-plus');
+var calcMinus = document.getElementById('calc-minus');
+var calcRealtyError = document.getElementById('calc-realty-error');
+var calcProcentValue = document.getElementById('calc-firstpay-value');
+var checkboxСapital = document.getElementById('calc-extra-capital');
+var checkboxKacko = document.getElementById('calc-extra-kacko');
+var checkboxLife = document.getElementById('calc-extra-life');
+var checkboxProject = document.getElementById('calc-extra-project');
+var calcStepCheckbox = document.querySelectorAll('.calc__step-checkbox');
+var calcCheckbox = document.querySelectorAll('.calc__step-checkbox input[type=checkbox]');
+var offerSuccess = document.getElementById('offer-success');
+var offerFailed = document.getElementById('offer-failed');
+var offerFailedText = document.getElementById('offer-failed-text');
+var offerSuccessText = document.getElementById('offer-success-text');
+var offerBtn = document.getElementById('offer-btn');
+var request = document.getElementById('request');
+var requestWrap = document.getElementById('request-wrap');
+var requestBtn = document.getElementById('request-btn');
+var inputs = document.querySelectorAll('.calc__request-form input');
+var formName = document.getElementById('name');
+var formPhone = document.getElementById('phone');
+var formEmail = document.getElementById('email'); // const calcFlex = document.getElementById('calc__flex');
+// const calcFirstpayError = document.getElementById('calc-fistpay-error');
+// const requestForm = document.getElementById('request-form');
+
 var requestNumber = 0;
 var requestTarget;
 var requestPrice;
+var procent;
 var defValue = 2000000;
 var capital = 470000;
 var generalSum; // стоимость недвижимости
@@ -140,116 +61,244 @@ var payMonth; // ежемесячный платеж
 
 var profitMonth; // ежемесячный платеж
 
-var offerSum = document.getElementById("calc-offer-sum");
-var offerProc = document.getElementById("calc-offer-proc");
-var offerMonthpay = document.getElementById("calc-offer-monthpay");
-var offerMonthprofit = document.getElementById("calc-offer-monthprofit");
-"use strict";
+var offerSum = document.getElementById('calc-offer-sum');
+var offerProc = document.getElementById('calc-offer-proc');
+var offerMonthpay = document.getElementById('calc-offer-monthpay');
+var offerMonthprofit = document.getElementById('calc-offer-monthprofit');
+/*
+ * defValue.js
+ */
 
-/* eslint-disable */
-var dropdown = document.querySelector(".dropdown");
-/* отслеживает клик по кнопки Оформить заявку*/
+/* получает дефолтное значение в зависимости от категории */
 
-offerBtn.onclick = function (e) {
-  e.preventDefault();
-  /* проверка на ввод значений */
+var getDefValue = function getDefValue() {
+  /* название категорий */
+  var realtyTitle = "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u043D\u0435\u0434\u0432\u0438\u0436\u0438\u043C\u043E\u0441\u0442\u0438";
+  var autoTitle = "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u0430\u0432\u0442\u043E\u043C\u043E\u0431\u0438\u043B\u044F";
+  var creditTitle = "\u0421\u0443\u043C\u043C\u0430 \u043F\u043E\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043B\u044C\u0441\u043A\u043E\u0433\u043E \u043A\u0440\u0435\u0434\u0438\u0442\u0430";
+  /* текст min/max для категорий */
 
-  if (procentSum !== undefined) {
-    // calcFlex.classList.add('visually-hidden');
-    disableForm(true);
-    formName.focus();
-    offerBtn.disabled = true;
-    /* прибавляет ++ к номеру заказа, ТОЛЬКО один раз */
+  var realtyCost = "\u041E\u0442 1 200 000  \u0434\u043E 25 000 000 \u0440\u0443\u0431\u043B\u0435\u0439";
+  var autoCost = "\u041E\u0442 500 000  \u0434\u043E 5 000 000 \u0440\u0443\u0431\u043B\u0435\u0439";
+  var creditCost = "\u041E\u0442 50 000  \u0434\u043E 3 000 000 \u0440\u0443\u0431\u043B\u0435\u0439";
+  /* defVal % для категорий */
 
-    if (requestNumber === 0) {
-      requestNumber = addZero(requestNumber, 4);
+  var realtyProc = 10;
+  var autoProc = 20;
+  /* defVal min/max для категорий */
+
+  var realtyMin = 1200000;
+  var realtyMax = 25000000;
+  var autoMin = 500000;
+  var autoMax = 5000000;
+  var creditMin = 50000;
+  var creditMax = 3000000;
+  /* defVal years для категорий */
+
+  var realtyYearFirst = 5;
+  var realtyYearLast = 30;
+  var autoYearFirst = 1;
+  var autoYearLast = 5;
+  var creditYearFirst = 1;
+  var creditYearLast = 7;
+
+  if (dropdownInput.value === 'credit-realty') {
+    /* проверяет если категория первоначальный взнос скрыта, то показать */
+    if (calcFirstpayWrap.classList.contains('visually-hidden')) {
+      calcFirstpayWrap.classList.remove('visually-hidden');
     }
 
-    getRequest();
-    request.classList.remove('visually-hidden'); // сбросить значения
-
-    for (var i = 0; i < inputs.length; i++) {
-      var input = inputs[i];
-      input.value = '';
+    if (calcStep2.classList.contains('visually-hidden')) {
+      calcStep2.classList.remove('visually-hidden');
     }
-  } else {
-    return;
-  }
-};
-/* отслеживает клик по кнопки Отправить*/
+    /* цикл проверяет все чекбоксы и показывает только для текущей категории */
 
 
-requestBtn.onclick = function (e) {
-  e.preventDefault();
-  var error = 0; // Пройдёмся по всем полям
-
-  for (var i = 0; i < inputs.length; i++) {
-    var input = inputs[i]; // Проверим валидность поля, используя встроенную в JavaScript функцию checkValidity()
-
-    if (input.checkValidity() === false) {
-      error++;
-      input.style.border = "1px solid #d40101";
-    } else {
-      input.style.border = "none";
+    for (var i = 0; calcStepCheckbox.length > i; i++) {
+      if (calcStepCheckbox[i].children[0].id !== checkboxСapital.id) {
+        calcStepCheckbox[i].classList.add('visually-hidden');
+      } else {
+        calcStepCheckbox[i].classList.remove('visually-hidden');
+      }
     }
-  }
+    /* цикл сбрасывает значения checkbox  */
 
-  if (error === 0) {
-    /* открытие модального окна */
-    openOverlay(overlay);
-    /* хранение данных в localStorage */
 
-    localStorage.setItem('name', formName.value);
-    localStorage.setItem('phone', formPhone.value);
-    localStorage.setItem('email', formEmail.value);
-    /* скрыывает запрос */
+    for (var _i = 0; calcCheckbox.length > _i; _i++) {
+      calcCheckbox[_i].checked = false;
+    }
 
-    request.classList.add('visually-hidden');
-    offrOverlay.classList.remove('visually-hidden');
-    /* очищает поля запроса */
+    if (offerSuccess.classList.contains('visually-hidden')) {
+      offerFailed.classList.add('visually-hidden');
+      offerSuccess.classList.remove('visually-hidden');
+    }
+    /* записывает defValue в переменную где храниться общая сумма */
 
-    requestWrap.innerHTML = "";
-    offerBtn.disabled = false;
-    requestNumber = addZero(requestNumber, 4);
-    disableForm(false);
-    getOfferReset();
-    getDefValue();
+
+    generalSum = defValue;
+    /* добавляет min/max для инпута(общей стоимости) */
+
+    inputRealty.min = realtyMin;
+    inputRealty.max = realtyMax;
+    /* добавляет defVal для инпута(общей стоимости) */
+    // inputRealty.value = defValue;
+
+    /* добавляет значение для инпута(первоначальный взнос) */
+    // inputFirstpay.value = (generalSum * 10) / 100;
+
+    /* добавляет параметры для инпута(слайдер) */
+
+    inputFirstpayRange.min = realtyProc;
+    inputFirstpayRange.max = 100;
+    inputFirstpayRange.step = 5;
+    inputFirstpayRange.value = realtyProc;
+    /* добавляет параметры для инпута(дата) */
+
+    inputDateRange.min = realtyYearFirst;
+    inputDateRange.max = 30;
+    inputDateRange.step = 1;
+    inputDateRange.value = realtyYearFirst; // inputDate.value = realtyYearFirst;
+
+    offerSuccessText.textContent = "\u0421\u0443\u043C\u043C\u0430 \u0438\u043F\u043E\u0442\u0435\u043A\u0438";
+    /* выводим defVal в html */
+
+    calcTitle.textContent = realtyTitle;
+    calcCost.textContent = realtyCost;
+    calcProcentValue.textContent = realtyProc;
+    calcDateFirst.textContent = realtyYearFirst + ' лет';
+    calcDateLast.textContent = realtyYearLast + ' лет';
+  } else if (dropdownInput.value === 'credit-auto') {
+    /* проверяет если категория первоначальный взнос скрыта, то показать */
+    if (calcFirstpayWrap.classList.contains('visually-hidden')) {
+      calcFirstpayWrap.classList.remove('visually-hidden');
+    }
+
+    if (calcStep2.classList.contains('visually-hidden')) {
+      calcStep2.classList.remove('visually-hidden');
+    }
+    /* цикл проверяет все чекбоксы и показывает только для текущей категории */
+
+
+    for (var _i2 = 0; calcStepCheckbox.length > _i2; _i2++) {
+      if (calcStepCheckbox[_i2].children[0].id !== checkboxKacko.id && calcStepCheckbox[_i2].children[0].id !== checkboxLife.id) {
+        calcStepCheckbox[_i2].classList.add('visually-hidden');
+
+        calcStepCheckbox.checked = false;
+      } else {
+        calcStepCheckbox[_i2].classList.remove('visually-hidden');
+      }
+    }
+    /* цикл сбрасывает значения checkbox  */
+
+
+    for (var _i3 = 0; calcCheckbox.length > _i3; _i3++) {
+      calcCheckbox[_i3].checked = false;
+    }
+
+    if (offerSuccess.classList.contains('visually-hidden')) {
+      offerFailed.classList.add('visually-hidden');
+      offerSuccess.classList.remove('visually-hidden');
+    }
+    /* записывает defValue в переменную где зраниться общая сумма */
+
+
+    generalSum = defValue;
+    /* добавляет min/max для инпута(первоначальный взнос) */
+
+    inputRealty.min = autoMin;
+    inputRealty.max = autoMax;
+    /* добавляет defVal для инпута(первоначальный взнос) */
+
+    inputRealty.value = defValue;
+    /* добавляет значение для инпута(первоначальный взнос) */
+
+    inputFirstpay.value = generalSum * 20 / 100;
+    /* добавляет параметры для инпута(слайдер) */
+
+    inputFirstpayRange.value = autoProc;
+    inputFirstpayRange.min = autoProc;
+    inputFirstpayRange.max = 100;
+    inputFirstpayRange.step = 5;
+    /* добавляет параметры для инпута(дата) */
+
+    inputDateRange.min = autoYearFirst;
+    inputDateRange.max = 5;
+    inputDateRange.step = 1;
+    inputDateRange.value = autoYearFirst; // inputDate.value = autoYearFirst;
+
+    offerSuccessText.textContent = "\u0421\u0443\u043C\u043C\u0430 \u0430\u0432\u0442\u043E\u043A\u0440\u0435\u0434\u0438\u0442\u0430";
+    /* выводим defVal в html */
+
+    calcTitle.textContent = autoTitle;
+    calcCost.textContent = autoCost;
+    calcProcentValue.textContent = autoProc;
+    calcDateFirst.textContent = autoYearFirst + ' лет';
+    calcDateLast.textContent = autoYearLast + ' лет';
+  } else if (dropdownInput.value === 'credit-user') {
+    /* цикл проверяет все чекбоксы и показывает только для текущей категории */
+    for (var _i4 = 0; calcStepCheckbox.length > _i4; _i4++) {
+      if (calcStepCheckbox[_i4].children[0].id !== checkboxProject.id) {
+        calcStepCheckbox[_i4].classList.add('visually-hidden');
+
+        calcStepCheckbox.checked = false;
+      } else {
+        calcStepCheckbox[_i4].classList.remove('visually-hidden');
+      }
+    }
+
+    if (calcStep2.classList.contains('visually-hidden')) {
+      calcStep2.classList.remove('visually-hidden');
+    }
+    /* цикл сбрасывает значения checkbox  */
+
+
+    for (var _i5 = 0; calcCheckbox.length > _i5; _i5++) {
+      calcCheckbox[_i5].checked = false;
+    }
+
+    if (offerSuccess.classList.contains('visually-hidden')) {
+      offerFailed.classList.add('visually-hidden');
+      offerSuccess.classList.remove('visually-hidden');
+    }
+    /* записывает defValue в переменную где храниться общая сумма */
+
+
+    generalSum = defValue;
+    /* добавляет min/max для инпута(credit-realty) */
+
+    inputRealty.min = creditMin;
+    inputRealty.max = creditMax;
+    /* добавляет defVal для инпута(credit-realty) */
+
+    inputRealty.value = defValue;
+    /* добавляет значение для инпута(первоначальный взнос) */
+
+    inputFirstpay.value = 0;
+    offerSuccessText.textContent = "\u0421\u0443\u043C\u043C\u0430 \u043A\u0440\u0435\u0434\u0438\u0442\u0430";
+    /* добавляет параметры для инпута(дата) */
+
+    inputDateRange.min = creditYearFirst;
+    inputDateRange.max = 7;
+    inputDateRange.step = 1;
+    inputDateRange.value = creditYearFirst;
+    inputDate.value = creditYearFirst;
+    /* выводим defVal в html */
+
+    calcTitle.textContent = creditTitle;
+    calcCost.textContent = creditCost;
+    calcDateFirst.textContent = creditYearFirst + ' лет';
+    calcDateLast.textContent = creditYearLast + ' лет';
+    /* скрывает блок */
+
+    calcFirstpayWrap.classList.add('visually-hidden');
   }
 };
-/* Событие при изменении категории */
-
-
-dropdown.onclick = function (e) {
-  if (e.target.classList.contains("active")) {
-    return;
-  }
-
-  getDefValue(); // getSumYears();
-
-  getOfferReset();
-};
-"use strict";
-
-/* eslint-disable */
-var generalSum; // стоимость недвижимости
-
-var procent; // % 
-
-var procentSum; // сумма первоначальный взнос
-
-var procRate; // % первоначального взноса
-
-var procRateMonth; // процентная ставка
-
-var dateSum; // срок кредитования
-
-var sumCredit; // сумма кредита(с вычитом первоначального взноса)
-
-var payMonth; // ежемесячный платеж
-
-var profitMonth; // ежемесячный платеж
+/*
+ * calculation.js
+ */
 
 /* получает введенную сумму и записывает в generalSum*/
+
 
 var getGeneralSum = function getGeneralSum() {
   /* проверяет если общая сумма NaN, то добавляет defValue */
@@ -275,16 +324,15 @@ var checkGeneralSum = function checkGeneralSum(target) {
       inputRealty.style.border = '1px solid #d40101';
       offerBtn.disabled = true;
       return false;
-    } else
+    } else if (target.validity.rangeOverflow) {
       /* Если значение меньше */
-      if (target.validity.rangeOverflow) {
-        calcRealtyError.textContent = "\u0412\u0437\u043D\u043E\u0441 \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u043C\u0435\u043D\u044C\u0448\u0435 ".concat(target.max);
-        calcRealtyError.style.color = '#d40101';
-        inputRealty.style.border = '1px solid #d40101';
-        calcRealtyError.style.display = 'block';
-        offerBtn.disabled = true;
-        return false;
-      }
+      calcRealtyError.textContent = "\u0412\u0437\u043D\u043E\u0441 \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u043C\u0435\u043D\u044C\u0448\u0435 ".concat(target.max);
+      calcRealtyError.style.color = '#d40101';
+      inputRealty.style.border = '1px solid #d40101';
+      calcRealtyError.style.display = 'block';
+      offerBtn.disabled = true;
+      return false;
+    }
     /* Если валидность true */
 
   } else {
@@ -370,7 +418,7 @@ var setCurProcent = function setCurProcent() {
 
 
 var getSumYears = function getSumYears() {
-  /* Значение input[type="range"] записывает в переменную dateSum */
+  /* Значение input[type='range'] записывает в переменную dateSum */
   dateSum = inputDateRange.value;
   inputDate.value = dateSum;
   calcDateFirst.textContent = dateSum + ' лет';
@@ -380,7 +428,7 @@ var getSumYears = function getSumYears() {
 
 
 var getPutYears = function getPutYears() {
-  /* Значение input[type="range"] записывает в переменную dateSum */
+  /* Значение input[type='range'] записывает в переменную dateSum */
   dateSum = Number(inputDate.value);
   var dateMin = Number(inputDateRange.min);
   var dateMax = Number(inputDateRange.max);
@@ -429,7 +477,7 @@ var getProcentRate = function getProcentRate() {
         if (sumCredit >= 2000000) {
           procRate = '9';
           procRateMonth = 9 / 100 / 12;
-        } else if (750000 <= sumCredit && sumCredit < 2000000) {
+        } else if (sumCredit >= 750000 && sumCredit < 2000000) {
           procRate = '12';
           procRateMonth = 12 / 100 / 12;
         } else {
@@ -440,7 +488,7 @@ var getProcentRate = function getProcentRate() {
         if (sumCredit >= 2000000) {
           procRate = '9.5';
           procRateMonth = 9.5 / 100 / 12;
-        } else if (750000 <= sumCredit && sumCredit < 2000000) {
+        } else if (sumCredit >= 750000 && sumCredit < 2000000) {
           procRate = '12.5';
           procRateMonth = 12.5 / 100 / 12;
         } else {
@@ -509,7 +557,6 @@ var getStep = function getStep(e) {
 
 
 var disableForm = function disableForm(state) {
-  console.dir(inputRealty);
   inputRealty.disabled = state;
   calcPlus.disabled = state;
   calcMinus.disabled = state;
@@ -527,7 +574,7 @@ var disableForm = function disableForm(state) {
 
 for (var i = 0; calcStepCheckbox.length > i; i++) {
   var ckeckbox = calcStepCheckbox[i].children[0];
-  ckeckbox.addEventListener('click', function (e) {
+  ckeckbox.addEventListener('click', function () {
     /* После ввода стоимости недвижимости, должно автоматически проставляться минимальное значение первоначального взноса. */
     setDefProcent();
     /* получает сумму кредита */
@@ -552,18 +599,92 @@ for (var i = 0; calcStepCheckbox.length > i; i++) {
 
 function addZero(num, size) {
   num++;
-  var s = num + "";
+  var s = num + '';
 
   while (s.length < size) {
-    s = "0" + s;
+    s = '0' + s;
   }
 
   return s;
 }
+/*
+ * offer.js
+ */
+
+/* отображает значения для offer */
+
+
+var getOffer = function getOffer() {
+  if (dropdownInput.value === 'credit-realty') {
+    if (sumCredit < 500000) {
+      offerFailedText.textContent = "\u041D\u0430\u0448 \u0431\u0430\u043D\u043A \u043D\u0435 \u0432\u044B\u0434\u0430\u0451\u0442 \u0438\u043F\u043E\u0442\u0435\u0447\u043D\u044B\u0435 \u043A\u0440\u0435\u0434\u0438\u0442\u044B \u043C\u0435\u043D\u044C\u0448\u0435 500 000 \u0440\u0443\u0431\u043B\u0435\u0439";
+      offerFailed.classList.remove('visually-hidden');
+      offerSuccess.classList.add('visually-hidden');
+    } else {
+      offerFailed.classList.add('visually-hidden');
+      offerSuccess.classList.remove('visually-hidden');
+      offerSum.textContent = "".concat(sumCredit, " \u0440\u0443\u0431\u043B\u0435\u0439");
+      offerProc.textContent = "".concat(procRate, " %");
+      offerMonthpay.textContent = "".concat(payMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
+      offerMonthprofit.textContent = "".concat(profitMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
+    }
+  } else if (dropdownInput.value === 'credit-auto') {
+    if (sumCredit < 200000) {
+      offerFailedText.textContent = "\u041D\u0430\u0448 \u0431\u0430\u043D\u043A \u043D\u0435 \u0432\u044B\u0434\u044B\u0435\u0442 \u0430\u0432\u0442\u043E\u043A\u0440\u0435\u0434\u0438\u0442\u044B \u043C\u0435\u043D\u044C\u0448\u0435 200000 \u0440\u0443\u0431\u043B\u0435\u0439";
+      offerFailed.classList.remove('visually-hidden');
+      offerSuccess.classList.add('visually-hidden');
+    } else {
+      offerFailed.classList.add('visually-hidden');
+      offerSuccess.classList.remove('visually-hidden');
+      offerSum.textContent = "".concat(sumCredit, " \u0440\u0443\u0431\u043B\u0435\u0439");
+      offerProc.textContent = "".concat(procRate, " %");
+      offerMonthpay.textContent = "".concat(payMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
+      offerMonthprofit.textContent = "".concat(profitMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
+    }
+  } else {
+    if (dropdownInput.value === 'credit-user') {
+      offerSum.textContent = "".concat(sumCredit, " \u0440\u0443\u0431\u043B\u0435\u0439");
+      offerProc.textContent = "".concat(procRate, " %");
+      offerMonthpay.textContent = "".concat(payMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
+      offerMonthprofit.textContent = "".concat(profitMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
+    }
+  }
+};
+/* сброс значения для offer */
+
+
+var getOfferReset = function getOfferReset() {
+  offerSum.textContent = '';
+  offerProc.textContent = '';
+  offerMonthpay.textContent = '';
+  offerMonthprofit.textContent = '';
+};
+
+var getRequest = function getRequest() {
+  var hidden;
+
+  if (dropdownInput.value === 'credit-realty') {
+    requestTarget = 'Ипотека';
+    requestPrice = 'Стоимость недвижимости';
+  } else if (dropdownInput.value === 'credit-auto') {
+    requestTarget = 'Автокредит';
+    requestPrice = 'Стоимость автомобиля';
+  } else if (dropdownInput.value === 'credit-user') {
+    requestTarget = 'Потребительский кредит';
+    requestPrice = 'Сумма кредита';
+    hidden = "style='display: none;'";
+  }
+
+  requestWrap.insertAdjacentHTML('afterbegin', "<div class='calc__request-item'>\n        <p>\u041D\u043E\u043C\u0435\u0440 \u0437\u0430\u044F\u0432\u043A\u0438</p>\n        <span>\u2116 ".concat(requestNumber, "</span>\n      </div>\n    \n      <div class='calc__request-item'>\n        <p>\u0426\u0435\u043B\u044C \u043A\u0440\u0435\u0434\u0438\u0442\u0430</p>\n        <span>").concat(requestTarget, "</span>\n      </div>\n    \n      <div class='calc__request-item'>\n        <p>").concat(requestPrice, "</p>\n        <span>").concat(generalSum, " \u0440\u0443\u0431\u043B\u0435\u0439</span>\n      </div>\n    \n      <div class='calc__request-item' ").concat(hidden, ">\n        <p>\u041F\u0435\u0440\u0432\u043E\u043D\u0430\u0447\u0430\u043B\u044C\u043D\u044B\u0439 \u0432\u0437\u043D\u043E\u0441</p>\n        <span>").concat(procentSum, " \u0440\u0443\u0431\u043B\u0435\u0439</span>\n      </div>\n    \n      <div class='calc__request-item'>\n        <p>\u0421\u0440\u043E\u043A \u043A\u0440\u0435\u0434\u0438\u0442\u043E\u0432\u0430\u043D\u0438\u044F</p>\n        <span>").concat(dateSum, " \u043B\u0435\u0442</span>\n      </div>"));
+};
+/*
+ * calcOn.js
+ */
+
 /* Событие при изменения значения */
 
 
-inputRealty.oninput = function (e) {
+inputRealty.oninput = function () {
   getGeneralSum();
   /* проверяет сумму, если возвращает false то проверка не пройдена */
 
@@ -655,7 +776,7 @@ calcMinus.onclick = function (e) {
 /* Отслеживание изменения % первоначального взноса */
 
 
-inputFirstpayRange.oninput = function () {
+inputFirstpayRange.onchange = function () {
   getGeneralSum();
   /* проверяет сумму, если возвращает false то проверка не пройдена */
 
@@ -715,7 +836,7 @@ inputFirstpay.onchange = function () {
 /* Отслеживание изменения срока кредитования */
 
 
-inputDateRange.oninput = function () {
+inputDateRange.onchange = function () {
   getGeneralSum();
   /* проверяет сумму, если возвращает false то проверка не пройдена */
 
@@ -772,254 +893,109 @@ inputDate.onchange = function () {
 
   getOffer();
 };
-"use strict";
+/* отслеживает клик по кнопки Оформить заявку*/
 
-/* eslint-disable */
 
-/* получает дефолтное значение в зависимости от категории */
-var getDefValue = function getDefValue() {
-  /* название категорий */
-  var realtyTitle = "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u043D\u0435\u0434\u0432\u0438\u0436\u0438\u043C\u043E\u0441\u0442\u0438";
-  var autoTitle = "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u0430\u0432\u0442\u043E\u043C\u043E\u0431\u0438\u043B\u044F";
-  var creditTitle = "\u0421\u0443\u043C\u043C\u0430 \u043F\u043E\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043B\u044C\u0441\u043A\u043E\u0433\u043E \u043A\u0440\u0435\u0434\u0438\u0442\u0430";
-  /* текст min/max для категорий */
+offerBtn.onclick = function (e) {
+  e.preventDefault();
+  /* проверка на ввод значений */
 
-  var realtyCost = "\u041E\u0442 1 200 000  \u0434\u043E 25 000 000 \u0440\u0443\u0431\u043B\u0435\u0439";
-  var autoCost = "\u041E\u0442 500 000  \u0434\u043E 5 000 000 \u0440\u0443\u0431\u043B\u0435\u0439";
-  var creditCost = "\u041E\u0442 50 000  \u0434\u043E 3 000 000 \u0440\u0443\u0431\u043B\u0435\u0439";
-  /* defVal % для категорий */
+  if (typeof procentSum !== 'undefined') {
+    // calcFlex.classList.add('visually-hidden');
+    disableForm(true);
+    formName.focus();
+    offerBtn.disabled = true;
+    /* прибавляет ++ к номеру заказа, ТОЛЬКО один раз */
 
-  var realtyProc = 10;
-  var autoProc = 20;
-  /* defVal min/max для категорий */
-
-  var realtyMin = 1200000;
-  var realtyMax = 25000000;
-  var autoMin = 500000;
-  var autoMax = 5000000;
-  var creditMin = 50000;
-  var creditMax = 3000000;
-  /* defVal years для категорий */
-
-  var realtyYearFirst = 5;
-  var realtyYearLast = 30;
-  var autoYearFirst = 1;
-  var autoYearLast = 5;
-  var creditYearFirst = 1;
-  var creditYearLast = 7;
-
-  if (dropdownInput.value === "credit-realty") {
-    /* проверяет если категория первоначальный взнос скрыта, то показать */
-    if (calcFirstpayWrap.classList.contains("visually-hidden")) {
-      calcFirstpayWrap.classList.remove("visually-hidden");
+    if (requestNumber === 0) {
+      requestNumber = addZero(requestNumber, 4);
     }
 
-    if (calcStep2.classList.contains("visually-hidden")) {
-      calcStep2.classList.remove('visually-hidden');
+    getRequest();
+    request.classList.remove('visually-hidden'); // сбросить значения
+
+    for (var i = 0; i < inputs.length; i++) {
+      var input = inputs[i];
+      input.value = '';
     }
-    /* цикл проверяет все чекбоксы и показывает только для текущей категории */
-
-
-    for (var i = 0; calcStepCheckbox.length > i; i++) {
-      if (calcStepCheckbox[i].children[0].id !== checkboxСapital.id) {
-        calcStepCheckbox[i].classList.add("visually-hidden");
-      } else {
-        calcStepCheckbox[i].classList.remove("visually-hidden");
-      }
-    }
-    /* цикл сбрасывает значения checkbox  */
-
-
-    for (var _i = 0; calcCheckbox.length > _i; _i++) {
-      calcCheckbox[_i].checked = false;
-    }
-
-    if (offerSuccess.classList.contains("visually-hidden")) {
-      offerFailed.classList.add("visually-hidden");
-      offerSuccess.classList.remove("visually-hidden");
-    }
-    /* записывает defValue в переменную где храниться общая сумма */
-
-
-    generalSum = defValue;
-    /* добавляет min/max для инпута(общей стоимости) */
-
-    inputRealty.min = realtyMin;
-    inputRealty.max = realtyMax;
-    /* добавляет defVal для инпута(общей стоимости) */
-    // inputRealty.value = defValue;
-
-    /* добавляет значение для инпута(первоначальный взнос) */
-    // inputFirstpay.value = (generalSum * 10) / 100;
-
-    /* добавляет параметры для инпута(слайдер) */
-
-    inputFirstpayRange.min = realtyProc;
-    inputFirstpayRange.max = 100;
-    inputFirstpayRange.step = 5;
-    inputFirstpayRange.value = realtyProc;
-    /* добавляет параметры для инпута(дата) */
-
-    inputDateRange.min = realtyYearFirst;
-    inputDateRange.max = 30;
-    inputDateRange.step = 1;
-    inputDateRange.value = realtyYearFirst; // inputDate.value = realtyYearFirst;
-
-    offerSuccessText.textContent = "\u0421\u0443\u043C\u043C\u0430 \u0438\u043F\u043E\u0442\u0435\u043A\u0438";
-    /* выводим defVal в html */
-
-    calcTitle.textContent = realtyTitle;
-    calcCost.textContent = realtyCost;
-    calcProcentValue.textContent = realtyProc;
-    calcDateFirst.textContent = realtyYearFirst + " лет";
-    calcDateLast.textContent = realtyYearLast + " лет";
-  } else if (dropdownInput.value === "credit-auto") {
-    /* проверяет если категория первоначальный взнос скрыта, то показать */
-    if (calcFirstpayWrap.classList.contains("visually-hidden")) {
-      calcFirstpayWrap.classList.remove("visually-hidden");
-    }
-
-    if (calcStep2.classList.contains("visually-hidden")) {
-      calcStep2.classList.remove('visually-hidden');
-    }
-    /* цикл проверяет все чекбоксы и показывает только для текущей категории */
-
-
-    for (var _i2 = 0; calcStepCheckbox.length > _i2; _i2++) {
-      if (calcStepCheckbox[_i2].children[0].id !== checkboxKacko.id && calcStepCheckbox[_i2].children[0].id !== checkboxLife.id) {
-        calcStepCheckbox[_i2].classList.add("visually-hidden");
-
-        calcStepCheckbox.checked = false;
-      } else {
-        calcStepCheckbox[_i2].classList.remove("visually-hidden");
-      }
-    }
-    /* цикл сбрасывает значения checkbox  */
-
-
-    for (var _i3 = 0; calcCheckbox.length > _i3; _i3++) {
-      calcCheckbox[_i3].checked = false;
-    }
-
-    if (offerSuccess.classList.contains("visually-hidden")) {
-      offerFailed.classList.add("visually-hidden");
-      offerSuccess.classList.remove("visually-hidden");
-    }
-    /* записывает defValue в переменную где зраниться общая сумма */
-
-
-    generalSum = defValue;
-    /* добавляет min/max для инпута(первоначальный взнос) */
-
-    inputRealty.min = autoMin;
-    inputRealty.max = autoMax;
-    /* добавляет defVal для инпута(первоначальный взнос) */
-
-    inputRealty.value = defValue;
-    /* добавляет значение для инпута(первоначальный взнос) */
-
-    inputFirstpay.value = generalSum * 20 / 100;
-    /* добавляет параметры для инпута(слайдер) */
-
-    inputFirstpayRange.value = autoProc;
-    inputFirstpayRange.min = autoProc;
-    inputFirstpayRange.max = 100;
-    inputFirstpayRange.step = 5;
-    /* добавляет параметры для инпута(дата) */
-
-    inputDateRange.min = autoYearFirst;
-    inputDateRange.max = 5;
-    inputDateRange.step = 1;
-    inputDateRange.value = autoYearFirst; // inputDate.value = autoYearFirst;
-
-    offerSuccessText.textContent = "\u0421\u0443\u043C\u043C\u0430 \u0430\u0432\u0442\u043E\u043A\u0440\u0435\u0434\u0438\u0442\u0430";
-    /* выводим defVal в html */
-
-    calcTitle.textContent = autoTitle;
-    calcCost.textContent = autoCost;
-    calcProcentValue.textContent = autoProc;
-    calcDateFirst.textContent = autoYearFirst + " лет";
-    calcDateLast.textContent = autoYearLast + " лет";
-  } else if (dropdownInput.value === "credit-user") {
-    /* цикл проверяет все чекбоксы и показывает только для текущей категории */
-    for (var _i4 = 0; calcStepCheckbox.length > _i4; _i4++) {
-      if (calcStepCheckbox[_i4].children[0].id !== checkboxProject.id) {
-        calcStepCheckbox[_i4].classList.add("visually-hidden");
-
-        calcStepCheckbox.checked = false;
-      } else {
-        calcStepCheckbox[_i4].classList.remove("visually-hidden");
-      }
-    }
-
-    if (calcStep2.classList.contains("visually-hidden")) {
-      calcStep2.classList.remove('visually-hidden');
-    }
-    /* цикл сбрасывает значения checkbox  */
-
-
-    for (var _i5 = 0; calcCheckbox.length > _i5; _i5++) {
-      calcCheckbox[_i5].checked = false;
-    }
-
-    if (offerSuccess.classList.contains("visually-hidden")) {
-      offerFailed.classList.add("visually-hidden");
-      offerSuccess.classList.remove("visually-hidden");
-    }
-    /* записывает defValue в переменную где храниться общая сумма */
-
-
-    generalSum = defValue;
-    /* добавляет min/max для инпута(credit-realty) */
-
-    inputRealty.min = creditMin;
-    inputRealty.max = creditMax;
-    /* добавляет defVal для инпута(credit-realty) */
-
-    inputRealty.value = defValue;
-    /* добавляет значение для инпута(первоначальный взнос) */
-
-    inputFirstpay.value = 0;
-    offerSuccessText.textContent = "\u0421\u0443\u043C\u043C\u0430 \u043A\u0440\u0435\u0434\u0438\u0442\u0430";
-    /* добавляет параметры для инпута(дата) */
-
-    inputDateRange.min = creditYearFirst;
-    inputDateRange.max = 7;
-    inputDateRange.step = 1;
-    inputDateRange.value = creditYearFirst;
-    inputDate.value = creditYearFirst;
-    /* выводим defVal в html */
-
-    calcTitle.textContent = creditTitle;
-    calcCost.textContent = creditCost;
-    calcDateFirst.textContent = creditYearFirst + " лет";
-    calcDateLast.textContent = creditYearLast + " лет";
-    /* скрывает блок */
-
-    calcFirstpayWrap.classList.add("visually-hidden");
+  } else {
+    return;
   }
 };
-"use strict";
+/* отслеживает клик по кнопки Отправить*/
 
-/* eslint-disable */
+
+requestBtn.onclick = function (e) {
+  e.preventDefault();
+  var error = 0; // Пройдёмся по всем полям
+
+  for (var i = 0; i < inputs.length; i++) {
+    var input = inputs[i]; // Проверим валидность поля, используя встроенную в JavaScript функцию checkValidity()
+
+    if (input.checkValidity() === false) {
+      error++;
+      input.style.border = '1px solid #d40101';
+    } else {
+      input.style.border = 'none';
+    }
+  }
+
+  if (error === 0) {
+    /* открытие модального окна */
+    openOverlay(overlay);
+    /* хранение данных в localStorage */
+
+    localStorage.setItem('name', formName.value);
+    localStorage.setItem('phone', formPhone.value);
+    localStorage.setItem('email', formEmail.value);
+    /* скрыывает запрос */
+
+    request.classList.add('visually-hidden');
+    offrOverlay.classList.remove('visually-hidden');
+    /* очищает поля запроса */
+
+    requestWrap.innerHTML = '';
+    requestNumber = addZero(requestNumber, 4);
+    disableForm(false);
+    getOfferReset();
+    getDefValue();
+  }
+};
+/* Событие при изменении категории */
+
+
+dropdown.onclick = function (e) {
+  if (e.target.classList.contains('active')) {
+    return;
+  }
+
+  getDefValue(); // getSumYears();
+
+  getOfferReset();
+};
+/*
+ * modal.js
+ */
 
 /* модальное окно - Спасибо за обращение */
+
+
 var esc = 27;
-var overlay = document.getElementById("overlay");
-var offrOverlay = document.getElementById("offer-overlay");
-var iconClose = document.getElementById("close-overlay");
-var inputLogin = document.getElementById("login");
+var overlay = document.getElementById('overlay');
+var offrOverlay = document.getElementById('offer-overlay');
+var iconClose = document.getElementById('close-overlay');
+var inputLogin = document.getElementById('login');
 
 var closeOverlay = function closeOverlay(target) {
-  overlay.classList.add("visually-hidden");
-  target.classList.add("visually-hidden");
-  body.style.overflow = "auto";
+  overlay.classList.add('visually-hidden');
+  target.classList.add('visually-hidden');
+  body.style.overflow = 'auto';
 };
 
 var openOverlay = function openOverlay(target) {
-  overlay.classList.remove("visually-hidden");
-  target.classList.remove("visually-hidden");
-  body.style.overflow = "hidden";
+  overlay.classList.remove('visually-hidden');
+  target.classList.remove('visually-hidden');
+  body.style.overflow = 'hidden';
   inputLogin.focus();
 };
 /* закрытие модального окна */
@@ -1029,20 +1005,18 @@ iconClose.onclick = function () {
   closeOverlay(offrOverlay);
 };
 
-window.addEventListener("keydown", function (e) {
-  console.log(e);
-
-  if (e.code === "Escape" || e.keyCode === esc) {
+window.addEventListener('keydown', function (e) {
+  if (e.code === 'Escape' || e.keyCode === esc) {
     closeOverlay(offrOverlay);
   }
 });
 /* Модальное окно */
 
-var enterCabinet = document.getElementById("enter-cabinet");
-var modal = document.getElementById("modal");
-var modalClose = document.getElementById("modal-close");
-var showPassword = document.getElementById("show-password");
-var inputPassword = document.getElementById("password");
+var enterCabinet = document.getElementById('enter-cabinet');
+var modal = document.getElementById('modal');
+var modalClose = document.getElementById('modal-close');
+var showPassword = document.getElementById('show-password');
+var inputPassword = document.getElementById('password');
 
 enterCabinet.onclick = function () {
   openOverlay(modal);
@@ -1052,101 +1026,113 @@ modalClose.onclick = function () {
   closeOverlay(modal);
 };
 
-overlay.onclick = function (e) {
-  if (modal.classList.contains("visually-hidden")) {
+overlay.onclick = function () {
+  if (modal.classList.contains('visually-hidden')) {
     closeOverlay(offrOverlay);
-  } else if (offrOverlay.classList.contains("visually-hidden")) {
+  } else if (offrOverlay.classList.contains('visually-hidden')) {
     closeOverlay(modal);
   }
 };
 
-window.addEventListener("keydown", function (e) {
-  if (e.code === "Escape" || e.keyCode === esc) {
-    if (modal.classList.contains("visually-hidden")) {
+window.addEventListener('keydown', function (e) {
+  if (e.code === 'Escape' || e.keyCode === esc) {
+    if (modal.classList.contains('visually-hidden')) {
       closeOverlay(offrOverlay);
-    } else if (offrOverlay.classList.contains("visually-hidden")) {
+    } else if (offrOverlay.classList.contains('visually-hidden')) {
       closeOverlay(modal);
     }
   }
 });
 
 showPassword.onclick = function () {
-  console.dir(inputPassword);
-
-  if (inputPassword.type === "password") {
-    inputPassword.type = "text";
+  if (inputPassword.type === 'password') {
+    inputPassword.type = 'text';
   } else {
-    inputPassword.type = "password";
+    inputPassword.type = 'password';
   }
 };
-"use strict";
-
 /* eslint-disable */
+'use strict'; // polyfill swiper for IE11
 
-/* отображает значения для offer */
-var getOffer = function getOffer() {
-  if (dropdownInput.value === "credit-realty") {
-    if (sumCredit < 500000) {
-      offerFailedText.textContent = "\u041D\u0430\u0448 \u0431\u0430\u043D\u043A \u043D\u0435 \u0432\u044B\u0434\u0430\u0451\u0442 \u0438\u043F\u043E\u0442\u0435\u0447\u043D\u044B\u0435 \u043A\u0440\u0435\u0434\u0438\u0442\u044B \u043C\u0435\u043D\u044C\u0448\u0435 500 000 \u0440\u0443\u0431\u043B\u0435\u0439";
-      offerFailed.classList.remove("visually-hidden");
-      offerSuccess.classList.add("visually-hidden");
-    } else {
-      offerFailed.classList.add("visually-hidden");
-      offerSuccess.classList.remove("visually-hidden");
-      offerSum.textContent = "".concat(sumCredit, " \u0440\u0443\u0431\u043B\u0435\u0439");
-      offerProc.textContent = "".concat(procRate, " %");
-      offerMonthpay.textContent = "".concat(payMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
-      offerMonthprofit.textContent = "".concat(profitMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
+if (!String.prototype.startsWith) {
+  Object.defineProperty(String.prototype, 'startsWith', {
+    value: function value(search, rawPos) {
+      var pos = rawPos > 0 ? rawPos | 0 : 0;
+      return this.substring(pos, pos + search.length) === search;
     }
-  } else if (dropdownInput.value === "credit-auto") {
-    if (sumCredit < 200000) {
-      offerFailedText.textContent = "\u041D\u0430\u0448 \u0431\u0430\u043D\u043A \u043D\u0435 \u0432\u044B\u0434\u044B\u0435\u0442 \u0430\u0432\u0442\u043E\u043A\u0440\u0435\u0434\u0438\u0442\u044B \u043C\u0435\u043D\u044C\u0448\u0435 200000 \u0440\u0443\u0431\u043B\u0435\u0439";
-      offerFailed.classList.remove("visually-hidden");
-      offerSuccess.classList.add("visually-hidden");
-    } else {
-      offerFailed.classList.add("visually-hidden");
-      offerSuccess.classList.remove("visually-hidden");
-      offerSum.textContent = "".concat(sumCredit, " \u0440\u0443\u0431\u043B\u0435\u0439");
-      offerProc.textContent = "".concat(procRate, " %");
-      offerMonthpay.textContent = "".concat(payMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
-      offerMonthprofit.textContent = "".concat(profitMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
-    }
-  } else {
-    if (dropdownInput.value === "credit-user") {
-      offerSum.textContent = "".concat(sumCredit, " \u0440\u0443\u0431\u043B\u0435\u0439");
-      offerProc.textContent = "".concat(procRate, " %");
-      offerMonthpay.textContent = "".concat(payMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
-      offerMonthprofit.textContent = "".concat(profitMonth, " \u0440\u0443\u0431\u043B\u0435\u0439");
+  });
+}
+/* Слайдер для блока slider */
+
+
+var mySwiper = new Swiper('#swiper1', {
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true
+  },
+  autoplay: {
+    delay: 4000
+  },
+  loop: true
+});
+/* Слайдер для блока tab */
+
+var tabSwiper = new Swiper('#swiper2', {
+  loop: true,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true
+  }
+});
+/* маска формы телефона */
+
+$("#phone").mask("8(999) 999-9999");
+/*Dropdown Menu*/
+
+$('.dropdown').click(function () {
+  $(this).attr('tabindex', 1).focus();
+  $(this).toggleClass('active');
+  $(this).find('.dropdown__menu').slideToggle(300);
+});
+$('.dropdown').focusout(function () {
+  $(this).removeClass('active');
+  $(this).find('.dropdown__menu').slideUp(300);
+});
+$('.dropdown .dropdown__menu li').click(function () {
+  $(this).parents('.dropdown').find('span').text($(this).text());
+  $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+});
+/*End Dropdown Menu*/
+
+$('.dropdown__menu li').click(function () {
+  var input = '<strong>' + $(this).parents('.dropdown').find('input').val() + '</strong>',
+      msg = '<span class="msg">Hidden input value: ';
+  $('.msg').html(msg + input + '</span>');
+});
+/* valueAsNumber */
+
+(function () {
+  /* Internet Explorer 11 may have trouble retrieving the number type
+  of an input value. This short script performs a quick test, and repairs
+  the functionality if necessary. Load before attempting to use the
+  `valueAsNumber` property on input elements. */
+  "use strict";
+
+  var a = document.createElement("input");
+  a.setAttribute("type", "number");
+  a.setAttribute("value", 2319);
+
+  if ("valueAsNumber" in a && a.value != a.valueAsNumber) {
+    if ("defineProperty" in Object && "getPrototypeOf" in Object) {
+      Object.defineProperty(Object.getPrototypeOf(a), "valueAsNumber", {
+        get: function get() {
+          return parseInt(this.value, 10);
+        }
+      });
     }
   }
-};
-/* сброс значения для offer */
-
-
-var getOfferReset = function getOfferReset() {
-  offerSum.textContent = "";
-  offerProc.textContent = "";
-  offerMonthpay.textContent = "";
-  offerMonthprofit.textContent = "";
-};
-
-var getRequest = function getRequest() {
-  var hidden;
-
-  if (dropdownInput.value === "credit-realty") {
-    requestTarget = 'Ипотека';
-    requestPrice = 'Стоимость недвижимости';
-  } else if (dropdownInput.value === "credit-auto") {
-    requestTarget = 'Автокредит';
-    requestPrice = 'Стоимость автомобиля';
-  } else if (dropdownInput.value === "credit-user") {
-    requestTarget = 'Потребительский кредит';
-    requestPrice = 'Сумма кредита';
-    hidden = "style=\"display: none;\"";
-  }
-
-  requestWrap.insertAdjacentHTML("afterbegin", "<div class=\"calc__request-item\">\n        <p>\u041D\u043E\u043C\u0435\u0440 \u0437\u0430\u044F\u0432\u043A\u0438</p>\n        <span>\u2116 ".concat(requestNumber, "</span>\n        </div>\n  \n        <div class=\"calc__request-item\">\n        <p>\u0426\u0435\u043B\u044C \u043A\u0440\u0435\u0434\u0438\u0442\u0430</p>\n        <span>").concat(requestTarget, "</span>\n        </div>\n  \n        <div class=\"calc__request-item\">\n        <p>").concat(requestPrice, "</p>\n        <span>").concat(generalSum, " \u0440\u0443\u0431\u043B\u0435\u0439</span>\n        </div>\n  \n        <div class=\"calc__request-item\" ").concat(hidden, ">\n        <p>\u041F\u0435\u0440\u0432\u043E\u043D\u0430\u0447\u0430\u043B\u044C\u043D\u044B\u0439 \u0432\u0437\u043D\u043E\u0441</p>\n        <span>").concat(procentSum, " \u0440\u0443\u0431\u043B\u0435\u0439</span>\n        </div>\n  \n        <div class=\"calc__request-item\">\n        <p>\u0421\u0440\u043E\u043A \u043A\u0440\u0435\u0434\u0438\u0442\u043E\u0432\u0430\u043D\u0438\u044F</p>\n        <span>").concat(dateSum, " \u043B\u0435\u0442</span>\n      </div>"));
-};
+})();
+/* eslint-disable */
 'use strict';
 /* Yandex map */
 

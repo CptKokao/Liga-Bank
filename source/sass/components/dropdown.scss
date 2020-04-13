@@ -24,13 +24,14 @@
     transition: 0;
     background: #ffffff url("../img/select-icon-up.svg") 96% 50% no-repeat;
   }
+
+  @media (max-width: $mobile-width) {
+    margin-top: 15px;
+    padding: 20px 15px;
+  }
 }
 
-.dropdown1 {
-  height: calc();
-}
-
-.dropdown .dropdown-menu {
+.dropdown .dropdown__menu {
   position: absolute;
   display: none;
   background-color: #ffffff;

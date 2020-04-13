@@ -17,19 +17,20 @@ var mySwiper = new Swiper('#swiper1', {
     el: '.swiper-pagination',
     clickable: true, 
   }, 
-  // autoplay: {
-  //   delay: 4000,
-  // },
+  autoplay: {
+    delay: 4000,
+  },
   loop: true,
 });
 
 /* Слайдер для блока tab */
 var tabSwiper = new Swiper('#swiper2', {
   loop: true,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true, 
+  }, 
 });
-
-mySwiper.init();
-tabSwiper.init();
 
 /* маска формы телефона */
 $("#phone").mask("8(999) 999-9999");
@@ -39,21 +40,46 @@ $("#phone").mask("8(999) 999-9999");
 $('.dropdown').click(function () {
         $(this).attr('tabindex', 1).focus();
         $(this).toggleClass('active');
-        $(this).find('.dropdown-menu').slideToggle(300);
+        $(this).find('.dropdown__menu').slideToggle(300);
     });
     $('.dropdown').focusout(function () {
         $(this).removeClass('active');
-        $(this).find('.dropdown-menu').slideUp(300);
+        $(this).find('.dropdown__menu').slideUp(300);
     });
-    $('.dropdown .dropdown-menu li').click(function () {
+    $('.dropdown .dropdown__menu li').click(function () {
         $(this).parents('.dropdown').find('span').text($(this).text());
         $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
     });
 /*End Dropdown Menu*/
 
 
-$('.dropdown-menu li').click(function () {
+$('.dropdown__menu li').click(function () {
   var input = '<strong>' + $(this).parents('.dropdown').find('input').val() + '</strong>',
       msg = '<span class="msg">Hidden input value: ';
   $('.msg').html(msg + input + '</span>');
-}); 
+});
+
+/* valueAsNumber */
+(function () {
+    
+  /* Internet Explorer 11 may have trouble retrieving the number type
+  of an input value. This short script performs a quick test, and repairs
+  the functionality if necessary. Load before attempting to use the
+  `valueAsNumber` property on input elements. */
+
+  "use strict";
+
+  var a = document.createElement( "input" );
+
+  a.setAttribute( "type", "number" );
+  a.setAttribute( "value", 2319 );
+
+  if ( "valueAsNumber" in a && a.value != a.valueAsNumber ) {
+      if ( "defineProperty" in Object && "getPrototypeOf" in Object ) {
+          Object.defineProperty( Object.getPrototypeOf( a ), "valueAsNumber", {
+              get: function () { return parseInt( this.value, 10 ); }
+          });
+      }
+  }
+
+}());
