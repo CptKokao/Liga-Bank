@@ -945,10 +945,12 @@ window.addEventListener('keydown', function (e) {
   }
 });
 
-showPassword.onclick = () => {
-  if (inputPassword.type === 'password') {
-    inputPassword.type = 'text';
-  } else {
-    inputPassword.type = 'password';
-  }
-};
+
+showPassword.addEventListener('mousedown', function () {
+  inputPassword.type = 'text';
+});
+
+showPassword.addEventListener('mouseup', function () {
+  inputPassword.type = 'password';
+});
+

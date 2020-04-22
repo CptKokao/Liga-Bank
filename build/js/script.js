@@ -1043,14 +1043,12 @@ window.addEventListener('keydown', function (e) {
     }
   }
 });
-
-showPassword.onclick = function () {
-  if (inputPassword.type === 'password') {
-    inputPassword.type = 'text';
-  } else {
-    inputPassword.type = 'password';
-  }
-};
+showPassword.addEventListener('mousedown', function () {
+  inputPassword.type = 'text';
+});
+showPassword.addEventListener('mouseup', function () {
+  inputPassword.type = 'password';
+});
 /* eslint-disable */
 'use strict'; // polyfill swiper for IE11
 
@@ -1070,9 +1068,9 @@ var mySwiper = new Swiper('#swiper1', {
     el: '.swiper-pagination',
     clickable: true
   },
-  autoplay: {
-    delay: 4000
-  },
+  // autoplay: {
+  //   delay: 4000,
+  // },
   loop: true
 });
 /* Слайдер для блока tab */
